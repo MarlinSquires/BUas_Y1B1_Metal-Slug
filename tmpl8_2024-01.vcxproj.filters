@@ -35,7 +35,18 @@
     <ClCompile Include="spriteRenderer.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="imageRenderer.cpp" />
+    <ClCompile Include="camera.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="imageRenderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="central.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="renderSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -78,9 +89,21 @@
     <ClInclude Include="spriteRenderer.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="imageRenderer.h" />
-    <ClInclude Include="utils.h" />
-    <ClInclude Include="time.h" />
+    <ClInclude Include="camera.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="imageRenderer.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="central.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="renderSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cl\kernels.cl">
@@ -102,6 +125,12 @@
     </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{b3f995a2-c1a6-4025-80b5-cdea31f69881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{761024fc-aa13-4c67-8f2e-a628b2067e83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{e0ea861a-3bd5-4fae-a497-6a064ca72708}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,15 +1,20 @@
 #include "precomp.h"
 #include "game.h"
 
+#include "gameObject.h"
 
+using namespace Tmpl8;
 
 Sprite* spr = new Sprite(new Surface("assets/ball.png"), 1);
+
+GameObject* test = new GameObject(float2(0.0f, 0.0f));
+
 
 
 void Game::Init()
 {
 	
-
+	test->AddComponent();
 
 
 

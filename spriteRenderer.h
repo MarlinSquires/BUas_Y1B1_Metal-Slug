@@ -1,4 +1,5 @@
 #pragma once
+#include "precomp.h"
 #include "component.h"
 #include "tmpl8math.h"
 

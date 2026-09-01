@@ -26,8 +26,6 @@ public:
 	virtual void Tick(); // Per-frame logic
 
 
-
-	// Turns out that template functions need to always be defined in the header??
 	template <typename T, typename... Args>
 	T& AddComponent(Args&&... args) {
 		auto comp = make_unique<T>(forward<Args>(args)...);

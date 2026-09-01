@@ -121,11 +121,14 @@
   </ItemDefinitionGroup>
   <!-- END Custom section -->
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="central.cpp" />
     <ClCompile Include="collider.cpp" />
     <ClCompile Include="component.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="imageRenderer.cpp" />
+    <ClCompile Include="renderSystem.cpp" />
     <ClCompile Include="spriteRenderer.cpp" />
     <ClCompile Include="template\opencl.cpp" />
     <ClCompile Include="template\opengl.cpp" />
@@ -144,12 +147,15 @@
     <ClCompile Include="template\tmpl8math.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="central.h" />
     <ClInclude Include="cl\tools.cl" />
     <ClInclude Include="collider.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="imageRenderer.h" />
+    <ClInclude Include="renderSystem.h" />
     <ClInclude Include="spriteRenderer.h" />
     <ClInclude Include="template\common.h" />
     <ClInclude Include="template\opencl.h" />
@@ -159,7 +165,6 @@
     <ClInclude Include="template\sprite.h" />
     <ClInclude Include="template\surface.h" />
     <ClInclude Include="template\tmpl8math.h" />
-    <ClInclude Include="time.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
