@@ -23,6 +23,19 @@
     <ClCompile Include="template\scene.cpp">
       <Filter>template</Filter>
     </ClCompile>
+    <ClCompile Include="gameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="component.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="collider.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="spriteRenderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="imageRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -53,11 +66,23 @@
     <ClInclude Include="template\scene.h">
       <Filter>template</Filter>
     </ClInclude>
+    <ClInclude Include="gameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="component.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="collider.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="spriteRenderer.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="imageRenderer.h" />
+    <ClInclude Include="utils.h" />
+    <ClInclude Include="time.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md">
-      <Filter>template</Filter>
-    </None>
     <None Include="cl\kernels.cl">
       <Filter>kernels</Filter>
     </None>
@@ -71,6 +96,12 @@
     </Filter>
     <Filter Include="kernels">
       <UniqueIdentifier>{96ad1716-f468-46c6-8f16-5accbc19d76c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{6365101e-4f84-40dd-a089-eda6ef3f7037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{b3f995a2-c1a6-4025-80b5-cdea31f69881}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
