@@ -2,6 +2,8 @@
 #include "game.h"
 
 #include "gameObject.h"
+#include "collider.h"
+#include "spriteRenderer.h"
 
 using namespace Tmpl8;
 
@@ -14,7 +16,7 @@ GameObject* test = new GameObject(float2(0.0f, 0.0f));
 void Game::Init()
 {
 	
-	test->AddComponent();
+	test->AddComponent<SpriteRenderer>();
 
 
 

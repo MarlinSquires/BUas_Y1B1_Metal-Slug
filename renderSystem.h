@@ -7,23 +7,26 @@ class RenderSystem
 {
 public:
 
-	void Register(int layer, SpriteRenderer* spr);
-	void Deregister(int layer, SpriteRenderer* spr);
-
 	enum Layer
 	{
 		Background,
+		BackgroundSprites,
 		Actors,
 		Projectiles,
 		Foreground
 	};
+
+	static void Register(Layer layer, SpriteRenderer* spr);
+	static void Deregister(Layer layer, int index);
+
+	
 
 
 private:
 
 	void Render();
 
-	RenderLayer* layers[10];
+	static RenderLayer* layers[5];
 
 	int layerCount;
 
@@ -33,10 +36,8 @@ private:
 class RenderLayer
 {
 public:
-	int count;
-	SpriteRenderer layer[100];
-
-	void Insert(SpriteRenderer rend);
+	int count = 0;
+	SpriteRenderer* layer[100];
 
 	void Iterate();
 

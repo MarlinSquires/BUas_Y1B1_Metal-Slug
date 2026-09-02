@@ -2,24 +2,16 @@
 
 #include "spriteRenderer.h"
 
-using namespace std;
-
-
-void RenderLayer::Insert(SpriteRenderer rend)
-{
-	layer[count++] = rend;
-}
 
 void RenderLayer::Iterate()
 {
 	for (int i = 0; i < count; i++)
 	{
-		SpriteRenderer rend = layer[i];
-		if (!rend.active) continue;
-		rend.Tick();
+		SpriteRenderer* rend = layer[i];
+		if (!rend->active) continue;
+		rend->Tick();
 	}
 }
-
 
 // Renders layers one after the other, ensuring layers with a higher
 // index are drawn on top
@@ -31,12 +23,17 @@ void RenderSystem::Render()
 	}
 }
 
-void RenderSystem::Register(int layer, SpriteRenderer* spr)
+void RenderSystem::Register(Layer layer, SpriteRenderer* spr)
 {
-	//layers[layer]->insert(spr);
+	RenderLayer* rend = layers[layer];
+	rend->layer[rend->count++] = spr;
 }
 
-void RenderSystem::Deregister(int layer, SpriteRenderer* spr)
+void RenderSystem::Deregister(Layer layerIndex, int index)
 {
-	//layers[layer]->erase(spr);
+	RenderLayer* layer = layers[layerIndex];
+
+	layer[index] = layer[layer->count--]; // Will this cause UB? array is being iterated over by renderSystem, while the index is being replaced
+
+
 }

@@ -9,9 +9,14 @@ class SpriteRenderer : public Component
 {
 public:
 
-	// Specifically not override so it won't be called by gameObject->Tick()
+	// Specifically not an override so it won't be called by gameObject->Tick()
 	// Gets called by the renderSystem instead
 	virtual void Tick();
+
+	void SetIndex(int i)
+	{
+		index = i;
+	}
 
 
 	void SetFrame(int frame)
@@ -31,20 +36,22 @@ public:
 	int GetFrameCount() { return frameCount; };
 
 	Tmpl8::Sprite* GetSprite() { return sprite.get(); };
-	void SetSprite(std::string spriteName);
+	void SetSprite(int spriteIndex);
 
 	//Structors
-	SpriteRenderer(std::string spriteName);
-	SpriteRenderer(std::string spriteName, int frame);
+	SpriteRenderer(int spriteIndex);
+	SpriteRenderer(int spriteIndex, int frame);
 
 protected:
+
+	int index; // index in layer. Used when removing self from layer array
 
 	int frameCount;
 	int currentFrame = 0;
 
 	Tmpl8::Surface* surface;
 	GameObject* camera;
-	std::unique_ptr<Tmpl8::Sprite> sprite;
+	Tmpl8::Sprite* sprite;
 
 	Tmpl8::float2 size;
 

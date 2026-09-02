@@ -4,10 +4,9 @@
 #include "central.h"
 
 
-
-SpriteRenderer::SpriteRenderer(string spriteName)
+SpriteRenderer::SpriteRenderer(int spriteIndex)
 {
-	SetSprite(spriteName);
+	SetSprite(spriteIndex);
 	size.x = (float)sprite->GetWidth();
 	size.y = (float)sprite->GetHeight();
 	surface = Central::surface;
@@ -16,9 +15,10 @@ SpriteRenderer::SpriteRenderer(string spriteName)
 	frameCount = sprite->Frames();
 };
 
-SpriteRenderer::SpriteRenderer(string spriteName, int frame) : currentFrame(frame)
+
+SpriteRenderer::SpriteRenderer(int spriteIndex, int frame) : currentFrame(frame)
 {
-	SetSprite(spriteName);
+	SetSprite(spriteIndex);
 	size.x = (float)sprite->GetWidth();
 	size.y = (float)sprite->GetHeight();
 	surface = Central::surface;
@@ -29,7 +29,7 @@ SpriteRenderer::SpriteRenderer(string spriteName, int frame) : currentFrame(fram
 }
 
 
-void SpriteRenderer::SetSprite(string spriteName)
+void SpriteRenderer::SetSprite(int spriteIndex)
 {
 	//sprite = move(SpriteFactory::BuildSprite(spriteName));
 }

@@ -47,6 +47,10 @@
     <ClCompile Include="renderSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="spriteFactory.cpp" />
+    <ClCompile Include="string.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -104,6 +108,7 @@
     <ClInclude Include="renderSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="spriteFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cl\kernels.cl">

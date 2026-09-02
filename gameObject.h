@@ -3,8 +3,6 @@
 #include "precomp.h"
 #include "component.h"
 
-#include <vector>
-#include <memory>
 
 
 // Has a world-space position
@@ -27,19 +25,21 @@ public:
 
 
 	template <typename T, typename... Args>
-	T& AddComponent(Args&&... args) {
-		auto comp = make_unique<T>(forward<Args>(args)...);
+	T& AddComponent(Args&&... args)
+	{
+		T* comp = new T(forward<Args>(args)...);
 		comp->gameObject = this;
 		T& ref = *comp;
-		components.push_back(move(comp));
+		components[compCount++] = comp;
 		return ref;
 	}
 
+
 	template <typename T> T* GetComponent()
 	{
-		for (const auto& component : components) // Loops through components list by reference
+		for (const T& component : components) // Loops through components list by reference
 		{
-			T* ptr = dynamic_cast<T*>(component.get());
+			T* ptr = dynamic_cast<T*>(component);
 			if (ptr) return ptr;
 		}
 		return nullptr;
@@ -47,24 +47,24 @@ public:
 
 
 	// Return tells you whether component was found and removed
-	template<typename T> bool RemoveComponent()
-	{
-		for (auto& component : components)
-		{
-			T* ptr = dynamic_cast<T*>(component.get());
-			if (ptr)
-			{
-				components.erase(component); // This is the issue here, im tryna erase by value instead of index
-				return true;
-			}
-		}
-		return false;
-	}
+	//template<typename T> bool RemoveComponent()
+	//{
+	//	for (auto& component : components)
+	//	{
+	//		T* ptr = dynamic_cast<T*>(component.get());
+	//		if (ptr)
+	//		{
+	//			components.erase(component); // This is the issue here, im tryna erase by value instead of index
+	//			return true;
+	//		}
+	//	}
+	//	return false;
+	//}
 
 
 
 
-	template<typename T> bool HasComponent()
+	/*template<typename T> bool HasComponent()
 	{
 		for (const auto& component : components)
 		{
@@ -73,11 +73,9 @@ public:
 			if (hasComponent) return true;
 		}
 		return false;
-	}
+	}*/
 
 
-
-	Component* GetComponents();
 
 	void SetActive(bool isActive);
 
@@ -91,7 +89,9 @@ public:
 
 private:
 
-	Component* components[10];
+
+	int compCount = 0;
+	Component* components[10]; // Max 10 components per GO
 	bool active = true; // Whether to run Tick() logic
 
 	void DrawOrigin(); // To test whether origin is correctly at centre of sprite, instead of top-left

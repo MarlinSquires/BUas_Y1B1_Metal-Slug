@@ -29,12 +29,6 @@ void GameObject::Tick()
 }
 
 
-Component* GameObject::GetComponents()
-{
-	return components[0];
-}
-
-
 void GameObject::SetActive(bool isActive)
 {
 	active = isActive;
