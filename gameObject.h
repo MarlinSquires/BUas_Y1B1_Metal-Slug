@@ -1,8 +1,7 @@
 #pragma once
 
-#include "precomp.h"
-#include "component.h"
 
+class Component;
 
 
 // Has a world-space position

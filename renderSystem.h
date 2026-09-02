@@ -1,7 +1,17 @@
 #pragma once
 
 
-class SpriteRenderer;
+
+class RenderLayer
+{
+public:
+	int count = 0;
+	SpriteRenderer* layer[100];
+
+	void Iterate();
+
+};
+
 
 class RenderSystem
 {
@@ -33,13 +43,5 @@ private:
 };
 
 
-class RenderLayer
-{
-public:
-	int count = 0;
-	SpriteRenderer* layer[100];
 
-	void Iterate();
-
-};
 

@@ -1,4 +1,5 @@
 #include "precomp.h"
+#include "component.h"
 #include "spriteRenderer.h"
 #include "gameObject.h"
 #include "central.h"

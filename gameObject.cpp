@@ -1,8 +1,10 @@
+#include "precomp.h"
+#include "component.h"
 #include "gameObject.h"
 
 
-#include "component.h"
-#include "precomp.h"
+
+
 
 using namespace Tmpl8;
 

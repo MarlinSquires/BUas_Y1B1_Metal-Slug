@@ -121,17 +121,11 @@
   </ItemDefinitionGroup>
   <!-- END Custom section -->
   <ItemGroup>
-    <ClCompile Include="camera.cpp" />
     <ClCompile Include="central.cpp" />
-    <ClCompile Include="collider.cpp" />
-    <ClCompile Include="component.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
-    <ClCompile Include="imageRenderer.cpp" />
     <ClCompile Include="renderSystem.cpp" />
-    <ClCompile Include="spriteFactory.cpp" />
     <ClCompile Include="spriteRenderer.cpp" />
-    <ClCompile Include="string.cpp" />
     <ClCompile Include="template\opencl.cpp" />
     <ClCompile Include="template\opengl.cpp" />
     <ClCompile Include="template\scene.cpp">
@@ -149,14 +143,11 @@
     <ClCompile Include="template\tmpl8math.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="camera.h" />
     <ClInclude Include="central.h" />
     <ClInclude Include="cl\tools.cl" />
-    <ClInclude Include="collider.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameObject.h" />
-    <ClInclude Include="imageRenderer.h" />
     <ClInclude Include="renderSystem.h" />
     <ClInclude Include="spriteFactory.h" />
     <ClInclude Include="spriteRenderer.h" />

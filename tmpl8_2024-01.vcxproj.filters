@@ -26,19 +26,7 @@
     <ClCompile Include="gameObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="component.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="collider.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="spriteRenderer.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="imageRenderer.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="central.cpp">
@@ -46,10 +34,6 @@
     </ClCompile>
     <ClCompile Include="renderSystem.cpp">
       <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="spriteFactory.cpp" />
-    <ClCompile Include="string.cpp">
-      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -87,16 +71,7 @@
     <ClInclude Include="component.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="collider.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="spriteRenderer.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="imageRenderer.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="utils.h">

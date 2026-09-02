@@ -1,6 +1,9 @@
-#include "renderSystem.h"
+#include "precomp.h"
 
 #include "spriteRenderer.h"
+#include "renderSystem.h"
+
+
 
 
 void RenderLayer::Iterate()

@@ -1,8 +1,7 @@
 #pragma once
 #include "precomp.h"
-#include "component.h"
-#include "tmpl8math.h"
 
+class Component;
 
 // Sprites live in world-space
 class SpriteRenderer : public Component
