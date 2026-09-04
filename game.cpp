@@ -1,21 +1,45 @@
-// Template, 2024 IGAD Edition
-// Get the latest version from: https://github.com/jbikker/tmpl8
-// IGAD/NHTV/BUAS/UU - Jacco Bikker - 2006-2024
-
 #include "precomp.h"
 #include "game.h"
+#include <iostream>
 
-// -----------------------------------------------------------
-// Initialize the application
-// -----------------------------------------------------------
+
+
+
+
+
 void Game::Init()
 {
-	// anything that happens only once at application start goes here
+	// Bitwise manipulation practice
+	/*Surface s("assets/nc2tiles.png");
+
+	uint* ptr = s.pixels;
+
+	int length = s.width * s.height;
+
+
+	for (int i = 0; i < length; i++)
+	{
+		ptr[i] &= 0xFF0000;
+	}
+
+	s.CopyTo(screen, 0, 0);*/
+
+
+	struct Test { char a, c; int b; };
+
+	int a = sizeof(Test);
+
+	std::cout << a;
+
+
 }
 
-// -----------------------------------------------------------
-// Main application tick function - Executed once per frame
-// -----------------------------------------------------------
+
+
+
 void Game::Tick( float /* deltaTime */ )
 {
+
+	
+
 }
