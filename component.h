@@ -3,7 +3,7 @@
 
 class GameObject;
 
-class Component // Abstract struct
+class Component // Abstract class
 {
 public:
 

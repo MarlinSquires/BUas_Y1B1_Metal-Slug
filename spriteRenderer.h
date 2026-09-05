@@ -1,7 +1,6 @@
 #pragma once
-#include "precomp.h"
 
-class Component;
+
 
 // Sprites live in world-space
 class SpriteRenderer : public Component
@@ -34,7 +33,7 @@ public:
 
 	int GetFrameCount() { return frameCount; };
 
-	Tmpl8::Sprite* GetSprite() { return sprite.get(); };
+	//Tmpl8::Sprite* GetSprite() { return sprite.get(); };
 	void SetSprite(int spriteIndex);
 
 	//Structors

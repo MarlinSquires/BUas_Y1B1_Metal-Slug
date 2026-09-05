@@ -17,7 +17,7 @@ class RenderSystem
 {
 public:
 
-	enum Layer
+	enum LayerType
 	{
 		Background,
 		BackgroundSprites,
@@ -26,8 +26,8 @@ public:
 		Foreground
 	};
 
-	static void Register(Layer layer, SpriteRenderer* spr);
-	static void Deregister(Layer layer, int index);
+	static void Register(LayerType layer, SpriteRenderer* spr);
+	static void Deregister(LayerType layer, int index);
 
 	
 
