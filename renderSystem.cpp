@@ -17,6 +17,18 @@ void RenderLayer::Iterate()
 	}
 }
 
+
+
+RenderSystem::RenderSystem()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		layers[i] = new RenderLayer();
+
+	}
+}
+
+
 // Renders layers one after the other, ensuring layers with a higher
 // index are drawn on top
 void RenderSystem::Render()

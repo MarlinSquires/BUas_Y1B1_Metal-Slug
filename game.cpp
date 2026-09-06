@@ -22,7 +22,7 @@ void Game::Init()
 }
 
 
-void Game::Tick( float dt)
+void Game::Tick( float /*dt*/)
 {
 
 	/*spr->Draw(Game::screen, 5, 5);*/

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "component.h"
 
 
 // Sprites live in world-space
@@ -10,11 +11,6 @@ public:
 	// Specifically not an override so it won't be called by gameObject->Tick()
 	// Gets called by the renderSystem instead
 	virtual void Tick();
-
-	void SetIndex(int i)
-	{
-		index = i;
-	}
 
 
 	void SetFrame(int frame)

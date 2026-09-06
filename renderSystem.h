@@ -26,9 +26,10 @@ public:
 		Foreground
 	};
 
-	static void Register(LayerType layer, SpriteRenderer* spr);
-	static void Deregister(LayerType layer, int index);
+	void Register(LayerType layer, SpriteRenderer* spr);
+	void Deregister(LayerType layer, int index);
 
+	RenderSystem();
 	
 
 
@@ -36,9 +37,7 @@ private:
 
 	void Render();
 
-	static RenderLayer* layers[5];
-
-	int layerCount;
+	RenderLayer* layers[5];
 
 };
 

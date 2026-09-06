@@ -122,6 +122,7 @@
   <!-- END Custom section -->
   <ItemGroup>
     <ClCompile Include="central.cpp" />
+    <ClCompile Include="component.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="renderSystem.cpp" />

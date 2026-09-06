@@ -1,6 +1,5 @@
 #include "precomp.h"
 
-#include "component.h"
 #include "gameObject.h"
 
 #include "spriteRenderer.h"
