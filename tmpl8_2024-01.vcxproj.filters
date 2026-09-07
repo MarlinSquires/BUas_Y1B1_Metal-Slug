@@ -41,6 +41,21 @@
     <ClCompile Include="camera.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="sceneManager.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="collisionSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="mainScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="sceneFactory.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
     <ClCompile Include="spriteFactory.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
@@ -97,6 +112,21 @@
     </ClInclude>
     <ClInclude Include="spriteFactory.h">
       <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="sceneManager.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="collisionSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="mainScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="sceneFactory.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

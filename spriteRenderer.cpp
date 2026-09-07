@@ -4,28 +4,18 @@
 #include "spriteRenderer.h"
 #include "renderSystem.h"
 #include "central.h"
+#include "spriteFactory.h"
 
 
 // Sprites register and deregister themselves from renderLayers in their structors
 
 #pragma region Structors
-SpriteRenderer::SpriteRenderer(int setLayer, Tmpl8::Sprite* spr) : sprite(spr)
+
+SpriteRenderer::SpriteRenderer(int setLayer, int spr)
 {
+	// Set renderLayer
 	RenderSystem::Register(setLayer, this);
 	layer = setLayer;
-	index = RenderSystem::layers[setLayer]->count;
-	
-	size.x = (float)sprite->GetWidth();
-	size.y = (float)sprite->GetHeight();
-	surface = Central::surface;
-	camera = Central::camera;
-
-	frameCount = sprite->Frames();
-}
-
-SpriteRenderer::SpriteRenderer(int layer, int spr)
-{
-	RenderSystem::Register(layer, this);
 	index = RenderSystem::layers[layer]->count;
 
 	SetSprite(spr);
@@ -38,12 +28,12 @@ SpriteRenderer::SpriteRenderer(int layer, int spr)
 };
 
 
-SpriteRenderer::SpriteRenderer(int layer, int spr, int frame) : currentFrame(frame)
+SpriteRenderer::SpriteRenderer(int layer, int spriteIndex, int frame) : currentFrame(frame)
 {
 	RenderSystem::Register(layer, this);
 	index = RenderSystem::layers[layer]->count;
 
-	SetSprite(spr);
+	SetSprite(spriteIndex);
 	size.x = (float)sprite->GetWidth();
 	size.y = (float)sprite->GetHeight();
 	surface = Central::surface;
@@ -63,7 +53,8 @@ SpriteRenderer::~SpriteRenderer()
 
 void SpriteRenderer::SetSprite(int spriteIndex)
 {
-	//sprite = move(SpriteFactory::BuildSprite(spriteName));
+	if (sprite != nullptr) delete sprite;
+	sprite = SpriteFactory::BuildSprite(spriteIndex);
 }
 
 

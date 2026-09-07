@@ -123,10 +123,15 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="central.cpp" />
+    <ClCompile Include="collisionSystem.cpp" />
     <ClCompile Include="component.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
+    <ClCompile Include="mainScene.cpp" />
     <ClCompile Include="renderSystem.cpp" />
+    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="sceneFactory.cpp" />
+    <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="spriteFactory.cpp" />
     <ClCompile Include="spriteRenderer.cpp" />
     <ClCompile Include="template\opencl.cpp" />
@@ -149,10 +154,15 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="central.h" />
     <ClInclude Include="cl\tools.cl" />
+    <ClInclude Include="collisionSystem.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameObject.h" />
+    <ClInclude Include="mainScene.h" />
     <ClInclude Include="renderSystem.h" />
+    <ClInclude Include="scene.h" />
+    <ClInclude Include="sceneFactory.h" />
+    <ClInclude Include="sceneManager.h" />
     <ClInclude Include="spriteFactory.h" />
     <ClInclude Include="spriteRenderer.h" />
     <ClInclude Include="template\common.h" />

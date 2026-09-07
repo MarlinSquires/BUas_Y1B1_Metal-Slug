@@ -33,7 +33,6 @@ public:
 	void SetSprite(int spriteIndex);
 
 	//Structors
-	SpriteRenderer(int layer, Tmpl8::Sprite* spr);
 	SpriteRenderer(int layer, int spriteIndex);
 	SpriteRenderer(int layer, int spriteIndex, int frame);
 	~SpriteRenderer();
@@ -48,7 +47,7 @@ protected:
 
 	Tmpl8::Surface* surface;
 	GameObject* camera;
-	Tmpl8::Sprite* sprite;
+	Tmpl8::Sprite* sprite = nullptr;
 
 	Tmpl8::float2 size;
 

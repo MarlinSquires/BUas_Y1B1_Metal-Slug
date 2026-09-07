@@ -1,11 +1,18 @@
 #pragma once
-#include "string.h"
+
+
 
 
 class SpriteFactory
 {
+
+	void Init();
+	static inline const char* addresses[10];
+	static inline int frameCounts[10];
+
 public:
-	static const char* sprites[];
+	
+	static Sprite* BuildSprite(int sprite);
 
 };
 

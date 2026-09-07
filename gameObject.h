@@ -79,10 +79,12 @@ public:
 	void SetActive(bool isActive);
 
 
-	// Constructors //
+	// Structors //
 	GameObject(Tmpl8::float2 spawnPos) : pos(spawnPos) {};
 
 	GameObject(Tmpl8::float2 spawnPos, bool debug) : pos(spawnPos), debug(debug) {};
+
+	~GameObject();
 
 
 
