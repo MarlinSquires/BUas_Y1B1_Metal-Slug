@@ -1,45 +1,39 @@
 #pragma once
 
 
+class SpriteRenderer;
 
-class RenderLayer
+struct RenderLayer
 {
-public:
 	int count = 0;
 	SpriteRenderer* layer[100];
 
-	void Iterate();
-
+	void Tick();
 };
+
 
 
 class RenderSystem
 {
 public:
 
-	enum LayerType
-	{
-		Background,
-		BackgroundSprites,
-		Actors,
-		Projectiles,
-		Foreground
-	};
+	void Tick();
 
-	void Register(LayerType layer, SpriteRenderer* spr);
-	void Deregister(LayerType layer, int index);
+	// Sprites register and deregister themselves from renderLayers in their structors
+	static void Register(int layer, SpriteRenderer* spr);
+	static void Deregister(int layer, int index);
 
 	RenderSystem();
 	
-
+	static RenderLayer* layers[5];
 
 private:
 
-	void Render();
-
-	RenderLayer* layers[5];
+	
 
 };
+
+
 
 
 

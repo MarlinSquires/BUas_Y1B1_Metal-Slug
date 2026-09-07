@@ -1,21 +1,23 @@
 #include "precomp.h"
 
-
 #include "spriteRenderer.h"
 #include "renderSystem.h"
 
 
 
 
-void RenderLayer::Iterate()
+void RenderLayer::Tick()
 {
 	for (int i = 0; i < count; i++)
 	{
 		SpriteRenderer* rend = layer[i];
-		//if (!rend->active) continue;
+		if (!rend->active) continue;
 		rend->Tick();
 	}
 }
+
+
+RenderLayer* RenderSystem::layers[5] = {};
 
 
 
@@ -31,21 +33,23 @@ RenderSystem::RenderSystem()
 
 // Renders layers one after the other, ensuring layers with a higher
 // index are drawn on top
-void RenderSystem::Render()
+void RenderSystem::Tick()
 {
 	for (RenderLayer* layer : layers)
 	{
-		layer->Iterate();
+		layer->Tick();
 	}
 }
 
-void RenderSystem::Register(LayerType layer, SpriteRenderer* spr)
+
+void RenderSystem::Register(int layer, SpriteRenderer* spr)
 {
 	RenderLayer* rend = layers[layer];
 	rend->layer[rend->count++] = spr;
 }
 
-void RenderSystem::Deregister(LayerType layerIndex, int index)
+
+void RenderSystem::Deregister(int layerIndex, int index)
 {
 	RenderLayer* layer = layers[layerIndex];
 

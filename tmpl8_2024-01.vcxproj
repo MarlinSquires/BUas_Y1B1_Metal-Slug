@@ -121,11 +121,13 @@
   </ItemDefinitionGroup>
   <!-- END Custom section -->
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="central.cpp" />
     <ClCompile Include="component.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="renderSystem.cpp" />
+    <ClCompile Include="spriteFactory.cpp" />
     <ClCompile Include="spriteRenderer.cpp" />
     <ClCompile Include="template\opencl.cpp" />
     <ClCompile Include="template\opengl.cpp" />
@@ -144,6 +146,7 @@
     <ClCompile Include="template\tmpl8math.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
     <ClInclude Include="central.h" />
     <ClInclude Include="cl\tools.cl" />
     <ClInclude Include="component.h" />

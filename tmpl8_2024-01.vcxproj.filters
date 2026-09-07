@@ -38,6 +38,12 @@
     <ClCompile Include="component.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="spriteFactory.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -86,7 +92,12 @@
     <ClInclude Include="renderSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="spriteFactory.h" />
+    <ClInclude Include="camera.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="spriteFactory.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cl\kernels.cl">
@@ -114,6 +125,9 @@
     </Filter>
     <Filter Include="Systems">
       <UniqueIdentifier>{e0ea861a-3bd5-4fae-a497-6a064ca72708}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{6d038265-dece-4404-a7bb-8a139dce8c8d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

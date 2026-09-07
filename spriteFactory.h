@@ -1,16 +1,14 @@
 #pragma once
+#include "string.h"
+
+
 class SpriteFactory
 {
-
-	spriteName sprites[];
-
-	
+public:
+	static const char* sprites[];
 
 };
 
 
-class spriteName
-{
-	char address[20];
-};
+
 

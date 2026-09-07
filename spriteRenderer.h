@@ -33,11 +33,14 @@ public:
 	void SetSprite(int spriteIndex);
 
 	//Structors
-	SpriteRenderer(int spriteIndex);
-	SpriteRenderer(int spriteIndex, int frame);
+	SpriteRenderer(int layer, Tmpl8::Sprite* spr);
+	SpriteRenderer(int layer, int spriteIndex);
+	SpriteRenderer(int layer, int spriteIndex, int frame);
+	~SpriteRenderer();
 
 protected:
 
+	int layer;
 	int index; // index in layer. Used when removing self from layer array
 
 	int frameCount;

@@ -16,8 +16,8 @@ public:
 
 	// Camera
 	static GameObject* camera;
-	static const int screenWidth = 1500;
-	static const int screenHeight = 1000;
+	static const int screenWidth = SCRWIDTH;
+	static const int screenHeight = SCRHEIGHT;
 
 	// Time
 	static float dt;

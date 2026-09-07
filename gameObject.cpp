@@ -4,8 +4,6 @@
 
 
 
-
-
 using namespace Tmpl8;
 
 
@@ -13,18 +11,19 @@ using namespace Tmpl8;
 
 void GameObject::Start()
 {
-	for (const auto& component : components)
+	for (int i = 0; i < compCount; i++)
 	{
-		component->Start();
+		components[i]->Start();
 	}
+
 }
 
 void GameObject::Tick()
 {
 	if (!active) return;
-	for (const auto& component : components)
+	for (int i = 0; i < compCount; i++)
 	{
-		component->Tick();
+		components[i]->Tick();
 	}
 
 	DrawOrigin();

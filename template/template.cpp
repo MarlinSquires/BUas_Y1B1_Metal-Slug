@@ -4,6 +4,7 @@
 
 #include "precomp.h"
 #include "game.h"
+#include "central.h"
 
 #pragma comment( linker, "/subsystem:windows /ENTRY:mainCRTStartup" )
 
@@ -139,6 +140,7 @@ int main()
 	Surface* screen = new Surface( SCRWIDTH, SCRHEIGHT );
 	app = new Game();
 	app->screen = screen;
+	Central::surface = screen;
 	app->Init();
 	// done, enter main loop
 #if 0
