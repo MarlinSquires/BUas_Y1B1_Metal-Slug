@@ -59,7 +59,7 @@ void CheckProgram( GLuint id )
 	FATALERROR_IF( length > 0, "Shader link error:\n%s", buffer );
 }
 
-void DrawQuad()
+void DrawQuad(int width, int height)
 {
 	static GLuint vao = 0;
 	if (!vao)
@@ -75,7 +75,7 @@ void DrawQuad()
 		glBindVertexArray( 0 );
 		CheckGL();
 	}
-	glViewport( 0, 0, SCRWIDTH, SCRHEIGHT );
+	glViewport( 0, 0, width, height);
 	glBindVertexArray( vao );
 	glDrawArrays( GL_TRIANGLES, 0, 6 );
 	glBindVertexArray( 0 );

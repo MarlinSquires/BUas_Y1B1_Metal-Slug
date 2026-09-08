@@ -59,4 +59,4 @@ GLuint CreateVBO( const GLfloat* data, const uint size );
 void BindVBO( const uint idx, const uint N, const GLuint id );
 void CheckShader( GLuint shader, const char* vshader, const char* fshader );
 void CheckProgram( GLuint id, const char* vshader, const char* fshader );
-void DrawQuad();
+void DrawQuad(int width, int height);

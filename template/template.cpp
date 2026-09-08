@@ -34,6 +34,10 @@ static int scrwidth = 0, scrheight = 0;
 static TheApp* app = 0;
 uint keystate[512] = { 0 };
 
+int SCALING;
+
+
+
 // static member data for instruction set support class
 static const CPUCaps cpucaps;
 
@@ -97,7 +101,10 @@ int main()
 #ifdef FULLSCREEN
 	window = glfwCreateWindow( SCRWIDTH, SCRHEIGHT, "Tmpl8-2024", glfwGetPrimaryMonitor(), 0 );
 #else
-	window = glfwCreateWindow( SCRWIDTH, SCRHEIGHT, "Tmpl8-2024", 0, 0 );
+	const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+	SCALING = min(min((int)(0.9 * mode->width) / SCRWIDTH, (int)(0.9 * mode->height) / SCRHEIGHT), MAXSCALE);
+	window = glfwCreateWindow( SCRWIDTH * SCALING, SCRHEIGHT * SCALING, "Tmpl8-2024", 0, 0 );
+
 #endif
 	if (!window) FatalError( "glfwCreateWindow failed." );
 	glfwMakeContextCurrent( window );
@@ -343,7 +350,7 @@ int main()
 			if (app->screen) renderTarget->CopyFrom( app->screen );
 			shader->Bind();
 			shader->SetInputTexture( 0, "c", renderTarget );
-			DrawQuad();
+			DrawQuad(SCRWIDTH * SCALING, SCRHEIGHT * SCALING);
 			shader->Unbind();
 			glfwSwapBuffers( window );
 			glfwPollEvents();
