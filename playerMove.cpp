@@ -27,12 +27,11 @@ void PlayerMove::Input()
 	moveDir.x = horizontal;
 	moveDir.y = vertical;
 
-	std::cout << "x: " << moveDir.x << "y: " << moveDir.y << std::endl;
+	//std::cout << "x: " << moveDir.x << "y: " << moveDir.y << std::endl;
 }
 
 void PlayerMove::Move()
 {
 	gameObject->pos.x += moveDir.x * moveSpeed;
 	gameObject->pos.y += moveDir.y * moveSpeed;
-	//gameObject->pos.x += moveSpeed;
 }

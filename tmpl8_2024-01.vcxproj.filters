@@ -62,6 +62,9 @@
     <ClCompile Include="inputHandler.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="colllider.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -137,6 +140,7 @@
     <ClInclude Include="inputHandler.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="colllider.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cl\kernels.cl">

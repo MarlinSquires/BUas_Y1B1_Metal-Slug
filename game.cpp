@@ -8,11 +8,7 @@
 using namespace Tmpl8;
 
 
-
-
-
 SceneManager sceneManager;
-
 
 
 bool Game::IsKeyDown(int key)
@@ -29,16 +25,7 @@ void Game::Init()
 
 void Game::Tick( float /*dt*/)
 {
+	screen->Clear(0x000000);
 
 	sceneManager.Tick();
-
 }
-
-
-//void Game::UpdateKeys()
-//{
-//    // Update key states
-//    pressed = keys & ~held; // keys that are currently down but were not down in the previous tick
-//    released = ~keys & held; // keys that were down in the previous tick but are not down now
-//    held = keys; // update prevKeys for the next tick
-//};

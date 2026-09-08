@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="collisionSystem.cpp" />
+    <ClCompile Include="colllider.cpp" />
     <ClCompile Include="component.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="central.h" />
     <ClInclude Include="cl\tools.cl" />
     <ClInclude Include="collisionSystem.h" />
+    <ClInclude Include="colllider.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameObject.h" />
