@@ -29,9 +29,6 @@
     <ClCompile Include="spriteRenderer.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="central.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
     <ClCompile Include="renderSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
@@ -57,6 +54,12 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="spriteFactory.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="playerMove.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="inputHandler.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
@@ -127,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="sceneFactory.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="playerMove.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="inputHandler.h">
+      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

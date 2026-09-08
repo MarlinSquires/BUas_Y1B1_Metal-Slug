@@ -8,6 +8,9 @@ class SpriteRenderer : public Component
 {
 public:
 
+
+	virtual void Start() override;
+
 	// Specifically not an override so it won't be called by gameObject->Tick()
 	// Gets called by the renderSystem instead
 	virtual void Tick();
@@ -33,6 +36,7 @@ public:
 	void SetSprite(int spriteIndex);
 
 	//Structors
+	SpriteRenderer(int layer, Sprite* spr);
 	SpriteRenderer(int layer, int spriteIndex);
 	SpriteRenderer(int layer, int spriteIndex, int frame);
 	~SpriteRenderer();

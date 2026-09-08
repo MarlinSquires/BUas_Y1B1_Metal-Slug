@@ -18,14 +18,16 @@ RenderSystem* rs = new RenderSystem();
 void MainScene::LoadScene()
 {
 	Camera& cam = camGo->AddComponent<Camera>();
-	go->AddComponent<SpriteRenderer>(1, 0);
-	//go2->AddComponent<SpriteRenderer>(2, 1);
 
 	cam.SetTarget(go);
 
+	//go->AddComponent<SpriteRenderer>(1, 0);
+	go->AddComponent<SpriteRenderer>(1, 0);
+	//go2->AddComponent<SpriteRenderer>(2, 1);
+
+	LoadObject(camGo);
 	LoadObject(go);
 	//LoadObject(go2);
-	LoadObject(camGo);
 }
 
 

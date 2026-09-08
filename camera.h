@@ -15,12 +15,14 @@ public:
 
 	void SetTarget(GameObject* go);
 
+	Camera();
+
 
 private:
 
 	GameObject* target = nullptr;
 
 	void FollowTarget();
-
+	
 };
 

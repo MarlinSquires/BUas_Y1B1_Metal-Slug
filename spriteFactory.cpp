@@ -12,9 +12,6 @@ void SpriteFactory::Init()
 
 	addresses[1] = "assets/aagun.tga";
 	frameCounts[1] = 36;
-
-
-
 }
 
 // Returns a ptr to a newly constructed sprite

@@ -11,6 +11,23 @@
 
 #pragma region Structors
 
+
+SpriteRenderer::SpriteRenderer(int setLayer, Sprite* spr)
+{
+	// Set renderLayer
+	RenderSystem::Register(setLayer, this);
+	layer = setLayer;
+	index = RenderSystem::layers[layer]->count;
+
+	sprite = spr;
+	size.x = (float)sprite->GetWidth();
+	size.y = (float)sprite->GetHeight();
+	surface = Central::surface;
+	camera = Central::camera;
+
+	frameCount = sprite->Frames();
+};
+
 SpriteRenderer::SpriteRenderer(int setLayer, int spr)
 {
 	// Set renderLayer
@@ -57,12 +74,14 @@ void SpriteRenderer::SetSprite(int spriteIndex)
 	sprite = SpriteFactory::BuildSprite(spriteIndex);
 }
 
+void SpriteRenderer::Start()
+{
+	if (camera == nullptr) camera = Central::camera; // In case of init issues
+}
+
 
 void SpriteRenderer::Draw(float2 pos)
 {
-
-	//if (camera == nullptr) camera = Central::camera; // In case of init issues
-
 	float2 camOffset = Central::camera->pos;
 	float2 originOffset = size * 0.5; // Ensures origin is centre, not top-left
 

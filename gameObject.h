@@ -31,7 +31,7 @@ public:
 		T& ref = *comp;
 		components[compCount++] = comp;
 		return ref;
-	}
+	};
 
 
 	template <typename T> T* GetComponent()

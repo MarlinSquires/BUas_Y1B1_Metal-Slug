@@ -2,14 +2,13 @@
 
 #include "gameObject.h"
 #include "scene.h"
-
+#include "renderSystem.h"
 
 
 
 void Scene::LoadObject(GameObject* go)
 {
-	objects[objectCount] = go;
-
+	objects[objectCount++] = go;
 }
 
 void Scene::LoadScene() {};
@@ -29,6 +28,8 @@ void Scene::Tick()
 	{
 		objects[i]->Tick();
 	}
+
+	renderSystem->Tick();
 }
 
 

@@ -11,19 +11,19 @@ class Central
 
 public:
 	// Main references
-	static Tmpl8::Game* game;
-	static Tmpl8::Surface* surface;
+	static inline Tmpl8::Game* game = nullptr;
+	static inline Tmpl8::Surface* surface = nullptr;
 
 	// Camera
-	static GameObject* camera;
+	static inline GameObject* camera = nullptr;
 	static const int screenWidth = SCRWIDTH;
 	static const int screenHeight = SCRHEIGHT;
 
 	// Time
-	static float dt;
-	static float dts;
+	static inline float dt = 0;
+	static inline float dts = 0;
 
-	static float elapsed;
+	static inline float elapsed = 0;
 
 
 

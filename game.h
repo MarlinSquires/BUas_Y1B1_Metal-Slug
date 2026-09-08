@@ -19,6 +19,12 @@ public:
 	void KeyDown( int ) { /* implement if you want to handle keys */ }
 	// data members
 	int2 mousePos;
+
+
+private:
+
+
+
 };
 
 } // namespace Tmpl8
