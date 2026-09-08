@@ -1,5 +1,8 @@
 #pragma once
 
+#include "inputHandler.h"
+
+
 namespace Tmpl8
 {
 
@@ -15,16 +18,25 @@ public:
 	void MouseDown( int ) { /* implement if you want to detect mouse button presses */ }
 	void MouseMove( int x, int y ) { mousePos.x = x, mousePos.y = y; }
 	void MouseWheel( float ) { /* implement if you want to handle the mouse wheel */ }
-	void KeyUp( int ) { /* implement if you want to handle keys */ }
-	void KeyDown( int ) { /* implement if you want to handle keys */ }
+	void KeyUp(int key) 
+	{
+	}
+	void KeyDown(int key) 
+	{
+
+	}
+
+	bool IsKeyDown(int key);
+
+
 	// data members
 	int2 mousePos;
-
+	
 
 private:
 
-
-
+	
+	
 };
 
 } // namespace Tmpl8

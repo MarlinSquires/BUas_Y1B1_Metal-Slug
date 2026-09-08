@@ -2,13 +2,23 @@
 #include "game.h"
 #include "sceneManager.h"
 #include "spriteFactory.h"
+#include "central.h"
 
 
 using namespace Tmpl8;
 
 
+
+
+
 SceneManager sceneManager;
 
+
+
+bool Game::IsKeyDown(int key)
+{
+	return Central::keystate[key];
+}
 
 void Game::Init()
 {
@@ -19,7 +29,19 @@ void Game::Init()
 
 void Game::Tick( float /*dt*/)
 {
+
+	if (IsKeyDown(GLFW_KEY_W))
+	{
+		printf("w");
+	}
+
+	if (IsKeyDown(GLFW_KEY_A))
+	{
+		printf("a");
+	}
+
 	sceneManager.Tick();
+
 }
 
 

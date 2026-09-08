@@ -26,6 +26,9 @@ public:
 	static inline float elapsed = 0;
 
 
+	// Input
+	static inline uint keystate[512];
+
 
 };
 
