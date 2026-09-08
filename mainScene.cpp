@@ -6,11 +6,14 @@
 #include "spriteRenderer.h"
 #include "camera.h"
 #include "spriteFactory.h"
+#include "playerMove.h"
 
 
 GameObject* go = new GameObject(float2(0.0f, 0.0f));
 GameObject* go2 = new GameObject(float2(0.5f, 0.5f));
 GameObject* camGo = new GameObject(float2(0.0f, 0.0f));
+
+GameObject* player = new GameObject(float2(0.0f, 0.0f));
 
 RenderSystem* rs = new RenderSystem();
 
@@ -23,11 +26,12 @@ void MainScene::LoadScene()
 
 	//go->AddComponent<SpriteRenderer>(1, 0);
 	go->AddComponent<SpriteRenderer>(1, 0);
-	//go2->AddComponent<SpriteRenderer>(2, 1);
+	player->AddComponent<SpriteRenderer>(2, 1);
+	player->AddComponent<PlayerMove>();
 
 	LoadObject(camGo);
 	LoadObject(go);
-	//LoadObject(go2);
+	LoadObject(player);
 }
 
 

@@ -1,4 +1,5 @@
 #include "precomp.h"
+
 #include "component.h"
 
 Component::~Component() = default;
