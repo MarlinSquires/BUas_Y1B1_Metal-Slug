@@ -45,6 +45,12 @@
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <TargetName>$(ProjectName)_debug</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Main\Github Repositories\BUas Y1B1 - Metal Slug\lib\json-develop\json-develop\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\Main\Github Repositories\BUas Y1B1 - Metal Slug\lib\json-develop\json-develop\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>template;.;lib\glad;lib\glfw\include;lib\OpenCL\inc;lib\zlib;lib</AdditionalIncludeDirectories>
@@ -123,11 +129,12 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="collisionSystem.cpp" />
-    <ClCompile Include="colllider.cpp" />
+    <ClCompile Include="collider.cpp" />
     <ClCompile Include="component.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
-    <ClCompile Include="inputHandler.cpp" />
+    <ClCompile Include="gridSpawner.cpp" />
+    <ClCompile Include="jsonParser.cpp" />
     <ClCompile Include="mainScene.cpp" />
     <ClCompile Include="playerMove.cpp" />
     <ClCompile Include="renderSystem.cpp" />
@@ -151,17 +158,19 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">precomp.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="template\tmpl8math.cpp" />
+    <ClCompile Include="tileCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="central.h" />
     <ClInclude Include="cl\tools.cl" />
     <ClInclude Include="collisionSystem.h" />
-    <ClInclude Include="colllider.h" />
+    <ClInclude Include="collider.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameObject.h" />
-    <ClInclude Include="inputHandler.h" />
+    <ClInclude Include="gridSpawner.h" />
+    <ClInclude Include="jsonParser.h" />
     <ClInclude Include="mainScene.h" />
     <ClInclude Include="playerMove.h" />
     <ClInclude Include="renderSystem.h" />
@@ -178,6 +187,7 @@
     <ClInclude Include="template\sprite.h" />
     <ClInclude Include="template\surface.h" />
     <ClInclude Include="template\tmpl8math.h" />
+    <ClInclude Include="tileCollider.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,39 @@
 #include "precomp.h"
 #include "component.h"
+#include "sceneManager.h"
 #include "gameObject.h"
 
 
 
 using namespace Tmpl8;
+
+#pragma region Structors
+
+GameObject::GameObject(Tmpl8::float2 spawnPos) : pos(spawnPos) 
+{
+	SceneManager::LoadObject(this);
+	components = new Component*[10];
+};
+
+
+GameObject::GameObject(Tmpl8::float2 spawnPos, bool debug) : pos(spawnPos), debug(debug) 
+{
+	SceneManager::LoadObject(this);
+	components = new Component*[10];
+};
+
+GameObject::GameObject(Tmpl8::float2 spawnPos, bool debug, int maxComponents) : pos(spawnPos), debug(debug)
+{
+	SceneManager::LoadObject(this);
+	components = new Component*[maxComponents];
+};
+
+GameObject::~GameObject()
+{
+	delete[] components;
+}
+
+#pragma endregion
 
 
 
@@ -15,7 +44,6 @@ void GameObject::Start()
 	{
 		components[i]->Start();
 	}
-
 }
 
 void GameObject::Tick()
@@ -25,7 +53,6 @@ void GameObject::Tick()
 	{
 		components[i]->Tick();
 	}
-
 	DrawOrigin();
 }
 
@@ -34,9 +61,9 @@ void GameObject::SetActive(bool isActive)
 {
 	active = isActive;
 
-	for (auto& c : components)
+	for (int i = 0; i < compCount; i++)
 	{
-		c->active = active;
+		components[i]->active = active;
 	}
 }
 

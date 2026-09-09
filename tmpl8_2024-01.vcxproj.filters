@@ -59,10 +59,16 @@
     <ClCompile Include="playerMove.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="inputHandler.cpp">
+    <ClCompile Include="collider.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="gridSpawner.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="colllider.cpp">
+    <ClCompile Include="jsonParser.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="tileCollider.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -137,10 +143,18 @@
     <ClInclude Include="playerMove.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="inputHandler.h">
+    <ClInclude Include="collider.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="jsonParser.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="colllider.h" />
+    <ClInclude Include="gridSpawner.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="tileCollider.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cl\kernels.cl">

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "inputHandler.h"
 
 
 namespace Tmpl8

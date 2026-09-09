@@ -80,9 +80,10 @@ public:
 
 
 	// Structors //
-	GameObject(Tmpl8::float2 spawnPos) : pos(spawnPos) {};
+	GameObject(Tmpl8::float2 spawnPos);
 
-	GameObject(Tmpl8::float2 spawnPos, bool debug) : pos(spawnPos), debug(debug) {};
+	GameObject(Tmpl8::float2 spawnPos, bool debug);
+	GameObject(Tmpl8::float2 spawnPos, bool debug, int maxComponents);
 
 	~GameObject();
 
@@ -92,7 +93,7 @@ private:
 
 
 	int compCount = 0;
-	Component* components[10]; // Max 10 components per GO
+	Component** components; // Max 10 components per GO
 	bool active = true; // Whether to run Tick() logic
 
 	void DrawOrigin(); // To test whether origin is correctly at centre of sprite, instead of top-left

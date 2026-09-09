@@ -1,6 +1,6 @@
 #pragma once
 
-#include "precomp.h"
+//#include "precomp.h"
 
 
 // Global functions for use
@@ -59,7 +59,6 @@ namespace utils
 	template <typename T> class generic_array
 	{
 	public:
-
 
 		generic_array(int size) : size(size)
 		{

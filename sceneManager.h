@@ -1,11 +1,13 @@
 #pragma once
 
 class Scene;
+class GameObject;
 
 class SceneManager
 {
 
 public:
+	static void LoadObject(GameObject* go);
 	void LoadScene(int sceneID, bool debug);
 
 	void Tick();
@@ -14,7 +16,7 @@ public:
 
 private:
 
-	Scene* currentScene;
+	static inline Scene* currentScene = nullptr;
 
 
 };

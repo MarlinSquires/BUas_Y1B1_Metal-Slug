@@ -5,6 +5,11 @@
 #include "mainScene.h"
 
 
+void SceneManager::LoadObject(GameObject* go)
+{
+	currentScene->LoadObject(go);
+}
+
 // Loads with debug info
 void SceneManager::LoadScene(int sceneID, bool debug)
 {

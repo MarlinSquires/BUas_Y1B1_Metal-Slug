@@ -23,7 +23,7 @@ public:
 
 private:
 
-	int objectCount;
+	int objectCount = 0;
 	bool debug;
 
 	GameObject* objects[100];

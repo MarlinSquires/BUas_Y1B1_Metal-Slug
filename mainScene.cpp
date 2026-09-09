@@ -9,17 +9,19 @@
 #include "playerMove.h"
 
 
-GameObject* go = new GameObject(float2(0.0f, 0.0f));
-GameObject* go2 = new GameObject(float2(0.5f, 0.5f));
-GameObject* camGo = new GameObject(float2(0.0f, 0.0f));
 
-GameObject* player = new GameObject(float2(0.0f, 0.0f));
 
 RenderSystem* rs = new RenderSystem();
 
 
 void MainScene::LoadScene()
 {
+	GameObject* go = new GameObject(float2(0.0f, 0.0f));
+	GameObject* go2 = new GameObject(float2(0.5f, 0.5f));
+	GameObject* camGo = new GameObject(float2(0.0f, 0.0f));
+
+	GameObject* player = new GameObject(float2(0.0f, 0.0f));
+
 	Camera& cam = camGo->AddComponent<Camera>();
 
 	cam.SetTarget(go);
@@ -28,10 +30,6 @@ void MainScene::LoadScene()
 	go->AddComponent<SpriteRenderer>(1, 0);
 	player->AddComponent<SpriteRenderer>(2, 1);
 	player->AddComponent<PlayerMove>();
-
-	LoadObject(camGo);
-	LoadObject(go);
-	LoadObject(player);
 }
 
 
