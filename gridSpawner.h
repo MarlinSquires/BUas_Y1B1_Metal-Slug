@@ -4,24 +4,26 @@
 
 using nlohmann::json;
 
+struct Grid;
+
 class GridSpawner
 {
 private:
 
 	int width;
 	int height;
-	uint* grid;
-
-	char tileSize = 8;
+	uint* gridData;
 
 	json data;
-	GameObject* gridObj;
-
-	~GridSpawner();
+	Grid* grid;
 
 public:
 	void Init();
+	Grid* GetGrid() { return grid; };
+
+	// Structors
 	GridSpawner(const char* address);
+	~GridSpawner();
 
 };
 

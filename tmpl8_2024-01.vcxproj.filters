@@ -26,9 +26,6 @@
     <ClCompile Include="gameObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="spriteRenderer.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="renderSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
@@ -44,7 +41,7 @@
     <ClCompile Include="collisionSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="scene.cpp">
+    <ClCompile Include="myScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="mainScene.cpp">
@@ -53,23 +50,35 @@
     <ClCompile Include="sceneFactory.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="spriteFactory.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
     <ClCompile Include="playerMove.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="collider.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="gridSpawner.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="jsonParser.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
     <ClCompile Include="tileCollider.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="grid.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="gridSpawner.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="spriteFactory.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="jsonParser.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="gridRenderer.cpp">
+      <Filter>Components\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="spriteRenderer.cpp">
+      <Filter>Components\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer.cpp">
+      <Filter>Components\Renderers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +116,6 @@
     <ClInclude Include="component.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="spriteRenderer.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="utils.h">
       <Filter>Utils</Filter>
     </ClInclude>
@@ -122,16 +128,13 @@
     <ClInclude Include="camera.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="spriteFactory.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
     <ClInclude Include="sceneManager.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="collisionSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="scene.h">
+    <ClInclude Include="myScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="mainScene.h">
@@ -146,14 +149,29 @@
     <ClInclude Include="collider.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="jsonParser.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="gridSpawner.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
     <ClInclude Include="tileCollider.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="grid.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gridSpawner.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="spriteFactory.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="jsonParser.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gridRenderer.h">
+      <Filter>Components\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="spriteRenderer.h">
+      <Filter>Components\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer.h">
+      <Filter>Components\Renderers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +203,12 @@
     </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{6d038265-dece-4404-a7bb-8a139dce8c8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{dcc33d02-6449-4c6c-bccb-be21ed9e68a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Renderers">
+      <UniqueIdentifier>{d52017a7-0393-4bf5-9e1e-a5d74acba00b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

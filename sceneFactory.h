@@ -1,6 +1,6 @@
 #pragma once
 
-class Scene;
+class MyScene;
 
 class SceneFactory
 {
@@ -8,7 +8,7 @@ class SceneFactory
 	void Init();
 
 public:
-	Scene* scenes[5];
+	MyScene* scenes[5];
 
 };
 

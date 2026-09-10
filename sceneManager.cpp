@@ -1,8 +1,9 @@
 #include "precomp.h"
-#include "scene.h"
+
+#include "mainScene.h"
 #include "sceneManager.h"
 #include "sceneFactory.h"
-#include "mainScene.h"
+
 
 
 void SceneManager::LoadObject(GameObject* go)

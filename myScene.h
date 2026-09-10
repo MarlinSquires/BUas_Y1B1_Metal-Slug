@@ -6,7 +6,7 @@ class RenderSystem;
 class CollisionSystem;
 
 // Abstract class
-class Scene
+class MyScene
 {
 
 public:
@@ -19,7 +19,7 @@ public:
 	void LoadObject(GameObject* go);
 
 	// Structors
-	virtual ~Scene();
+	virtual ~MyScene();
 
 private:
 
@@ -31,6 +31,5 @@ private:
 	CollisionSystem* collisionSystem;
 
 	
-
 };
 

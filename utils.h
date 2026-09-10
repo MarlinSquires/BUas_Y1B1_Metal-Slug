@@ -1,13 +1,13 @@
 #pragma once
 
-//#include "precomp.h"
+#include "precomp.h"
 
 
 // Global functions for use
 namespace utils
 {
 
-	// Math functions //
+#pragma region Math Functions
 
 	// Sign - taken from StackOverflow
 	template <typename T> inline int sign(T value)
@@ -51,43 +51,19 @@ namespace utils
 			Rand(1) - 0.5f); // Returns a number between -0.5 and 0.5
 	}
 
+#pragma endregion
 
 
-
-
-	// I dont think this is gonna work
-	template <typename T> class generic_array
+	inline int PosToIndex(int x, int y, int width)
 	{
-	public:
+		return x + y * width;
+	}
 
-		generic_array(int size) : size(size)
-		{
-			items = new T[size];
-		}
-
-		T* get(int i)
-		{
-			if (i >= size) return nullptr;
-			return items[i];
-		}
-
-		void set(int i, T item)
-		{
-			if (i >= size) return;
-			items[i] = item;
-		}
-
-		int get_size()
-		{
-			return size;
-		}
-
-
-	private:
-		T* items;
-		int size;
-
-	};
+	inline Tmpl8::int2 IndexToPos(int index, int width)
+	{
+		int x = index % width;
+		int y = index / width;
+	}
 
 
 };

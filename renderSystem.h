@@ -6,9 +6,9 @@ class SpriteRenderer;
 struct RenderLayer
 {
 	int count = 0;
-	SpriteRenderer* layer[100];
+	Renderer* layer[100];
 
-	void Tick();
+	void Render();
 };
 
 
@@ -17,10 +17,10 @@ class RenderSystem
 {
 public:
 
-	void Tick();
+	void Render();
 
 	// Sprites register and deregister themselves from renderLayers in their structors
-	static void Register(int layer, SpriteRenderer* spr);
+	static void Register(int layer, Renderer* spr);
 	static void Deregister(int layer, int index);
 
 	RenderSystem();

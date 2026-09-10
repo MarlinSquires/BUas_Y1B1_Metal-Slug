@@ -1,10 +1,11 @@
 #pragma once
-#include "scene.h"
-class MainScene : public Scene
+#include "myScene.h"
+
+
+class MainScene : public MyScene
 {
 
 	void LoadScene() override;
-
 
 };
 

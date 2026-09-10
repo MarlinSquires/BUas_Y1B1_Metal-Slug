@@ -2,17 +2,17 @@
 
 #include "spriteRenderer.h"
 #include "renderSystem.h"
+#include "central.h"
 
 
 
-
-void RenderLayer::Tick()
+void RenderLayer::Render()
 {
 	for (int i = 0; i < count; i++)
 	{
-		SpriteRenderer* rend = layer[i];
+		Renderer* rend = layer[i];
 		if (!rend->active) continue;
-		rend->Tick();
+		rend->Render();
 	}
 }
 
@@ -33,16 +33,17 @@ RenderSystem::RenderSystem()
 
 // Renders layers one after the other, ensuring layers with a higher
 // index are drawn on top
-void RenderSystem::Tick()
+void RenderSystem::Render()
 {
+	Central::surface->Clear(0x000000);
 	for (RenderLayer* layer : layers)
 	{
-		layer->Tick();
+		layer->Render();
 	}
 }
 
 
-void RenderSystem::Register(int layer, SpriteRenderer* spr)
+void RenderSystem::Register(int layer, Renderer* spr)
 {
 	RenderLayer* rend = layers[layer];
 	rend->layer[rend->count++] = spr;

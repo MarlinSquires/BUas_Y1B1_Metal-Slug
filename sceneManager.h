@@ -1,6 +1,6 @@
 #pragma once
 
-class Scene;
+class MyScene;
 class GameObject;
 
 class SceneManager
@@ -12,11 +12,11 @@ public:
 
 	void Tick();
 
-	Scene* GetScene() { return currentScene; }; // Return current scene
+	MyScene* GetScene() { return currentScene; }; // Return current scene
 
 private:
 
-	static inline Scene* currentScene = nullptr;
+	static inline MyScene* currentScene = nullptr;
 
 
 };

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "gameObject.h"
-//class GameObject;
+
 
 class Component // Abstract class
 {

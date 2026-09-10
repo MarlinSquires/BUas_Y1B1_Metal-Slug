@@ -12,13 +12,9 @@
 #pragma region Structors
 
 
-SpriteRenderer::SpriteRenderer(int setLayer, Sprite* spr)
+SpriteRenderer::SpriteRenderer(int layer, Sprite* spr) : Renderer(layer)
 {
-	// Set renderLayer
-	RenderSystem::Register(setLayer, this);
-	layer = setLayer;
-	index = RenderSystem::layers[layer]->count;
-
+	
 	sprite = spr;
 	size.x = (float)sprite->GetWidth();
 	size.y = (float)sprite->GetHeight();
@@ -28,12 +24,8 @@ SpriteRenderer::SpriteRenderer(int setLayer, Sprite* spr)
 	frameCount = sprite->Frames();
 };
 
-SpriteRenderer::SpriteRenderer(int setLayer, int spr)
+SpriteRenderer::SpriteRenderer(int layer, int spr) : Renderer(layer)
 {
-	// Set renderLayer
-	RenderSystem::Register(setLayer, this);
-	layer = setLayer;
-	index = RenderSystem::layers[layer]->count;
 
 	SetSprite(spr);
 	size.x = (float)sprite->GetWidth();
@@ -45,12 +37,9 @@ SpriteRenderer::SpriteRenderer(int setLayer, int spr)
 };
 
 
-SpriteRenderer::SpriteRenderer(int layer, int spriteIndex, int frame) : currentFrame(frame)
+SpriteRenderer::SpriteRenderer(int layer, int spr, int frame) : Renderer(layer), currentFrame(frame)
 {
-	RenderSystem::Register(layer, this);
-	index = RenderSystem::layers[layer]->count;
-
-	SetSprite(spriteIndex);
+	SetSprite(spr);
 	size.x = (float)sprite->GetWidth();
 	size.y = (float)sprite->GetHeight();
 	surface = Central::surface;
@@ -60,11 +49,6 @@ SpriteRenderer::SpriteRenderer(int layer, int spriteIndex, int frame) : currentF
 	sprite->SetFrame(currentFrame);
 }
 
-
-SpriteRenderer::~SpriteRenderer()
-{
-	RenderSystem::Deregister(layer, index);
-}
 
 #pragma endregion
 
@@ -80,12 +64,12 @@ void SpriteRenderer::Start()
 }
 
 
-void SpriteRenderer::Draw(float2 pos)
+void SpriteRenderer::Render()
 {
 	float2 camOffset = Central::camera->pos;
 	float2 originOffset = size * 0.5; // Ensures origin is centre, not top-left
 
-	float2 screenPos = pos - originOffset - camOffset;
+	float2 screenPos = gameObject->pos - originOffset - camOffset;
 
 	// Only draw if within viewport
 
@@ -95,11 +79,5 @@ void SpriteRenderer::Draw(float2 pos)
 		(int)round(screenPos.x),
 		(int)round(screenPos.y)
 	);
-
-}
-
-void SpriteRenderer::Tick()
-{
-	Draw(gameObject->pos);
 }
 

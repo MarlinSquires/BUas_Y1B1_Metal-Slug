@@ -6,7 +6,6 @@
 
 void SceneFactory::Init()
 {
-
 	scenes[0] = new MainScene();
 }
 

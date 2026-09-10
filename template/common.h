@@ -10,6 +10,8 @@
 // default screen resolution
 #define SCRWIDTH	304
 #define SCRHEIGHT	224
+//#define SCRWIDTH	1920
+//#define SCRHEIGHT	1080
 #define MAXSCALE	8
 // #define FULLSCREEN
 

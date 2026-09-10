@@ -1,19 +1,17 @@
 #pragma once
 
-#include "component.h"
+#include "renderer.h"
 
 
 // Sprites live in world-space
-class SpriteRenderer : public Component
+class SpriteRenderer : public Renderer
 {
 public:
 
 
 	virtual void Start() override;
 
-	// Specifically not an override so it won't be called by gameObject->Tick()
-	// Gets called by the renderSystem instead
-	virtual void Tick();
+	void Render() override;
 
 
 	void SetFrame(int frame)
@@ -39,23 +37,16 @@ public:
 	SpriteRenderer(int layer, Sprite* spr);
 	SpriteRenderer(int layer, int spriteIndex);
 	SpriteRenderer(int layer, int spriteIndex, int frame);
-	~SpriteRenderer();
 
-protected:
-
-	int layer;
-	int index; // index in layer. Used when removing self from layer array
+private:
 
 	int frameCount;
 	int currentFrame = 0;
 
-	Tmpl8::Surface* surface;
-	GameObject* camera;
+	
 	Tmpl8::Sprite* sprite = nullptr;
 
 	Tmpl8::float2 size;
-
-	virtual void Draw(Tmpl8::float2 pos);
 
 };
 

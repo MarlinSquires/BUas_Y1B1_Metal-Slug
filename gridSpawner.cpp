@@ -3,12 +3,15 @@
 #include "jsonParser.h"
 #include "gridSpawner.h"
 #include "collider.h"
+#include "grid.h"
+
+#include "spriteRenderer.h" // delete later
 
 
 
 GridSpawner::~GridSpawner() {
 
-	delete[] grid;
+	delete[] gridData;
 }
 
 GridSpawner::GridSpawner(const char* address)
@@ -24,37 +27,23 @@ GridSpawner::GridSpawner(const char* address)
 	height = layer["height"].get<int>();
 
 	int l = width * height;
-	grid = new uint[l];
+	gridData = new uint[l];
 	
 	for (int i = 0; i < l; i++)
 	{
-		grid[i] = (layer["data"][i].get<uint>());
+		gridData[i] = (layer["data"][i].get<uint>());
 	}
 }
 
-int c = 0;
-
+// Atm we have about 1200 tiles in the map
 void GridSpawner::Init()
 {
-	gridObj = new GameObject(float2(0.0f, 0.0f), true, 1300);
+	grid = new Grid(width, height, 8);
 
-	for (int y = 0; y < height; y++)
+	for (int i = 0; i < width * height; i++)
 	{
-		for (int x = 0; x < width; x++)
-		{
-			bool b = grid[x + y * width];
-
-			if (b)
-			{
-				c++;
-
-				gridObj->AddComponent<Collider>();
-
-			}
-
-		}
+		grid->tiles[i] = gridData[i];
 	}
-	printf("value: %d\n", c);
 }
 
 

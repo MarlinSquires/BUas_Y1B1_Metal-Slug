@@ -1,20 +1,20 @@
 #include "precomp.h"
 
 #include "gameObject.h"
-#include "scene.h"
+#include "myScene.h"
 #include "renderSystem.h"
 
 
 
-void Scene::LoadObject(GameObject* go)
+void MyScene::LoadObject(GameObject* go)
 {
 	objects[objectCount++] = go;
 }
 
-void Scene::LoadScene() {};
+void MyScene::LoadScene() {};
 
 
-void Scene::Start()
+void MyScene::Start()
 {
 	for (int i = 0; i < objectCount; i++)
 	{
@@ -22,7 +22,7 @@ void Scene::Start()
 	}
 }
 
-void Scene::Tick()
+void MyScene::Tick()
 {
 	for (int i = 0; i < objectCount; i++)
 	{
@@ -33,7 +33,7 @@ void Scene::Tick()
 }
 
 
-void Scene::SetDebug(bool debugState)
+void MyScene::SetDebug(bool debugState)
 {
 	debug = debugState;
 
@@ -45,7 +45,7 @@ void Scene::SetDebug(bool debugState)
 
 
 
-Scene::~Scene()
+MyScene::~MyScene()
 {
 	delete[] objects;
 	delete renderSystem;
