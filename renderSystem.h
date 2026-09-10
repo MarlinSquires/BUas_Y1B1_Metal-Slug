@@ -1,7 +1,7 @@
 #pragma once
 
 
-class SpriteRenderer;
+class Renderer;
 
 struct RenderLayer
 {

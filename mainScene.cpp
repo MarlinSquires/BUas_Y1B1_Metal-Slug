@@ -4,6 +4,7 @@
 #include "gameObject.h"
 #include "renderSystem.h"
 #include "spriteRenderer.h"
+
 #include "camera.h"
 #include "spriteFactory.h"
 #include "playerMove.h"
@@ -42,7 +43,7 @@ void MainScene::LoadScene()
 	delete gridSpawner;
 
 	GameObject* gridGo = new GameObject(float2(0.0f, 0.0f));
-	gridGo->AddComponent<GridRenderer>(grid);
+	gridGo->AddComponent<GridRenderer>(0, grid);
 
 
 }

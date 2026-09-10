@@ -56,9 +56,6 @@
     <ClCompile Include="collider.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="tileCollider.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="grid.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
@@ -147,9 +144,6 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="collider.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="tileCollider.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="grid.h">

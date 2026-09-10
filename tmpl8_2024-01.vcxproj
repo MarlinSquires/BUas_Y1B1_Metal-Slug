@@ -161,7 +161,6 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">precomp.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="template\tmpl8math.cpp" />
-    <ClCompile Include="tileCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
@@ -193,7 +192,6 @@
     <ClInclude Include="template\sprite.h" />
     <ClInclude Include="template\surface.h" />
     <ClInclude Include="template\tmpl8math.h" />
-    <ClInclude Include="tileCollider.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,6 @@ class SpriteRenderer : public Renderer
 {
 public:
 
-
 	virtual void Start() override;
 
 	void Render() override;

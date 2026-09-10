@@ -12,20 +12,15 @@ gridHeight(grid->height), tileCount(gridWidth* gridHeight) {};
 
 void GridRenderer::Render()
 {
-	int c = 0;
+	float2 cpos = Central::camera->pos;
 	for (int y = 0; y < gridHeight; y++)
 	{
 		for (int x = 0; x < gridWidth; x++)
 		{
 			if (grid->tiles[x + y * gridWidth])
 			{
-				c++;
-			/*	printf("x: %d \n", x);
-				printf("y: %d \n", y);
-				printf("count: %d \n", c);*/
-				Central::surface->Box(0, 0, 10, 10, 0xFF0000);
-				//Central::surface->Box(x, y, x + tileSize, y + tileSize, 0xFF0000);
-				//Central::surface->Box(x, y, x + tileSize, y + tileSize, 0xFF0000);
+				
+				Central::surface->Box(x * tileSize - cpos.x, y * tileSize - cpos.y, x * tileSize + tileSize - cpos.x, y * tileSize + tileSize - cpos.y, 0xFF0000);
 			}
 		}
 	}

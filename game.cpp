@@ -22,8 +22,6 @@ void Game::Init()
 void Game::Tick( float /*dt*/)
 {
 	sceneManager.Tick();
-
-	Central::surface->Box(0, 0, 5, 5, 0xFF0000);
 }
 
 

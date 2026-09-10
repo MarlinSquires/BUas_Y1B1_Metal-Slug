@@ -6,13 +6,10 @@
 
 Renderer::Renderer(int renderLayer)
 {
-
 	// Set renderLayer
 	RenderSystem::Register(renderLayer, this);
 	layer = renderLayer;
-	index = RenderSystem::layers[layer]->count;
-
-	 
+	index = RenderSystem::layers[layer]->count;	 
 }
 
 Renderer::~Renderer()

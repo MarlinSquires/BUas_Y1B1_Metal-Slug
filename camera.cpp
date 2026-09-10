@@ -8,13 +8,11 @@
 
 Camera::Camera()
 {
-	printf("Cam constructor called\n " );
 	Central::camera = this->gameObject;
 }
 
 void Camera::Start()
 {
-	printf("Cam constructor called\n");
 	Central::camera = this->gameObject;
 }
 

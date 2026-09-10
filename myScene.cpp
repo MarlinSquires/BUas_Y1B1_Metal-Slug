@@ -29,7 +29,7 @@ void MyScene::Tick()
 		objects[i]->Tick();
 	}
 
-	renderSystem->Tick();
+	renderSystem->Render();
 }
 
 
