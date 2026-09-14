@@ -12,14 +12,14 @@ gridHeight(grid->height), tileCount(gridWidth* gridHeight) {};
 
 void GridRenderer::Render()
 {
-	float2 cpos = Central::camera->pos;
+	float2 camPos = Central::camera->pos;
 	for (int y = 0; y < gridHeight; y++)
 	{
 		for (int x = 0; x < gridWidth; x++)
 		{
 			if (grid->tiles[x + y * gridWidth])
 			{
-				Central::surface->Box(x * tileSize - cpos.x, y * tileSize - cpos.y, x * tileSize + tileSize - cpos.x, y * tileSize + tileSize - cpos.y, 0xFF0000);
+				Central::surface->Box(x * tileSize - camPos.x, y * tileSize - camPos.y, x * tileSize + tileSize - camPos.x, y * tileSize + tileSize - camPos.y, 0xFF0000);
 			}
 		}
 	}

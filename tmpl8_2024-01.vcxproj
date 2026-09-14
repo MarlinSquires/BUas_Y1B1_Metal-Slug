@@ -53,7 +53,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>template;.;lib\glad;lib\glfw\include;lib\OpenCL\inc;lib\zlib;lib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>template;.;lib\glad;lib\glfw\include;lib\OpenCL\inc;lib\zlib;lib;src</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>precomp.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
@@ -127,25 +127,27 @@
   </ItemDefinitionGroup>
   <!-- END Custom section -->
   <ItemGroup>
-    <ClCompile Include="camera.cpp" />
-    <ClCompile Include="collisionSystem.cpp" />
-    <ClCompile Include="collider.cpp" />
-    <ClCompile Include="component.cpp" />
-    <ClCompile Include="game.cpp" />
-    <ClCompile Include="gameObject.cpp" />
-    <ClCompile Include="grid.cpp" />
-    <ClCompile Include="gridRenderer.cpp" />
-    <ClCompile Include="gridSpawner.cpp" />
-    <ClCompile Include="jsonParser.cpp" />
-    <ClCompile Include="mainScene.cpp" />
-    <ClCompile Include="playerMove.cpp" />
-    <ClCompile Include="renderer.cpp" />
-    <ClCompile Include="renderSystem.cpp" />
-    <ClCompile Include="myScene.cpp" />
-    <ClCompile Include="sceneFactory.cpp" />
-    <ClCompile Include="sceneManager.cpp" />
-    <ClCompile Include="spriteFactory.cpp" />
-    <ClCompile Include="spriteRenderer.cpp" />
+    <ClCompile Include="rectCollider.cpp" />
+    <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\collider.cpp" />
+    <ClCompile Include="src\collisionSystem.cpp" />
+    <ClCompile Include="src\component.cpp" />
+    <ClCompile Include="src\gameObject.cpp" />
+    <ClCompile Include="src\grid.cpp" />
+    <ClCompile Include="src\gridRenderer.cpp" />
+    <ClCompile Include="src\gridSpawner.cpp" />
+    <ClCompile Include="src\jsonParser.cpp" />
+    <ClCompile Include="src\mainScene.cpp" />
+    <ClCompile Include="src\myScene.cpp" />
+    <ClCompile Include="src\playerMove.cpp" />
+    <ClCompile Include="src\renderer.cpp" />
+    <ClCompile Include="src\renderSystem.cpp" />
+    <ClCompile Include="src\sceneFactory.cpp" />
+    <ClCompile Include="src\sceneManager.cpp" />
+    <ClCompile Include="src\spriteFactory.cpp" />
+    <ClCompile Include="src\spriteRenderer.cpp" />
+    <ClCompile Include="src\transform.cpp" />
+    <ClCompile Include="template\game.cpp" />
     <ClCompile Include="template\opencl.cpp" />
     <ClCompile Include="template\opengl.cpp" />
     <ClCompile Include="template\scene.cpp">
@@ -161,31 +163,34 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">precomp.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="template\tmpl8math.cpp" />
-    <ClCompile Include="transform.cpp" />
+    <ClCompile Include="tileCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="camera.h" />
-    <ClInclude Include="central.h" />
     <ClInclude Include="cl\tools.cl" />
-    <ClInclude Include="collisionSystem.h" />
-    <ClInclude Include="collider.h" />
-    <ClInclude Include="component.h" />
-    <ClInclude Include="game.h" />
-    <ClInclude Include="gameObject.h" />
-    <ClInclude Include="grid.h" />
-    <ClInclude Include="gridRenderer.h" />
-    <ClInclude Include="gridSpawner.h" />
-    <ClInclude Include="jsonParser.h" />
-    <ClInclude Include="mainScene.h" />
-    <ClInclude Include="playerMove.h" />
-    <ClInclude Include="renderer.h" />
-    <ClInclude Include="renderSystem.h" />
-    <ClInclude Include="myScene.h" />
-    <ClInclude Include="sceneFactory.h" />
-    <ClInclude Include="sceneManager.h" />
-    <ClInclude Include="spriteFactory.h" />
-    <ClInclude Include="spriteRenderer.h" />
+    <ClInclude Include="rectCollider.h" />
+    <ClInclude Include="src\camera.h" />
+    <ClInclude Include="src\central.h" />
+    <ClInclude Include="src\collider.h" />
+    <ClInclude Include="src\collisionSystem.h" />
+    <ClInclude Include="src\component.h" />
+    <ClInclude Include="src\gameObject.h" />
+    <ClInclude Include="src\grid.h" />
+    <ClInclude Include="src\gridRenderer.h" />
+    <ClInclude Include="src\gridSpawner.h" />
+    <ClInclude Include="src\jsonParser.h" />
+    <ClInclude Include="src\mainScene.h" />
+    <ClInclude Include="src\myScene.h" />
+    <ClInclude Include="src\playerMove.h" />
+    <ClInclude Include="src\renderer.h" />
+    <ClInclude Include="src\renderSystem.h" />
+    <ClInclude Include="src\sceneFactory.h" />
+    <ClInclude Include="src\sceneManager.h" />
+    <ClInclude Include="src\spriteFactory.h" />
+    <ClInclude Include="src\spriteRenderer.h" />
+    <ClInclude Include="src\transform.h" />
+    <ClInclude Include="src\utils.h" />
     <ClInclude Include="template\common.h" />
+    <ClInclude Include="template\game.h" />
     <ClInclude Include="template\opencl.h" />
     <ClInclude Include="template\opengl.h" />
     <ClInclude Include="template\precomp.h" />
@@ -193,8 +198,7 @@
     <ClInclude Include="template\sprite.h" />
     <ClInclude Include="template\surface.h" />
     <ClInclude Include="template\tmpl8math.h" />
-    <ClInclude Include="transform.h" />
-    <ClInclude Include="utils.h" />
+    <ClInclude Include="tileCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cl\kernels.cl" />

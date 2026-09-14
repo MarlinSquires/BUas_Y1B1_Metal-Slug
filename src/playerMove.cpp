@@ -1,4 +1,5 @@
 #include "precomp.h"
+//
 #include "playerMove.h"
 #include "central.h"
 
@@ -21,8 +22,6 @@ void PlayerMove::Input()
 {
 	int horizontal = game->IsKeyDown(GLFW_KEY_D) - game->IsKeyDown(GLFW_KEY_A);
 	int vertical = game->IsKeyDown(GLFW_KEY_S) - game->IsKeyDown(GLFW_KEY_W);
-
-	
 
 	moveDir.x = horizontal;
 	moveDir.y = vertical;

@@ -1,6 +1,7 @@
 #pragma once
-#include "game.h"
+
 #include "component.h"
+#include "game.h"
 
 
 class PlayerMove : public Component
@@ -15,6 +16,6 @@ class PlayerMove : public Component
 	float2 moveDir;
 	float moveSpeed = 0.1;
 
-	Game* game;
+	Tmpl8::Game* game;
 };
 

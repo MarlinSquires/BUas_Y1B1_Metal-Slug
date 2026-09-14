@@ -37,7 +37,7 @@ void MainScene::LoadScene()
 
 	
 	// Grid object
-	GridSpawner* gridSpawner = new GridSpawner("data/level1.tmj");
+	GridSpawner* gridSpawner = new GridSpawner("data/level1-1.tmj");
 	gridSpawner->Init();
 	Grid* grid = gridSpawner->GetGrid();
 	delete gridSpawner;

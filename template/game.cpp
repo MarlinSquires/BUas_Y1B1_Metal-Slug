@@ -14,7 +14,6 @@ SceneManager sceneManager;
 
 void Game::Init()
 {
-	SpriteFactory::Init();
 	sceneManager.LoadScene(0, false); // Hardcoded to init mainScene, no real system yet
 }
 
