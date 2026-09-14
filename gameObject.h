@@ -2,9 +2,9 @@
 
 
 class Component;
+class Transform;
 
 
-// Has a world-space position
 // Can hold pointers to components like colliders and spriterenderers
 
 
@@ -94,6 +94,7 @@ private:
 
 	int compCount = 0;
 	Component** components; // Max 10 components per GO
+	Transform* transform; 
 	bool active = true; // Whether to run Tick() logic
 
 	void DrawOrigin(); // To test whether origin is correctly at centre of sprite, instead of top-left

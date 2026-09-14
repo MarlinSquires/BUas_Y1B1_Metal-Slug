@@ -20,13 +20,11 @@ void RenderLayer::Render()
 RenderLayer* RenderSystem::layers[5] = {};
 
 
-
 RenderSystem::RenderSystem()
 {
 	for (int i = 0; i < 5; i++)
 	{
 		layers[i] = new RenderLayer();
-
 	}
 }
 

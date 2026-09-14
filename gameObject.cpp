@@ -30,6 +30,13 @@ GameObject::GameObject(Tmpl8::float2 spawnPos, bool debug, int maxComponents) : 
 
 GameObject::~GameObject()
 {
+
+	// 2 step process is required to properly free up the memory of the components array
+	for (int i = 0; i < 10; i++)
+	{
+		delete components[i];
+	}
+
 	delete[] components;
 }
 

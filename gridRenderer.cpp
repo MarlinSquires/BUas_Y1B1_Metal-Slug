@@ -19,7 +19,6 @@ void GridRenderer::Render()
 		{
 			if (grid->tiles[x + y * gridWidth])
 			{
-				
 				Central::surface->Box(x * tileSize - cpos.x, y * tileSize - cpos.y, x * tileSize + tileSize - cpos.x, y * tileSize + tileSize - cpos.y, 0xFF0000);
 			}
 		}

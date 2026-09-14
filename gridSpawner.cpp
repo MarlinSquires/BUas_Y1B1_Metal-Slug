@@ -1,9 +1,10 @@
 #include "precomp.h"
 #include "gameObject.h"
 #include "jsonParser.h"
+#include "grid.h"
 #include "gridSpawner.h"
 #include "collider.h"
-#include "grid.h"
+
 
 #include "spriteRenderer.h" // delete later
 
@@ -13,6 +14,7 @@ GridSpawner::~GridSpawner() {
 
 	delete[] gridData;
 }
+
 
 GridSpawner::GridSpawner(const char* address)
 {
@@ -33,12 +35,16 @@ GridSpawner::GridSpawner(const char* address)
 	{
 		gridData[i] = (layer["data"][i].get<uint>());
 	}
+
+	grid = new Grid(width, height, 8);
+
 }
+
 
 // Atm we have about 1200 tiles in the map
 void GridSpawner::Init()
 {
-	grid = new Grid(width, height, 8);
+	
 
 	for (int i = 0; i < width * height; i++)
 	{

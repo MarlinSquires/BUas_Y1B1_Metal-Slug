@@ -1,31 +1,36 @@
 #pragma once
 
 // The Sprite() constructor takes 2 arguments: a file address, and a framecount. 
-// I store each of those in separate arrays (but the same index for each sprite)
+// I store each of those in a struct, which is then contained in an array
 // This way I can simply pass an index to my BuildSprite() function and return a ptr to a new sprite
+
+
+struct SpriteInfo
+{
+	const char* address;
+	int frameCount;
+};
 
 
 class SpriteFactory
 {
 
-	static inline const char* addresses[] = 
+	static inline SpriteInfo sprites[] =
 	{
-		"assets/ball.png",
-		"assets/aagun.tga"
+		{ "assets/ball.png", 1 },
+		{ "assets/aagun.tga", 36 }
 	};
 
-	static inline int frameCounts[] =
-	{
-		1,
-		36,
-	};
 
 public:
 	
-	static void Init();
 	static Sprite* BuildSprite(int sprite);
 
 };
+
+
+
+
 
 
 
