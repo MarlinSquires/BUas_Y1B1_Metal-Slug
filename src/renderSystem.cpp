@@ -6,26 +6,21 @@
 
 
 
+
 void RenderLayer::Render()
 {
 	for (int i = 0; i < count; i++)
 	{
-		Renderer* rend = layer[i];
+		Renderer* rend = renderers[i];
 		if (!rend->active) continue;
 		rend->Render();
 	}
 }
 
 
-RenderLayer* RenderSystem::layers[5] = {};
-
-
-RenderSystem::RenderSystem()
+RenderLayer& RenderSystem::GetLayer(RenderLayerType layer)
 {
-	for (int i = 0; i < 5; i++)
-	{
-		layers[i] = new RenderLayer();
-	}
+	return layers[static_cast<int>(layer)];
 }
 
 
@@ -34,25 +29,25 @@ RenderSystem::RenderSystem()
 void RenderSystem::Render()
 {
 	Central::surface->Clear(0x000000);
-	for (RenderLayer* layer : layers)
+	for (RenderLayer& layer : layers)
 	{
-		layer->Render();
+		layer.Render();
 	}
 }
 
 
-void RenderSystem::Register(int layer, Renderer* spr)
+void RenderSystem::Register(RenderLayerType layerIndex, Renderer* spr)
 {
-	RenderLayer* rend = layers[layer];
-	rend->layer[rend->count++] = spr;
+	RenderLayer& rend = layers[static_cast<int>(layerIndex)];
+	rend.renderers[rend.count++] = spr;
 }
 
 
-void RenderSystem::Deregister(int layerIndex, int index)
+void RenderSystem::Deregister(RenderLayerType layerIndex, int index)
 {
-	RenderLayer* layer = layers[layerIndex];
+	RenderLayer& layer = layers[static_cast<int>(layerIndex)];
 
-	layer[index] = layer[layer->count--]; // Will this cause UB? array is being iterated over by renderSystem, while the index is being replaced
+	layer.renderers[index] = layer.renderers[layer.count--]; // Will this cause UB? array is being iterated over by renderSystem, while the index is being replaced
 }
 
 

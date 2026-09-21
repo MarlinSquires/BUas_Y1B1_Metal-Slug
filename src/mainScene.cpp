@@ -1,33 +1,50 @@
 #include "precomp.h"
 #include "mainScene.h"
 
-#include "gameObject.h"
+// Systems
 #include "renderSystem.h"
-#include "spriteRenderer.h"
+#include "collisionSystem.h"
 
-#include "camera.h"
+// Objects
 #include "spriteFactory.h"
-#include "playerMove.h"
 #include "gridSpawner.h"
+
+// GOs & components
+#include "gameObject.h"
+#include "playerMove.h"
+#include "camera.h"
+#include "rigidbody.h"
+
+// Renderers
+#include "spriteRenderer.h"
 #include "gridRenderer.h"
+#include "rectRenderer.h"
+
+// Colliders
+#include "rectCollider.h"
+#include "gridCollider.h"
+#include "pixelCollider.h"
 
 
-
-RenderSystem* rs = new RenderSystem();
+RenderSystem rs = RenderSystem();
 
 
 void MainScene::LoadScene()
 {
-
 	// Ball object
-	GameObject* go = new GameObject(float2(0.0f, 0.0f));
-	go->AddComponent<SpriteRenderer>(1, 0);
+	GameObject* ball = new GameObject(float2(0.0f, 0.0f));
+	SpriteRenderer& ballRend = ball->AddComponent<SpriteRenderer>(RenderLayerType::BackgroundSprites, 0);
+	RectCollider& ballCol = ball->AddComponent<RectCollider>(CollisionLayerType::Player, ballRend.GetSprite());
+	ball->AddComponent<RectRenderer>(&ballCol);
 
 
 	// Player object
-	GameObject* player = new GameObject(float2(0.0f, 0.0f));
-	player->AddComponent<SpriteRenderer>(2, 1);
+	GameObject* player = new GameObject(float2(50.0f, 0.0f)); 
+	SpriteRenderer& playerRend = player->AddComponent<SpriteRenderer>(RenderLayerType::Actors, 1);
+	RectCollider& playerCol = player->AddComponent<RectCollider>(CollisionLayerType::Player, playerRend.GetSprite());
+	player->AddComponent<RectRenderer>(&playerCol);
 	player->AddComponent<PlayerMove>();
+	player->AddComponent<Rigidbody>();
 
 
 	// Camera object
@@ -40,10 +57,10 @@ void MainScene::LoadScene()
 	GridSpawner* gridSpawner = new GridSpawner("data/level1-1.tmj");
 	gridSpawner->Init();
 	Grid* grid = gridSpawner->GetGrid();
-	delete gridSpawner;
 
 	GameObject* gridGo = new GameObject(float2(0.0f, 0.0f));
-	gridGo->AddComponent<GridRenderer>(0, grid);
+	GridCollider& gridCol = gridGo->AddComponent<GridCollider>(grid);
+	gridGo->AddComponent<GridRenderer>(&gridCol);
 
 
 }

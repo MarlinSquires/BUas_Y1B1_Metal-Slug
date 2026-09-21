@@ -1,13 +1,15 @@
 #include "precomp.h"
 #include "grid.h"
+#include "gridCollider.h"
 #include "gridRenderer.h"
+
 #include "central.h"
+#include "renderSystem.h"
 
 
-GridRenderer::GridRenderer(int layer, Grid* g) : Renderer(layer), 
-grid(g), tileSize(grid->tileSize), gridWidth(grid->width),
+GridRenderer::GridRenderer(GridCollider* gridCollider) : DebugRenderer(RenderLayerType::Debug, gridCollider),
+grid(gridCollider->GetGrid()), tileSize(grid->tileSize), gridWidth(grid->width),
 gridHeight(grid->height), tileCount(gridWidth* gridHeight) {};
-
 
 
 void GridRenderer::Render()

@@ -1,39 +1,38 @@
-//#pragma once
+#pragma once
 #include "component.h"
 
-class RectCollider;
-class TileCollider;
-class PixelCollider;
+enum class CollisionLayerType;
+
+enum class ColliderType
+{
+	Rect,
+	Tile,
+	Pixel
+};
 
 class Collider : public Component
 {
 public:
 
-	void Tick() override;
+	virtual bool CollideWith(CollisionLayerType layer, float2 pos);
 
-	virtual bool CollideWith(const Collider* other) = 0;
-
-	// Double dispatch pattern
-	virtual bool RectCollide(const RectCollider* other) = 0; // Does an AABB check
-	virtual bool TileCollide(const TileCollider* other) = 0; // Checks against tilemap array
-	virtual bool PixelCollide(const PixelCollider* other) = 0; // Checks against individual sprite pixels
-
-
+	// Getters
+	ColliderType GetType() { return type; }
+	bool overlapping = false;
+	
 	// Structors
-	Collider(int layer); // Set collision layer
-
-	Collider(int layer, Tmpl8::float2 offset); // Init with offset
-
-	~Collider(); // Used to deregister from CollisionSystem::colliders
+	Collider(ColliderType colliderType, CollisionLayerType layer); // Set collision layer
+	Collider(ColliderType colliderType, CollisionLayerType layer, Tmpl8::float2 offset); // Init with offset
+	~Collider() = 0; // Used to deregister from CollisionSystem::colliders
 
 
-private:
+protected:
 
 	Tmpl8::float2 offset = float2(0.0f, 0.0f); //offset from GO origin
+	
 
-	int layer;
+	ColliderType type;
+	CollisionLayerType layer;
 	int index;
-
-	virtual void DrawCollider(); // Bool set by gameObject
 
 };

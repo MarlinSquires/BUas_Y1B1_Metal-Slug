@@ -1,8 +1,5 @@
 #pragma once
 
-#include "precomp.h"
-
-
 // Global functions for use
 namespace utils
 {

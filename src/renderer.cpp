@@ -1,15 +1,19 @@
 #include "precomp.h"
-#include "renderer.h"
 #include "renderSystem.h"
+#include "renderer.h"
 
 
 
-Renderer::Renderer(int renderLayer)
+
+Renderer::Renderer(RenderLayerType renderLayer)
 {
 	// Set renderLayer
 	RenderSystem::Register(renderLayer, this);
 	layer = renderLayer;
-	index = RenderSystem::layers[layer]->count;	 
+	index = RenderSystem::GetLayer(renderLayer).count;
+
+
+
 }
 
 Renderer::~Renderer()

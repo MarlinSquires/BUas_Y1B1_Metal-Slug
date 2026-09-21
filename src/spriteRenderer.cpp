@@ -12,7 +12,7 @@
 #pragma region Structors
 
 
-SpriteRenderer::SpriteRenderer(int layer, Sprite* spr) : Renderer(layer)
+SpriteRenderer::SpriteRenderer(RenderLayerType layer, Sprite* spr) : Renderer(layer)
 {
 	
 	sprite = spr;
@@ -24,7 +24,7 @@ SpriteRenderer::SpriteRenderer(int layer, Sprite* spr) : Renderer(layer)
 	frameCount = sprite->Frames();
 };
 
-SpriteRenderer::SpriteRenderer(int layer, int spr) : Renderer(layer)
+SpriteRenderer::SpriteRenderer(RenderLayerType layer, int spr) : Renderer(layer)
 {
 
 	SetSprite(spr);
@@ -37,7 +37,7 @@ SpriteRenderer::SpriteRenderer(int layer, int spr) : Renderer(layer)
 };
 
 
-SpriteRenderer::SpriteRenderer(int layer, int spr, int frame) : Renderer(layer), currentFrame(frame)
+SpriteRenderer::SpriteRenderer(RenderLayerType layer, int spr, int frame) : Renderer(layer), currentFrame(frame)
 {
 	SetSprite(spr);
 	size.x = (float)sprite->GetWidth();

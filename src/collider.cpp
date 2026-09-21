@@ -1,18 +1,17 @@
 #include "precomp.h"
+
 #include "collisionSystem.h"
 #include "collider.h"
-#include "central.h"
-#include "utils.h"
+
 
 
 #pragma region Structors
-Collider::Collider(int layer) : layer(layer)
+Collider::Collider(ColliderType colliderType, CollisionLayerType layer) : type(colliderType), layer(layer)
 {
 	index = CollisionSystem::Register(layer, this);
 }
 
-
-Collider::Collider(int layer, Tmpl8::float2 offset) : layer(layer), offset(offset) 
+Collider::Collider(ColliderType colliderType, CollisionLayerType layer, Tmpl8::float2 offset) : type(colliderType), layer(layer), offset(offset)
 {
 	index = CollisionSystem::Register(layer, this);
 };
@@ -24,12 +23,11 @@ Collider::~Collider()
 #pragma endregion
 
 
-void Collider::Tick()
+
+bool Collider::CollideWith(CollisionLayerType layer, float2 pos)
 {
-	DrawCollider();
+	 return CollisionSystem::Query(this, layer, pos);
 }
-
-
 
 
 

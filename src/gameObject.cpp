@@ -9,28 +9,20 @@ using namespace Tmpl8;
 
 #pragma region Structors
 
-GameObject::GameObject(Tmpl8::float2 spawnPos) : pos(spawnPos) 
+GameObject::GameObject(Tmpl8::float2 spawnPos) : pos(spawnPos)
 {
 	SceneManager::LoadObject(this);
-	components = new Component*[10];
-};
+	components = new Component * [10];
+}
 
-
-GameObject::GameObject(Tmpl8::float2 spawnPos, bool debug) : pos(spawnPos), debug(debug) 
-{
-	SceneManager::LoadObject(this);
-	components = new Component*[10];
-};
-
-GameObject::GameObject(Tmpl8::float2 spawnPos, bool debug, int maxComponents) : pos(spawnPos), debug(debug)
-{
-	SceneManager::LoadObject(this);
-	components = new Component*[maxComponents];
-};
+//GameObject::GameObject(Tmpl8::float2 spawnPos, bool debug, int maxComponents) : pos(spawnPos), debug(debug), maxComponents(maxComponents)
+//{
+//	SceneManager::LoadObject(this);
+//	components = new Component*[maxComponents];
+//};
 
 GameObject::~GameObject()
 {
-
 	// 2 step process is required to properly free up the memory of the components array
 	for (int i = 0; i < 10; i++)
 	{

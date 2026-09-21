@@ -16,8 +16,7 @@ public:
 	// Position
 	Tmpl8::float2 pos;
 
-	bool debug = false; // Whether to draw origin, collider rect, etc
-
+	bool debug; // Whether to draw origin, collider rect, etc
 
 	virtual void Start(); // Init logic, runs after constructor
 	virtual void Tick(); // Per-frame logic
@@ -36,9 +35,9 @@ public:
 
 	template <typename T> T* GetComponent()
 	{
-		for (const T& component : components) // Loops through components list by reference
+		for (int i = 0; i < compCount; i++) // Loops through components list by reference
 		{
-			T* ptr = dynamic_cast<T*>(component);
+			T* ptr = dynamic_cast<T*>(components[i]);
 			if (ptr) return ptr;
 		}
 		return nullptr;
@@ -81,16 +80,12 @@ public:
 
 	// Structors //
 	GameObject(Tmpl8::float2 spawnPos);
-
-	GameObject(Tmpl8::float2 spawnPos, bool debug);
-	GameObject(Tmpl8::float2 spawnPos, bool debug, int maxComponents);
+	//GameObject(Tmpl8::float2 spawnPos, bool debug = false, int maxComponents = 10);
 
 	~GameObject();
 
 
-
 private:
-
 
 	int compCount = 0;
 	Component** components; // Max 10 components per GO
@@ -98,8 +93,6 @@ private:
 	bool active = true; // Whether to run Tick() logic
 
 	void DrawOrigin(); // To test whether origin is correctly at centre of sprite, instead of top-left
-
-
 
 };
 

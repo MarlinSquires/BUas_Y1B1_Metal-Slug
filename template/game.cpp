@@ -1,7 +1,6 @@
 #include "precomp.h"
 #include "game.h"
 #include "sceneManager.h"
-#include "spriteFactory.h"
 #include "central.h"
 
 
@@ -14,7 +13,7 @@ SceneManager sceneManager;
 
 void Game::Init()
 {
-	sceneManager.LoadScene(0, false); // Hardcoded to init mainScene, no real system yet
+	sceneManager.LoadScene(0, true); // Hardcoded to init mainScene, no real system yet
 }
 
 

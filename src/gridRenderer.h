@@ -1,10 +1,19 @@
 #pragma once
-#include "renderer.h"
-#include "grid.h"
+#include "debugRenderer.h"
+
+class GridCollider;
+class Grid;
+enum class RenderLayerType;
 
 
-class GridRenderer : public Renderer
+class GridRenderer : public DebugRenderer
 {
+
+public:
+
+	void Render() override;
+
+	GridRenderer(GridCollider* gridCollider);
 
 private:
 
@@ -13,15 +22,6 @@ private:
 	int gridWidth;
 	int gridHeight;
 	int tileCount;
-
-public:
-
-	void Render() override;
-
-	GridRenderer(int layer, Grid* g);
-
-	
-
 
 };
 

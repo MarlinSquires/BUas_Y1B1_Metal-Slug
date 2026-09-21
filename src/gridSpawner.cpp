@@ -44,8 +44,6 @@ GridSpawner::GridSpawner(const char* address)
 // Atm we have about 1200 tiles in the map
 void GridSpawner::Init()
 {
-	
-
 	for (int i = 0; i < width * height; i++)
 	{
 		grid->tiles[i] = gridData[i];

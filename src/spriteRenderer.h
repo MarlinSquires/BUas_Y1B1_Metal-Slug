@@ -2,6 +2,7 @@
 
 #include "renderer.h"
 
+enum class RenderLayerType;
 
 // Sprites live in world-space
 class SpriteRenderer : public Renderer
@@ -31,11 +32,12 @@ public:
 
 	//Tmpl8::Sprite* GetSprite() { return sprite.get(); };
 	void SetSprite(int spriteIndex);
+	Sprite* GetSprite() { return sprite; }
 
 	//Structors
-	SpriteRenderer(int layer, Sprite* spr);
-	SpriteRenderer(int layer, int spriteIndex);
-	SpriteRenderer(int layer, int spriteIndex, int frame);
+	SpriteRenderer(RenderLayerType layer, Sprite* spr);
+	SpriteRenderer(RenderLayerType layer, int spriteIndex);
+	SpriteRenderer(RenderLayerType layer, int spriteIndex, int frame);
 
 private:
 

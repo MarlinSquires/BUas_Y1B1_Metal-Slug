@@ -22,18 +22,6 @@
     <ClCompile Include="template\scene.cpp">
       <Filter>template</Filter>
     </ClCompile>
-    <ClCompile Include="src\camera.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\component.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\playerMove.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\transform.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="src\gridRenderer.cpp">
       <Filter>Components\Renderers</Filter>
     </ClCompile>
@@ -80,11 +68,35 @@
     <ClCompile Include="src\collider.cpp">
       <Filter>Components\Colliders</Filter>
     </ClCompile>
-    <ClCompile Include="rectCollider.cpp">
+    <ClCompile Include="src\rectCollider.cpp">
       <Filter>Components\Colliders</Filter>
     </ClCompile>
-    <ClCompile Include="tileCollider.cpp">
+    <ClCompile Include="src\gridCollider.cpp">
       <Filter>Components\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pixelCollider.cpp">
+      <Filter>Components\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rectRenderer.cpp">
+      <Filter>Components\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\debugRenderer.cpp">
+      <Filter>Components\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="src\component.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="src\playerMove.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="src\transform.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rigidbody.cpp">
+      <Filter>Components\Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,18 +126,6 @@
     </ClInclude>
     <ClInclude Include="template\scene.h">
       <Filter>template</Filter>
-    </ClInclude>
-    <ClInclude Include="src\camera.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\component.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\playerMove.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\transform.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="src\gridRenderer.h">
       <Filter>Components\Renderers</Filter>
@@ -179,11 +179,35 @@
     <ClInclude Include="src\collider.h">
       <Filter>Components\Colliders</Filter>
     </ClInclude>
-    <ClInclude Include="rectCollider.h">
+    <ClInclude Include="src\rectCollider.h">
       <Filter>Components\Colliders</Filter>
     </ClInclude>
-    <ClInclude Include="tileCollider.h">
+    <ClInclude Include="src\gridCollider.h">
       <Filter>Components\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pixelCollider.h">
+      <Filter>Components\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rectRenderer.h">
+      <Filter>Components\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\debugRenderer.h">
+      <Filter>Components\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\transform.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="src\camera.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="src\component.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="src\playerMove.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rigidbody.h">
+      <Filter>Components\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +248,9 @@
     </Filter>
     <Filter Include="Components\Colliders">
       <UniqueIdentifier>{4237bdb2-59a3-4bfc-8a66-2104936c1049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Other">
+      <UniqueIdentifier>{168f3d8a-eef9-40f0-91d1-b83eed7250f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

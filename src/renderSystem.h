@@ -3,10 +3,23 @@
 
 class Renderer;
 
+
+
+enum class RenderLayerType
+{
+	Background,
+	BackgroundSprites,
+	Actors,
+	ForegroundSprites,
+	Text,
+	Debug
+};
+
+
 struct RenderLayer
 {
 	int count = 0;
-	Renderer* layer[100];
+	Renderer* renderers[100];
 
 	void Render();
 };
@@ -20,16 +33,22 @@ public:
 	void Render();
 
 	// Sprites register and deregister themselves from renderLayers in their structors
-	static void Register(int layer, Renderer* spr);
-	static void Deregister(int layer, int index);
-
-	RenderSystem();
+	static void Register(RenderLayerType layer, Renderer* spr);
+	static void Deregister(RenderLayerType layer, int index);
+	static RenderLayer& GetLayer(RenderLayerType layer);
 	
-	static RenderLayer* layers[5];
 
 private:
 
-	
+	static inline RenderLayer layers[] =
+	{
+		RenderLayer(),
+		RenderLayer(),
+		RenderLayer(),
+		RenderLayer(),
+		RenderLayer(),
+		RenderLayer()
+	};
 
 };
 
