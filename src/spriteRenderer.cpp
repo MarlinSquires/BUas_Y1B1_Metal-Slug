@@ -14,7 +14,6 @@
 
 SpriteRenderer::SpriteRenderer(RenderLayerType layer, Sprite* spr) : Renderer(layer)
 {
-	
 	sprite = spr;
 	size.x = (float)sprite->GetWidth();
 	size.y = (float)sprite->GetHeight();
@@ -24,20 +23,9 @@ SpriteRenderer::SpriteRenderer(RenderLayerType layer, Sprite* spr) : Renderer(la
 	frameCount = sprite->Frames();
 };
 
-SpriteRenderer::SpriteRenderer(RenderLayerType layer, int spr) : Renderer(layer)
-{
-
-	SetSprite(spr);
-	size.x = (float)sprite->GetWidth();
-	size.y = (float)sprite->GetHeight();
-	surface = Central::surface;
-	camera = Central::camera;
-
-	frameCount = sprite->Frames();
-};
 
 
-SpriteRenderer::SpriteRenderer(RenderLayerType layer, int spr, int frame) : Renderer(layer), currentFrame(frame)
+SpriteRenderer::SpriteRenderer(RenderLayerType layer, SpriteType spr, int frame) : Renderer(layer), currentFrame(frame)
 {
 	SetSprite(spr);
 	size.x = (float)sprite->GetWidth();
@@ -52,10 +40,10 @@ SpriteRenderer::SpriteRenderer(RenderLayerType layer, int spr, int frame) : Rend
 
 #pragma endregion
 
-void SpriteRenderer::SetSprite(int spriteIndex)
+void SpriteRenderer::SetSprite(SpriteType spr)
 {
 	if (sprite != nullptr) delete sprite;
-	sprite = SpriteFactory::BuildSprite(spriteIndex);
+	sprite = SpriteFactory::BuildSprite(spr);
 }
 
 void SpriteRenderer::Start()
@@ -72,7 +60,6 @@ void SpriteRenderer::Render()
 	float2 screenPos = gameObject->pos - originOffset - camOffset;
 
 	// Only draw if within viewport
-
 
 	// Draw from centre rather than top left
 	sprite->Draw(surface,

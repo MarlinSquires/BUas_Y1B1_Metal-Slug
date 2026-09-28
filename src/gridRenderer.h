@@ -1,12 +1,12 @@
 #pragma once
-#include "debugRenderer.h"
+#include "spriteRenderer.h"
 
 class GridCollider;
-class Grid;
+struct Grid;
 enum class RenderLayerType;
 
 
-class GridRenderer : public DebugRenderer
+class GridRenderer : public SpriteRenderer
 {
 
 public:
@@ -17,11 +17,6 @@ public:
 
 private:
 
-	Grid* grid;
-	int tileSize;
-	int gridWidth;
-	int gridHeight;
-	int tileCount;
-
+	Grid& grid;
 };
 

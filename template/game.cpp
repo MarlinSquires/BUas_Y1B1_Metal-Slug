@@ -20,6 +20,23 @@ void Game::Init()
 void Game::Tick( float /*dt*/)
 {
 	sceneManager.Tick();
+
+	// Particles
+	static float a = 0; // Angle
+	static float accel = 0.000000005f;
+	static float jerk = 0.0f;
+	for (int i = 0; i < 100; i++)
+	{
+		float pa = a + 3.6 * i; // Particle angle
+		float px = 160 + 100 * cosf(pa * PI / 180); // Convert from radians to degrees
+		float py = 120 + 100 * sinf(pa * PI / 180); // Convert from radians to degrees
+		screen->Plot((int)(px), (int)(py), 0xFFFFFF);
+	}
+	jerk += 0.0000000005f;
+	accel += jerk;
+	a += accel;
+
+
 }
 
 

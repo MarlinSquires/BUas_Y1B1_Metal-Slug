@@ -37,7 +37,7 @@
     <ClCompile Include="src\grid.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="src\gridSpawner.cpp">
+    <ClCompile Include="src\gridFactory.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="src\jsonParser.cpp">
@@ -89,13 +89,28 @@
     <ClCompile Include="src\component.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
-    <ClCompile Include="src\playerMove.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
     <ClCompile Include="src\transform.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
     <ClCompile Include="src\rigidbody.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="src\textRenderer.cpp">
+      <Filter>Components\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fpsCounter.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="src\playerMove.cpp">
+      <Filter>Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\playerController.cpp">
+      <Filter>Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\playerShoot.cpp">
+      <Filter>Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animationController.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
   </ItemGroup>
@@ -142,7 +157,7 @@
     <ClInclude Include="src\grid.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="src\gridSpawner.h">
+    <ClInclude Include="src\gridFactory.h">
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="src\jsonParser.h">
@@ -203,10 +218,25 @@
     <ClInclude Include="src\component.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
-    <ClInclude Include="src\playerMove.h">
+    <ClInclude Include="src\rigidbody.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
-    <ClInclude Include="src\rigidbody.h">
+    <ClInclude Include="src\textRenderer.h">
+      <Filter>Components\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fpsCounter.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="src\playerMove.h">
+      <Filter>Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\playerController.h">
+      <Filter>Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\playerShoot.h">
+      <Filter>Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="animationController.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
   </ItemGroup>
@@ -251,6 +281,9 @@
     </Filter>
     <Filter Include="Components\Other">
       <UniqueIdentifier>{168f3d8a-eef9-40f0-91d1-b83eed7250f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Player">
+      <UniqueIdentifier>{78fea7a3-f795-4d0c-bc0b-057cfa183caa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -17,7 +17,7 @@ public:
 	virtual bool CollideWith(CollisionLayerType layer, float2 pos);
 
 	// Getters
-	ColliderType GetType() { return type; }
+	const ColliderType GetType() const { return type; } 
 	bool overlapping = false;
 	
 	// Structors

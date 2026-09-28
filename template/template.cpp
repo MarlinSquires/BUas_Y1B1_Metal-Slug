@@ -342,7 +342,10 @@ int main()
 	while (!glfwWindowShouldClose( window ))
 	{
 		deltaTime = min( 500.0f, 1000.0f * timer.elapsed() );
+		
 		timer.reset();
+		Central::dt = deltaTime;
+		Central::dts = deltaTime / 1000;
 		app->Tick( deltaTime );
 		// send the rendering result to the screen using OpenGL
 		if (frameNr++ > 1)

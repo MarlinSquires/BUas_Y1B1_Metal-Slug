@@ -1,17 +1,19 @@
 #pragma once
 #include "collider.h"
+#include "grid.h"
 
-struct Grid;
+// Gridcollider should instantiate the gridSpawner, gain ownership of Grid, and then pass Grid ref to GridRenderer
+
 
 class GridCollider : public Collider
 {
 public:
-	Grid* GetGrid() { return grid; }
+	Grid& GetGrid() { return grid; }
 
-	GridCollider(Grid* grid);
+	GridCollider(const char* address);
 
 private:
-	Grid* grid;
+	Grid grid = Grid(0, 0, 0);
 
 };
 

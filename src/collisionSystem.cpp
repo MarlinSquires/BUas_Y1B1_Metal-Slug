@@ -4,6 +4,7 @@
 #include "gridCollider.h"
 #include "pixelCollider.h"
 #include "collisionSystem.h"
+#include "grid.h"
 
 
 CollisionSystem::~CollisionSystem()
@@ -82,7 +83,6 @@ bool CollisionSystem::Query(Collider* collider, const CollisionLayerType collisi
 
 bool CollisionSystem::RectVsRect(RectCollider& rectCol1, RectCollider& rectCol2, const float2 pos)
 {
-
 	if (!rectCol2.active) return false;
 
 	float2 originalPos = rectCol1.gameObject->pos;
@@ -112,15 +112,90 @@ bool CollisionSystem::RectVsRect(RectCollider& rectCol1, RectCollider& rectCol2,
 	// No collision found
 	rectCol1.overlapping = false;
 	rectCol2.overlapping = false;
-	return false;
+	
+	return rectCol1.overlapping;
 }
+
+
+
 
 
 bool CollisionSystem::RectVsTile(RectCollider& rectCol, GridCollider& tileCol, const float2 pos)
 {
-	return false;
 
+	float2 originalPos = rectCol.gameObject->pos;
+	float2 prevP1 = rectCol.GetP1();
+	float2 prevP2 = rectCol.GetP2();
+
+	// Convert worldspace positions to gridspace
+	rectCol.UpdateRect(pos);
+
+	Grid& grid = tileCol.GetGrid();
+	int tileSize = grid.tileSize;
+	int arrayMax = grid.width * grid.height;
+
+	float2 p1 = rectCol.GetP1();
+	float2 p2 = rectCol.GetP2();
+
+	int xmin = p1.x / tileSize;
+	int ymin = p1.y / tileSize;
+	
+	int xmax = p2.x / tileSize;
+	int ymax = p2.y / tileSize;
+
+	rectCol.UpdateRect(originalPos);
+
+	int relRightX = 0;
+	int relRightY = 0;
+	int relLeftX = 0;
+	int relLeftY = 0;
+
+	// Loop over all overlapping tiles positions and check for solidity
+	for (int y = ymin; y <= ymax; y++)
+	{
+		for (int x = xmin; x <= xmax; x++)
+		{
+			int i = x + y * grid.width;
+			if (i < 0 || i > arrayMax) return false; // Ensure you cant check outside array
+
+			char val = grid.tiles[i];
+
+			switch (val)
+			{
+			case 0: // Empty
+				break;
+
+			case 1: // Solid
+				return true;
+	
+			case 2: // Passthrough
+				if ((y * tileSize > static_cast<int>(prevP2.y)))
+					return true;
+				else break;
+				
+			case 3: // Slope left 
+				// only need to check the rightmost corner of the rect
+				relRightX = p2.x - x * tileSize;
+				relRightY = p2.y - y * tileSize;
+				if (relRightX + relRightY > tileSize) return true;
+				else break;
+
+			case 4: // Slope right
+				// only need to check the leftmost corner of the rect
+				relLeftX = p1.x - x * tileSize;
+				relLeftY = p2.y - y * tileSize;
+				if (relLeftX - relLeftY < tileSize) return true;
+				else break;
+			}
+		}
+	}
+
+	return false;
 }
+
+
+
+
 bool CollisionSystem::CollisionSystem::RectVsPixel(RectCollider& rectCol, PixelCollider& pixelCol, float2 pos)
 {
 

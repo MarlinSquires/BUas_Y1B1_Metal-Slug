@@ -13,7 +13,6 @@ enum class CollisionLayerType
 	Player,
 	Enemies,
 	Bullets // Nothing should check against this layer, its just there to hold bullets, which will either check against player or enemy layers
-
 };
 
 struct CollisionLayer

@@ -62,6 +62,42 @@ void Sprite::Draw( Surface* target, int x, int y )
 	}
 }
 
+// draw sprite to target surface
+void Sprite::DrawFrame(Surface* target, int x, int y, int frame)
+{
+	if (x < -width || x >(target->width + width)) return;
+	if (y < -height || y >(target->height + height)) return;
+	int x1 = x, x2 = x + width;
+	int y1 = y, y2 = y + height;
+	uint* src = GetBuffer() + frame * width;
+	if (x1 < 0) src += -x1, x1 = 0;
+	if (x2 > target->width) x2 = target->width;
+	if (y1 < 0) src += -y1 * width * numFrames, y1 = 0;
+	if (y2 > target->height) y2 = target->height;
+	uint* dest = target->pixels;
+	int xs;
+	if (x2 > x1 && y2 > y1)
+	{
+		unsigned int addr = y1 * target->width + x1;
+		const int w = x2 - x1;
+		const int h = y2 - y1;
+		for (int j = 0; j < h; j++)
+		{
+			const int line = j + (y1 - y);
+			const int lsx = start[frame][line] + x;
+			xs = (lsx > x1) ? lsx - x1 : 0;
+			for (int i = xs; i < w; i++)
+			{
+				const uint c1 = *(src + i);
+				if (c1 & 0xffffff) *(dest + addr + i) = c1;
+			}
+			addr += target->width;
+			src += width * numFrames;
+		}
+	}
+}
+
+
 // draw scaled sprite
 void Sprite::DrawScaled( int x1, int y1, int w, int h, Surface* target )
 {

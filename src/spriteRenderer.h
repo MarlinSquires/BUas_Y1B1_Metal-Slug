@@ -3,6 +3,7 @@
 #include "renderer.h"
 
 enum class RenderLayerType;
+enum class SpriteType;
 
 // Sprites live in world-space
 class SpriteRenderer : public Renderer
@@ -31,21 +32,23 @@ public:
 	int GetFrameCount() { return frameCount; };
 
 	//Tmpl8::Sprite* GetSprite() { return sprite.get(); };
-	void SetSprite(int spriteIndex);
+	void SetSprite(SpriteType spr);
 	Sprite* GetSprite() { return sprite; }
 
 	//Structors
 	SpriteRenderer(RenderLayerType layer, Sprite* spr);
-	SpriteRenderer(RenderLayerType layer, int spriteIndex);
-	SpriteRenderer(RenderLayerType layer, int spriteIndex, int frame);
+	SpriteRenderer(RenderLayerType layer, SpriteType spriteIndex, int frame = 0);
+
+protected:
+
+	Tmpl8::Sprite* sprite = nullptr;
 
 private:
 
 	int frameCount;
 	int currentFrame = 0;
 
-	
-	Tmpl8::Sprite* sprite = nullptr;
+
 
 	Tmpl8::float2 size;
 

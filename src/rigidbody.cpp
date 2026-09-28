@@ -2,28 +2,59 @@
 #include "collider.h"
 #include "rigidbody.h"
 #include "collisionSystem.h"
+#include "central.h"
 
 
 
 void Rigidbody::Start()
 {
-	col = gameObject->GetComponent<Collider>();
-	//assert(col == nullptr);
+	_col = gameObject->GetComponent<Collider>();
 }
 
 void Rigidbody::Tick()
 {
-	CheckGrounded();
-
-	if (!grounded)
-	{
-		gameObject->pos.y += grav;
-	}
+	GroundCheck();
+	Gravity();
 }
 
-void Rigidbody::CheckGrounded()
+
+bool Rigidbody::CheckCollision(float2 moveVector)
 {
-	if (col->CollideWith(CollisionLayerType::Tiles, gameObject->pos + float2(0, grav)))
-		grounded = true;
-	else grounded = false;
+	return (_col->CollideWith(CollisionLayerType::Tiles, gameObject->pos + moveVector));
+}
+
+void Rigidbody::Move(float2 moveVector)
+{
+	if (CheckCollision(moveVector)) return;
+	gameObject->pos += moveVector;
+}
+
+void Rigidbody::AddForce(const float2 accelVector)
+{
+	velocity += accelVector / 2;
+	Move(velocity * Central::dts);
+	velocity += accelVector / 2;
+}
+
+void Rigidbody::Gravity()
+{
+	if (!_grounded && (velocity.y < _maxFallSpeed))
+		AddForce(float2(0.0f, _grav * Central::dts));
+}
+
+
+
+
+
+
+void Rigidbody::GroundCheck()
+{
+	if (CheckCollision(float2(0.0f, _grav * Central::dts)))
+	{
+		//printf("Ground Collision!\n");
+		velocity.y = clamp(velocity.y, -INFINITY, 0.0f);
+		_grounded = true; // Ground check
+	}
+
+	else _grounded = false;
 }
