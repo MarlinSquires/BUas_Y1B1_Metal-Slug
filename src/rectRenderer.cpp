@@ -12,7 +12,9 @@ void RectRenderer::Render()
 {
 	if (!gameObject->debug) return;
 
-	float2 offset = Central::camera->pos;
+	DebugRenderer::Render();
+
+	float2 offset = Central::camera->GetWorldPos();
 
 	Central::surface->Box(
 		(int)round(col->GetP1().x - offset.x),

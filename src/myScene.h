@@ -1,9 +1,11 @@
 #pragma once
 
 
+#include "renderSystem.h"
+#include "collisionSystem.h"
+
 class GameObject;
-class RenderSystem;
-class CollisionSystem;
+
 
 // Abstract class
 class MyScene
@@ -17,18 +19,19 @@ public:
 
 	void SetDebug(bool debugState);
 	void LoadObject(GameObject* go);
+	void UnloadObject(int index);
 
 	// Structors
 	virtual ~MyScene();
 
 private:
 
-	int objectCount = 0;
-	bool debug;
+	int _objectCount = 0;
+	bool _debug;
 
-	GameObject* objects[100];
-	RenderSystem* renderSystem;
-	CollisionSystem* collisionSystem;
+	GameObject* _objects[100];
+	RenderSystem _renderSystem = RenderSystem();
+	CollisionSystem _collisionSystem = CollisionSystem();
 
 	
 };

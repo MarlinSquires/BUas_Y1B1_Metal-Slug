@@ -28,6 +28,11 @@ void Camera::SetTarget(GameObject* go)
 
 void Camera::FollowTarget()
 {
-	gameObject->pos.x = target->pos.x - Central::screenWidth / 2;
-	gameObject->pos.y = target->pos.y - Central::screenHeight / 2;
+	float2 newPos = 
+	{ 
+		target->GetWorldPos().x - Central::screenWidth / 2, 
+		target->GetWorldPos().y - Central::screenWidth / 2
+	};
+
+	gameObject->SetPos(newPos);
 }

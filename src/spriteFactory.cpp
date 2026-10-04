@@ -6,7 +6,7 @@
 
 // Returns a ptr to a newly constructed sprite
 // Takes the indices of the 2 data arrays as an argument
-Sprite* SpriteFactory::BuildSprite(SpriteType spr)
+Sprite* SpriteFactory::BuildSprite(AnimationClipType spr)
 {
 	return new Sprite(new Surface(sprites[static_cast<int>(spr)].address), sprites[static_cast<int>(spr)].frameCount);
 }

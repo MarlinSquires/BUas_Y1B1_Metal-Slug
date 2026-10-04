@@ -8,6 +8,6 @@
 void TextRenderer::Render()
 {
 	if (text == nullptr) return;
-	Central::surface->Print(text, gameObject->pos.x, gameObject->pos.y, colour);
+	Central::surface->Print(text, gameObject->GetWorldPos().x, gameObject->GetWorldPos().y, colour);
 }
 

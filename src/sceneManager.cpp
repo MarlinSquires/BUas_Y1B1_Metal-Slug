@@ -11,6 +11,11 @@ void SceneManager::LoadObject(GameObject* go)
 	currentScene->LoadObject(go);
 }
 
+void SceneManager::UnloadObject(int index)
+{
+	currentScene->UnloadObject(index);
+}
+
 // Loads with debug info
 void SceneManager::LoadScene(int sceneID, bool debug)
 {

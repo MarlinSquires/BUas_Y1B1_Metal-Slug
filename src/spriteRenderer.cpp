@@ -4,7 +4,7 @@
 #include "spriteRenderer.h"
 #include "renderSystem.h"
 #include "central.h"
-#include "spriteFactory.h"
+#include "animationLibrary.h"
 
 
 // Sprites register and deregister themselves from renderLayers in their structors
@@ -12,38 +12,37 @@
 #pragma region Structors
 
 
-SpriteRenderer::SpriteRenderer(RenderLayerType layer, Sprite* spr) : Renderer(layer)
+SpriteRenderer::SpriteRenderer(RenderLayerType layer, Sprite* spr, float2 offset) : Renderer(layer), _offset(offset)
 {
 	sprite = spr;
-	size.x = (float)sprite->GetWidth();
-	size.y = (float)sprite->GetHeight();
+	_size.x = (float)sprite->GetWidth();
+	_size.y = (float)sprite->GetHeight();
 	surface = Central::surface;
 	camera = Central::camera;
 
-	frameCount = sprite->Frames();
+	_frameCount = sprite->Frames();
 };
 
 
 
-SpriteRenderer::SpriteRenderer(RenderLayerType layer, SpriteType spr, int frame) : Renderer(layer), currentFrame(frame)
+SpriteRenderer::SpriteRenderer(RenderLayerType layer, AnimationClipName spr, float2 offset) : Renderer(layer), _offset(offset)
 {
 	SetSprite(spr);
-	size.x = (float)sprite->GetWidth();
-	size.y = (float)sprite->GetHeight();
+	_size.x = (float)sprite->GetWidth();
+	_size.y = (float)sprite->GetHeight();
 	surface = Central::surface;
 	camera = Central::camera;
 
-	frameCount = sprite->Frames();
-	sprite->SetFrame(currentFrame);
+	_frameCount = sprite->Frames();
+	sprite->SetFrame(_currentFrame);
 }
 
 
 #pragma endregion
 
-void SpriteRenderer::SetSprite(SpriteType spr)
+void SpriteRenderer::SetSprite(AnimationClipName spr)
 {
-	if (sprite != nullptr) delete sprite;
-	sprite = SpriteFactory::BuildSprite(spr);
+	sprite = Central::animLib->GetClip(spr)->sprite;
 }
 
 void SpriteRenderer::Start()
@@ -54,10 +53,10 @@ void SpriteRenderer::Start()
 
 void SpriteRenderer::Render()
 {
-	float2 camOffset = Central::camera->pos;
-	float2 originOffset = size * 0.5; // Ensures origin is centre, not top-left
+	float2 camOffset = Central::camera->GetWorldPos();
+	float2 originOffset = _size * 0.5; // Ensures origin is centre, not top-left
 
-	float2 screenPos = gameObject->pos - originOffset - camOffset;
+	float2 screenPos = gameObject->GetWorldPos() - originOffset - camOffset + _offset;
 
 	// Only draw if within viewport
 

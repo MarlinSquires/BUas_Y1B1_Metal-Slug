@@ -4,12 +4,7 @@
 // I store each of those in a struct, which is then contained in an array
 // This way I can simply pass an index to my BuildSprite() function and return a ptr to a new sprite
 
-enum class SpriteType
-{
-	Tileset,
-	Player,
-	Ball
-};
+enum class AnimationClipType;
 
 struct SpriteInfo
 {
@@ -24,7 +19,17 @@ class SpriteFactory
 	static inline SpriteInfo sprites[] =
 	{
 		{ "assets/tileset.png", 4 },
-		{ "assets/player_test.png", 1 },
+
+		{ "assets/player/IdleUpper.png", 4 },
+		{ "assets/player/IdleLower.png", 1 },
+
+		{ "assets/player/RunUpper.png", 12 },
+		{ "assets/player/RunLower.png", 12 },
+
+		{ "assets/player/FallUpper.png", 6 },
+		{ "assets/player/FallLower.png", 6 },
+
+
 		{ "assets/ball.png", 1 },
 		
 	};
@@ -32,7 +37,7 @@ class SpriteFactory
 
 public:
 	
-	static Sprite* BuildSprite(SpriteType sprite);
+	static Sprite* BuildSprite(AnimationClipType sprite);
 
 };
 

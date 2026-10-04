@@ -11,6 +11,8 @@ public:
 
 	virtual void Render() = 0;
 
+	Tmpl8::Surface* GetSurface() { return surface; }
+
 	Renderer(RenderLayerType layer);
 	~Renderer();
 

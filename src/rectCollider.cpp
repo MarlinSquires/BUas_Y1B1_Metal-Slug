@@ -20,13 +20,13 @@ RectCollider::RectCollider(CollisionLayerType layer, Tmpl8::float2 size, float2 
 // Lifecycle
 void RectCollider::Start()
 {
-	UpdateRect(gameObject->pos);// Idk if it actually matters whether this runs in Start() or only in first Tick()
+	UpdateRect(gameObject->GetWorldPos());// Idk if it actually matters whether this runs in Start() or only in first Tick()
 }
 
 void RectCollider::Tick()
 {
 	Collider::Tick();
-	UpdateRect(gameObject->pos);
+	UpdateRect(gameObject->GetWorldPos());
 }
 
 

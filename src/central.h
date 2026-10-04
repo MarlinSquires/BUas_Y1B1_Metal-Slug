@@ -3,6 +3,7 @@
 #include "game.h"
 
 class GameObject;
+class AnimationLibrary;
 
 
 class Central
@@ -12,6 +13,7 @@ public:
 	// Main references
 	static inline Tmpl8::Game* game = nullptr;
 	static inline Tmpl8::Surface* surface = nullptr;
+	static inline AnimationLibrary* animLib = nullptr;
 
 	// Camera
 	static inline GameObject* camera = nullptr;

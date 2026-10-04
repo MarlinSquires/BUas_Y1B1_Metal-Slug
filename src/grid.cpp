@@ -6,6 +6,6 @@
 Grid::Grid(int width, int height, int tileSize) : 
 	width(width), height(height), tileSize(tileSize) 
 {
-	tiles = new char[width * height];
+	tiles = new TileType[width * height];
 }
 

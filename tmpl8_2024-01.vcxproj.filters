@@ -62,9 +62,6 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="template\game.cpp" />
-    <ClCompile Include="src\spriteFactory.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="src\collider.cpp">
       <Filter>Components\Colliders</Filter>
     </ClCompile>
@@ -89,9 +86,6 @@
     <ClCompile Include="src\component.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
-    <ClCompile Include="src\transform.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
     <ClCompile Include="src\rigidbody.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
@@ -110,8 +104,20 @@
     <ClCompile Include="src\playerShoot.cpp">
       <Filter>Components\Player</Filter>
     </ClCompile>
-    <ClCompile Include="src\animationController.cpp">
+    <ClCompile Include="enemy.cpp">
       <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animator.cpp">
+      <Filter>Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="animationSet.cpp">
+      <Filter>Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="animationClip.cpp">
+      <Filter>Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="animationLibrary.cpp">
+      <Filter>Components\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,9 +194,6 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="template\game.h" />
-    <ClInclude Include="src\spriteFactory.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="src\collider.h">
       <Filter>Components\Colliders</Filter>
     </ClInclude>
@@ -208,9 +211,6 @@
     </ClInclude>
     <ClInclude Include="src\debugRenderer.h">
       <Filter>Components\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\transform.h">
-      <Filter>Components\Other</Filter>
     </ClInclude>
     <ClInclude Include="src\camera.h">
       <Filter>Components\Other</Filter>
@@ -236,8 +236,26 @@
     <ClInclude Include="src\playerShoot.h">
       <Filter>Components\Player</Filter>
     </ClInclude>
-    <ClInclude Include="animationController.h">
+    <ClInclude Include="enemy.h">
       <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="src\animator.h">
+      <Filter>Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="animationSet.h">
+      <Filter>Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="animationClip.h">
+      <Filter>Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\animationTypes.h">
+      <Filter>Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\animationData.h">
+      <Filter>Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="animationLibrary.h">
+      <Filter>Components\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +302,9 @@
     </Filter>
     <Filter Include="Components\Player">
       <UniqueIdentifier>{78fea7a3-f795-4d0c-bc0b-057cfa183caa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Animation">
+      <UniqueIdentifier>{74d90645-9853-4a83-b7e6-0219abad611a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

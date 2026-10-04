@@ -5,11 +5,11 @@
 
 #include "central.h"
 #include "renderSystem.h"
-#include "spriteFactory.h"
+#include "animationTypes.h"
 
 
-GridRenderer::GridRenderer(GridCollider* gridCollider) : SpriteRenderer(RenderLayerType::Debug, SpriteType::Tileset),
-grid(gridCollider->GetGrid()){};
+GridRenderer::GridRenderer(GridCollider* gridCollider) : 
+	SpriteRenderer(RenderLayerType::Debug, AnimationClipName::Tileset),grid(gridCollider->GetGrid()){};
 
 
 // I should add bounds checking here - a full grid reduces FPS from 3000 to 1000
@@ -19,15 +19,15 @@ void GridRenderer::Render()
 	int tileSize = grid.tileSize;
 	int gridWidth = grid.width;
 
-	float2 camPos = Central::camera->pos;
+	float2 camPos = Central::camera->GetWorldPos();
 	for (int y = 0; y < grid.height; y++)
 	{
 		for (int x = 0; x < gridWidth; x++)
 		{
-			char val = grid.tiles[x + y * gridWidth];
-			if (val)
+			TileType tileType = grid.tiles[x + y * gridWidth];
+			if (tileType != TileType::Empty)
 			{
-				sprite->DrawFrame(surface, x * tileSize - camPos.x, y * tileSize - camPos.y, val - 1); // Minus 1 because Tiled uses 1-5, whereas the frame data uses 0-4
+				sprite->DrawFrame(surface, x * tileSize - camPos.x, y * tileSize - camPos.y, static_cast<char>(tileType) - 1); // Minus 1 because Tiled uses 1-5, whereas the frame data uses 0-4
 			}
 		}
 	}

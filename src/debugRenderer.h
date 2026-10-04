@@ -2,6 +2,7 @@
 #include "renderer.h"
 
 // Renderer should always be added as component after the collider
+// Draws origin
 
 
 class Collider;
@@ -12,6 +13,7 @@ class DebugRenderer : public Renderer
 public:
 
 	void Tick() override;
+	void Render() override;
 
 	DebugRenderer(RenderLayerType layer, Collider* col);
 

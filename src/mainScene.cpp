@@ -6,7 +6,7 @@
 #include "collisionSystem.h"
 
 // Objects
-#include "spriteFactory.h"
+#include "animationTypes.h"
 #include "gridFactory.h"
 
 // GOs & components
@@ -15,6 +15,8 @@
 #include "camera.h"
 #include "rigidbody.h"
 #include "fpsCounter.h"
+#include "enemy.h"
+#include "animator.h"
 
 // Renderers
 #include "spriteRenderer.h"
@@ -28,33 +30,51 @@
 #include "pixelCollider.h"
 
 
-RenderSystem rs = RenderSystem();
-
-
-
 
 // GameObjects add themselves to the scene objects[] array in their constructor
 void MainScene::LoadScene()
 {
 	// Ball object
 	GameObject* ball = new GameObject(float2(0.0f, 0.0f));
-	SpriteRenderer& ballRend = ball->AddComponent<SpriteRenderer>(RenderLayerType::BackgroundSprites, SpriteType::Ball);
+	SpriteRenderer& ballRend = ball->AddComponent<SpriteRenderer>(RenderLayerType::BackgroundSprites, AnimationClipName::Ball);
 	RectCollider& ballCol = ball->AddComponent<RectCollider>(CollisionLayerType::Player, ballRend.GetSprite());
 	ball->AddComponent<RectRenderer>(&ballCol);
 
 	// Ball2 object
 	GameObject* ball2 = new GameObject(float2(60.0f, 0.5f));
-	SpriteRenderer& ball2Rend = ball2->AddComponent<SpriteRenderer>(RenderLayerType::Actors, SpriteType::Ball);
+	SpriteRenderer& ball2Rend = ball2->AddComponent<SpriteRenderer>(RenderLayerType::Actors, AnimationClipName::Ball);
 	RectCollider& ball2Col = ball2->AddComponent<RectCollider>(CollisionLayerType::Player, ball2Rend.GetSprite());
 	ball->AddComponent<RectRenderer>(&ball2Col);
 
+
+	// Enemy object
+	GameObject* enemy = new GameObject(float2(1400.0f, 0.5f));
+	SpriteRenderer& enemyRend = enemy->AddComponent<SpriteRenderer>(RenderLayerType::Actors, AnimationClipName::Ball);
+	RectCollider& enemyCol = enemy->AddComponent<RectCollider>(CollisionLayerType::Player, enemyRend.GetSprite());
+	Rigidbody& enemyRb = enemy->AddComponent<Rigidbody>();
+	enemy->AddComponent<Enemy>();
+	enemy->AddComponent<RectRenderer>(&enemyCol);
+
+
+
 	// Player object
 	GameObject* player = new GameObject(float2(100.0f, 50.0f)); 
-	SpriteRenderer& playerRend = player->AddComponent<SpriteRenderer>(RenderLayerType::Actors, SpriteType::Player);
-	RectCollider& playerCol = player->AddComponent<RectCollider>(CollisionLayerType::Player, playerRend.GetSprite());
+	RectCollider& playerCol = player->AddComponent<RectCollider>(CollisionLayerType::Player, float2(20.0f, 38.0f));
 	player->AddComponent<RectRenderer>(&playerCol);
 	player->AddComponent<PlayerMove>();
 	player->AddComponent<Rigidbody>();
+
+	GameObject* playerLower = new GameObject(float2(0.0f, 0.0f), player);
+	SpriteRenderer& lowerRend = playerLower->AddComponent<SpriteRenderer>(RenderLayerType::Actors, AnimationClipName::PlayerRunLower, float2(2.0f, 10.0f));
+	playerLower->AddComponent<Animator>();
+
+	GameObject* playerUpper = new GameObject(float2(0.0f, 0.0f), player);
+	SpriteRenderer& upperRend = playerUpper->AddComponent<SpriteRenderer>(RenderLayerType::Actors, AnimationClipName::PlayerRunUpper, float2(4.0f, -4.0f));
+	playerUpper->AddComponent<Animator>();
+
+	
+
+	
 
 
 	// Camera object
@@ -72,6 +92,7 @@ void MainScene::LoadScene()
 	GameObject* textGo = new GameObject(float2(10.0f, 10.0f));
 	textGo->AddComponent<TextRenderer>();
 	textGo->AddComponent<FpsCounter>();
+
 
 }
 

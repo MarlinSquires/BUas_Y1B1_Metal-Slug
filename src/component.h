@@ -7,7 +7,7 @@ class Component // Abstract class
 {
 public:
 
-	GameObject* gameObject; // Pointer instead of ref so I don't need to pass go in constructor, would add extra boilerplate
+	GameObject* gameObject; 
 	bool active = true;
 
 	virtual void Start();

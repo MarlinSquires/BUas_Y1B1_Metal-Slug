@@ -8,6 +8,8 @@ class SceneManager
 
 public:
 	static void LoadObject(GameObject* go);
+	static void UnloadObject(int index);
+
 	void LoadScene(int sceneID, bool debug);
 
 	void Tick();

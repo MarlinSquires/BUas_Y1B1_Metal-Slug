@@ -15,7 +15,7 @@ enum class TileType
 
 struct Grid
 {
-	char* tiles;
+	TileType* tiles;
 	int width;
 	int height;
 	int tileSize; // tile size in px

@@ -7,6 +7,7 @@
 
 
 
+
 Grid GridFactory::BuildGrid(const char* address)
 {
 	// Load json file
@@ -33,7 +34,7 @@ Grid GridFactory::BuildGrid(const char* address)
 
 	for (int i = 0; i < width * height; i++)
 	{
-		grid.tiles[i] = static_cast<char>(gridData[i]); 
+		grid.tiles[i] = static_cast<TileType>(gridData[i]); 
 	}
 
 	delete[] gridData; // Clean up memory

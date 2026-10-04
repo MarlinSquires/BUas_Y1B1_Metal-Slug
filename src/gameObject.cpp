@@ -9,27 +9,29 @@ using namespace Tmpl8;
 
 #pragma region Structors
 
-GameObject::GameObject(Tmpl8::float2 spawnPos) : pos(spawnPos)
+GameObject::GameObject(float2 spawnPos, GameObject* parent, int maxComponents) : _parent(parent), _maxComponents(maxComponents)
 {
 	SceneManager::LoadObject(this);
-	components = new Component * [10];
+	_components = new Component * [maxComponents]();
+	_children = new GameObject * [10]();
+
+	if (_parent != nullptr) SetParent(_parent);
+
+	SetPos(spawnPos);
 }
 
-//GameObject::GameObject(Tmpl8::float2 spawnPos, bool debug, int maxComponents) : pos(spawnPos), debug(debug), maxComponents(maxComponents)
-//{
-//	SceneManager::LoadObject(this);
-//	components = new Component*[maxComponents];
-//};
 
 GameObject::~GameObject()
 {
 	// 2 step process is required to properly free up the memory of the components array
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < _maxComponents; i++)
 	{
-		delete components[i];
+		delete _components[i];
 	}
 
-	delete[] components;
+	delete[] _components;
+
+	SceneManager::UnloadObject(_index);
 }
 
 #pragma endregion
@@ -39,47 +41,56 @@ GameObject::~GameObject()
 
 void GameObject::Start()
 {
-	for (int i = 0; i < compCount; i++)
+	for (int i = 0; i < _compCount; i++)
 	{
-		components[i]->Start();
+		_components[i]->Start();
 	}
 }
 
 void GameObject::Tick()
 {
-	if (!active) return;
-	for (int i = 0; i < compCount; i++)
+	if (!_active) return;
+	for (int i = 0; i < _compCount; i++)
 	{
-		components[i]->Tick();
+		_components[i]->Tick();
 	}
-	DrawOrigin();
 }
 
 
 void GameObject::SetActive(bool isActive)
 {
-	active = isActive;
+	_active = isActive;
 
-	for (int i = 0; i < compCount; i++)
+	for (int i = 0; i < _compCount; i++)
 	{
-		components[i]->active = active;
+		_components[i]->active = _active;
+	}
+}
+
+
+void GameObject::SetPos(float2 newPos)
+{
+	if (_parent == nullptr) _worldPos = newPos;
+	else _worldPos = _parent->GetWorldPos() + _localPos;
+	
+	// Update positions of all children
+	if (_childCount == 0) return;
+
+	for (int i = 0; i < _childCount; i++)
+	{
+		_children[i]->SetPos(newPos);
 	}
 }
 
 
 
-void GameObject::DrawOrigin()
+void GameObject::SetParent(GameObject* parent)
 {
-	if (!debug) return;
-
-	//float2 offset = Central::camera->pos;
-	//float2 screenPos = pos - offset;
-
-	//Central::surface->Box(
-	//	(int)round(screenPos.x - 2), // Rounding keeps box size consistent - truncation causes jitter
-	//	(int)round(screenPos.y - 2),
-	//	(int)round(screenPos.x + 2),
-	//	(int)round(screenPos.y + 2),
-	//	0xFF0000);
+	_parent = parent;
+	_parent->AddChild(this);
 }
 
+void GameObject::AddChild(GameObject* child)
+{
+	_children[_childCount++] = child;
+}

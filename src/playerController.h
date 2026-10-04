@@ -13,9 +13,12 @@ public:
 
 private:
 
-	PlayerMove playerMove;
-	PlayerShoot playerShoot;
-	AnimationController animController;
+	GameObject* _upper;
+	GameObject* _lower;
+
+	PlayerMove _playerMove;
+	PlayerShoot _playerShoot;
+	//AnimationController _animController;
 
 };
 

@@ -10,11 +10,13 @@ enum class ColliderType
 	Pixel
 };
 
+struct CollisionResult;
+
 class Collider : public Component
 {
 public:
 
-	virtual bool CollideWith(CollisionLayerType layer, float2 pos);
+	virtual  CollisionResult CollideWith(CollisionLayerType layer, float2 pos);
 
 	// Getters
 	const ColliderType GetType() const { return type; } 
@@ -28,11 +30,11 @@ public:
 
 protected:
 
-	Tmpl8::float2 offset = float2(0.0f, 0.0f); //offset from GO origin
+	float2 offset = { 0.0f, 0.0f }; //offset from GO origin
 	
-
+	int index;
 	ColliderType type;
 	CollisionLayerType layer;
-	int index;
+	
 
 };

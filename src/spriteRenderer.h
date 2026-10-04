@@ -3,7 +3,8 @@
 #include "renderer.h"
 
 enum class RenderLayerType;
-enum class SpriteType;
+enum class AnimationClipName;
+class AnimationLibrary;
 
 // Sprites live in world-space
 class SpriteRenderer : public Renderer
@@ -17,40 +18,41 @@ public:
 
 	void SetFrame(int frame)
 	{
-		currentFrame = clamp(frame, 0, frameCount - 1);
-		sprite->SetFrame(currentFrame);
+		_currentFrame = clamp(frame, 0, _frameCount - 1);
+		sprite->SetFrame(_currentFrame);
 	}
 
-	void IncrementFrame(int amount)
+	void IncrementFrame()
 	{
-		int newFrame = currentFrame += amount;
-		newFrame = clamp(newFrame, 0, frameCount);
+		_currentFrame++;
+		if (_currentFrame >= _frameCount) _currentFrame = 0;
+		sprite->SetFrame(_currentFrame);
 	}
 
-	int GetFrame() { return currentFrame; };
+	int GetFrame() { return _currentFrame; };
 
-	int GetFrameCount() { return frameCount; };
+	int GetFrameCount() { return _frameCount; };
 
-	//Tmpl8::Sprite* GetSprite() { return sprite.get(); };
-	void SetSprite(SpriteType spr);
+	void SetSprite(AnimationClipName spr);
 	Sprite* GetSprite() { return sprite; }
 
 	//Structors
-	SpriteRenderer(RenderLayerType layer, Sprite* spr);
-	SpriteRenderer(RenderLayerType layer, SpriteType spriteIndex, int frame = 0);
+	SpriteRenderer(RenderLayerType layer, Sprite* spr, float2 offset = { 0.0f, 0.0f });
+	SpriteRenderer(RenderLayerType layer, AnimationClipName spriteIndex, float2 offset = { 0.0f, 0.0f });
 
 protected:
 
-	Tmpl8::Sprite* sprite = nullptr;
+	Sprite* sprite = nullptr;
 
 private:
 
-	int frameCount;
-	int currentFrame = 0;
+	int _frameCount;
+	int _currentFrame = 0;
 
+	AnimationLibrary* _lib;
 
-
-	Tmpl8::float2 size;
+	float2 _size;
+	float2 _offset = { 0.0f, 0.0f };
 
 };
 

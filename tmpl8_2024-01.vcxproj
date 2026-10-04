@@ -127,7 +127,11 @@
   </ItemDefinitionGroup>
   <!-- END Custom section -->
   <ItemGroup>
-    <ClCompile Include="src\animationController.cpp" />
+    <ClCompile Include="animationClip.cpp" />
+    <ClCompile Include="animationLibrary.cpp" />
+    <ClCompile Include="animationSet.cpp" />
+    <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="src\animator.cpp" />
     <ClCompile Include="src\playerShoot.cpp" />
     <ClCompile Include="src\playerController.cpp" />
     <ClCompile Include="src\camera.cpp" />
@@ -152,11 +156,9 @@
     <ClCompile Include="src\rigidbody.cpp" />
     <ClCompile Include="src\sceneFactory.cpp" />
     <ClCompile Include="src\sceneManager.cpp" />
-    <ClCompile Include="src\spriteFactory.cpp" />
     <ClCompile Include="src\spriteRenderer.cpp" />
     <ClCompile Include="src\gridCollider.cpp" />
     <ClCompile Include="src\textRenderer.cpp" />
-    <ClCompile Include="src\transform.cpp" />
     <ClCompile Include="template\game.cpp" />
     <ClCompile Include="template\opencl.cpp" />
     <ClCompile Include="template\opengl.cpp" />
@@ -175,8 +177,14 @@
     <ClCompile Include="template\tmpl8math.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="animationController.h" />
+    <ClInclude Include="animationClip.h" />
+    <ClInclude Include="animationLibrary.h" />
+    <ClInclude Include="animationSet.h" />
     <ClInclude Include="cl\tools.cl" />
+    <ClInclude Include="enemy.h" />
+    <ClInclude Include="src\animationData.h" />
+    <ClInclude Include="src\animationTypes.h" />
+    <ClInclude Include="src\animator.h" />
     <ClInclude Include="src\playerShoot.h" />
     <ClInclude Include="src\playerController.h" />
     <ClInclude Include="src\camera.h" />
@@ -202,11 +210,9 @@
     <ClInclude Include="src\rigidbody.h" />
     <ClInclude Include="src\sceneFactory.h" />
     <ClInclude Include="src\sceneManager.h" />
-    <ClInclude Include="src\spriteFactory.h" />
     <ClInclude Include="src\spriteRenderer.h" />
     <ClInclude Include="src\gridCollider.h" />
     <ClInclude Include="src\textRenderer.h" />
-    <ClInclude Include="src\transform.h" />
     <ClInclude Include="src\utils.h" />
     <ClInclude Include="template\common.h" />
     <ClInclude Include="template\game.h" />

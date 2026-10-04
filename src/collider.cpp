@@ -24,7 +24,7 @@ Collider::~Collider()
 
 
 
-bool Collider::CollideWith(CollisionLayerType layer, float2 pos)
+CollisionResult Collider::CollideWith(CollisionLayerType layer, float2 pos)
 {
 	 return CollisionSystem::Query(this, layer, pos);
 }

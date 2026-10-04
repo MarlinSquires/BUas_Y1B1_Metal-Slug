@@ -4,7 +4,7 @@
 // Rigidbodies are used to move actors while checking for tile collisions
 
 class Collider;
-
+struct CollisionResult;
 
 class Rigidbody : public Component
 {
@@ -21,20 +21,18 @@ public:
 
 private:
 
+	float2 accel;
+
 	// Gravity
 	const float _grav = 220.0f;
 	const float _maxFallSpeed = 180.0f;
 	
-	bool _grounded = false;;
-
 	void Move(float2 moveVector); // Linearly move object, checks against collisions
 	void Gravity();
-	bool CheckCollision(float2 moveVector);
-	void GroundCheck();
+	CollisionResult CheckCollision(float2 moveVector);
 
+	void GroundCheck();
+	bool _grounded = false;;
 
 	Collider* _col;
-
-
-
 };

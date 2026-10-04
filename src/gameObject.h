@@ -10,89 +10,78 @@ class Transform;
 
 class GameObject
 {
-
 public:
 
-	// Position
-	Tmpl8::float2 pos;
-
-	bool debug; // Whether to draw origin, collider rect, etc
-
+	// Lifecycle
 	virtual void Start(); // Init logic, runs after constructor
 	virtual void Tick(); // Per-frame logic
 
 
+	// Components
 	template <typename T, typename... Args>
 	T& AddComponent(Args&&... args)
 	{
 		T* comp = new T(forward<Args>(args)...);
 		comp->gameObject = this;
 		T& ref = *comp;
-		components[compCount++] = comp;
+		_components[_compCount++] = comp;
 		return ref;
 	};
 
-
 	template <typename T> T* GetComponent()
 	{
-		for (int i = 0; i < compCount; i++) // Loops through components list by reference
+		for (int i = 0; i < _compCount; i++) // Loops through components list by reference
 		{
-			T* ptr = dynamic_cast<T*>(components[i]);
+			T* ptr = dynamic_cast<T*>(_components[i]);
 			if (ptr) return ptr;
 		}
 		return nullptr;
 	}
 
 
-	// Return tells you whether component was found and removed
-	//template<typename T> bool RemoveComponent()
-	//{
-	//	for (auto& component : components)
-	//	{
-	//		T* ptr = dynamic_cast<T*>(component.get());
-	//		if (ptr)
-	//		{
-	//			components.erase(component); // This is the issue here, im tryna erase by value instead of index
-	//			return true;
-	//		}
-	//	}
-	//	return false;
-	//}
+	// Positioning
+	void SetPos(float2 newPos);
+	float2 GetWorldPos() { return _worldPos; }
+	float2 GetLocalPos() { return _localPos; }
 
 
+	// Parenting
+	GameObject* GetParent() { return _parent; }
+	int GetChildCount() { return _childCount; }
+	void SetParent(GameObject* parent);
+	void AddChild(GameObject* child);
 
-
-	/*template<typename T> bool HasComponent()
-	{
-		for (const auto& component : components)
-		{
-			T* hasComponent = dynamic_cast<T*>(component.get());
-
-			if (hasComponent) return true;
-		}
-		return false;
-	}*/
-
-
-
+	// Other
 	void SetActive(bool isActive);
+	void SetIndex(int i) { _index = i; }
+	bool debug = false; // Whether to draw origin, collider rect, etc
 
 
 	// Structors //
-	GameObject(Tmpl8::float2 spawnPos);
-	//GameObject(Tmpl8::float2 spawnPos, bool debug = false, int maxComponents = 10);
-
+	GameObject(float2 spawnPos, GameObject* parent = nullptr, int maxComponents = 10);
 	~GameObject();
 
-
+	
 private:
 
-	int compCount = 0;
-	Component** components; // Max 10 components per GO
-	Transform* transform; 
-	bool active = true; // Whether to run Tick() logic
+	// Parenting
+	GameObject* _parent = nullptr;
+	GameObject** _children;
+	int _childCount = 0;
 
-	void DrawOrigin(); // To test whether origin is correctly at centre of sprite, instead of top-left
+	// Position
+	float2 _localPos = { 0.0f, 0.0f };
+	float2 _worldPos = { 0.0f, 0.0f };
 
+	// Components
+	int _compCount = 0;
+	int _maxComponents = 10;
+	Component** _components; // Max 10 components per GO
+
+	// Other
+	int _index = 0; // used in destructor to remove self from scene gameObjects[] array
+	bool _active = true; // Whether to run Tick() logic
+
+	
 };
 
