@@ -61,20 +61,22 @@ void MainScene::LoadScene()
 	GameObject* player = new GameObject(float2(100.0f, 50.0f)); 
 	RectCollider& playerCol = player->AddComponent<RectCollider>(CollisionLayerType::Player, float2(20.0f, 38.0f));
 	player->AddComponent<RectRenderer>(&playerCol);
-	player->AddComponent<PlayerMove>();
 	player->AddComponent<Rigidbody>();
 
+	// PlayerLower child object
 	GameObject* playerLower = new GameObject(float2(0.0f, 0.0f), player);
-	SpriteRenderer& lowerRend = playerLower->AddComponent<SpriteRenderer>(RenderLayerType::Actors, AnimationClipName::PlayerRunLower, float2(2.0f, 10.0f));
-	playerLower->AddComponent<Animator>();
+	//SpriteRenderer& lowerRend = playerLower->AddComponent<SpriteRenderer>(RenderLayerType::Actors, AnimationClipName::PlayerRunLower, float2(2.0f, 10.0f));
+	Animator& animLower = playerLower->AddComponent<Animator>(AnimationSetName::PlayerLower, 1);
 
+	// PlayerUpper child object
 	GameObject* playerUpper = new GameObject(float2(0.0f, 0.0f), player);
-	SpriteRenderer& upperRend = playerUpper->AddComponent<SpriteRenderer>(RenderLayerType::Actors, AnimationClipName::PlayerRunUpper, float2(4.0f, -4.0f));
-	playerUpper->AddComponent<Animator>();
+	//SpriteRenderer& upperRend = playerUpper->AddComponent<SpriteRenderer>(RenderLayerType::Actors, AnimationClipName::PlayerRunUpper, float2(4.0f, -4.0f));
+	Animator& animUpper = playerUpper->AddComponent<Animator>(AnimationSetName::PlayerUpper, 1);
 
-	
+	player->AddComponent<PlayerMove>(&animUpper, &animLower);
 
-	
+
+
 
 
 	// Camera object

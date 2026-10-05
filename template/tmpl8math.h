@@ -45,10 +45,10 @@ struct ALIGN( 8 ) uint2
 };
 struct ALIGN( 8 ) float2
 {
-	float2() = default;
-	float2( const float a, const float b ) : x( a ), y( b ) {}
-	float2( const float a ) : x( a ), y( a ) {}
-	float2( const int2 a ) : x( (float)a.x ), y( (float)a.y ) {}
+	constexpr float2() {};
+	constexpr float2( const float a, const float b ) : x( a ), y( b ) {}
+	constexpr float2( const float a ) : x( a ), y( a ) {}
+	constexpr float2( const int2 a ) : x( (float)a.x ), y( (float)a.y ) {}
 	union { struct { float x, y; }; float cell[2]; };
 	float& operator [] ( const int n ) { return cell[n]; }
 	const float& operator [] ( const int n ) const { return cell[n]; }

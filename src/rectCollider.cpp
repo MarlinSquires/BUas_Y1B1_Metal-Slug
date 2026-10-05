@@ -37,13 +37,19 @@ void RectCollider::SetScale(float xScale, float yScale)
 	_scale.y = yScale;
 }
 
+void RectCollider::SetOffset(float xOffset, float yOffset)
+{
+	_offset.x = xOffset;
+	_offset.y = yOffset;
+}
+
 
 
 void RectCollider::UpdateRect(float2 pos)
 {
-	_p1.x = pos.x - (_size.x * _scale.x) / 2;
-	_p1.y = pos.y - (_size.y * _scale.y) / 2;
-	_p2.x = pos.x + (_size.x * _scale.x) / 2;
-	_p2.y = pos.y + (_size.y * _scale.y) / 2;
+	_p1.x = pos.x + _offset.x - (_size.x * _scale.x) / 2;
+	_p1.y = pos.y + _offset.y - (_size.y * _scale.y) / 2;
+	_p2.x = pos.x + _offset.x + (_size.x * _scale.x) / 2;
+	_p2.y = pos.y + _offset.y + (_size.y * _scale.y) / 2;
 }
 

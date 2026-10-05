@@ -15,6 +15,7 @@ public:
 
 	virtual void LoadScene() = 0; // Instantiates all initial game objects
 	void Start(); // Calls Start() on all objects
+	void PostStart();
 	void Tick(); // Calls Tick() on all objects
 
 	void SetDebug(bool debugState);
@@ -33,6 +34,5 @@ private:
 	RenderSystem _renderSystem = RenderSystem();
 	CollisionSystem _collisionSystem = CollisionSystem();
 
-	
 };
 

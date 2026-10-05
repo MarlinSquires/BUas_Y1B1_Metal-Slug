@@ -16,8 +16,8 @@ private:
 	GameObject* _upper;
 	GameObject* _lower;
 
-	PlayerMove _playerMove;
-	PlayerShoot _playerShoot;
+	//PlayerMove _playerMove;
+	//PlayerShoot _playerShoot;
 	//AnimationController _animController;
 
 };

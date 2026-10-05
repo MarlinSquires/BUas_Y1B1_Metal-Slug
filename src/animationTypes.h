@@ -25,8 +25,8 @@ enum class AnimationClipName
 	PlayerRunUpper,
 	PlayerRunLower,
 
-	PlayerFallUpper,
-	PlayerFallLower,
+	PlayerJumpUpper,
+	PlayerJumpLower,
 
 	Enemy1Idle,
 	Enemy1Run,

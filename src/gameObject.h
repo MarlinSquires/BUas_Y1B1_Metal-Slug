@@ -10,10 +10,12 @@ class Transform;
 
 class GameObject
 {
+
 public:
 
 	// Lifecycle
 	virtual void Start(); // Init logic, runs after constructor
+	virtual void PostStart(); // Runs after Start()
 	virtual void Tick(); // Per-frame logic
 
 
@@ -28,6 +30,7 @@ public:
 		return ref;
 	};
 
+
 	template <typename T> T* GetComponent()
 	{
 		for (int i = 0; i < _compCount; i++) // Loops through components list by reference
@@ -37,7 +40,6 @@ public:
 		}
 		return nullptr;
 	}
-
 
 	// Positioning
 	void SetPos(float2 newPos);
@@ -58,7 +60,7 @@ public:
 
 
 	// Structors //
-	GameObject(float2 spawnPos, GameObject* parent = nullptr, int maxComponents = 10);
+	GameObject(float2 spawnPos = {0.0f, 0.0f}, GameObject* parent = nullptr, int maxComponents = 10);
 	~GameObject();
 
 	

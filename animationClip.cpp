@@ -12,4 +12,5 @@ AnimationClip::AnimationClip(AnimationClipName type)
 	fps = data.fps;
 	length = sprite->Frames();
 	looping = data.looping;
+	offset = data.offset;
 };

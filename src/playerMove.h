@@ -5,6 +5,7 @@
 
 class Rigidbody;
 class RectCollider;
+class Animator;
 
 
 enum class PlayerState
@@ -19,27 +20,29 @@ enum class PlayerState
 
 
 
+
+
+
 class PlayerMove : public Component
 {
 public:
 	void Start() override;
+	void PostStart() override;
 	void Tick() override;
 
 	const PlayerState GetState() { return _playerState; }
 
-private:
 
-	PlayerState _playerState;
+	PlayerMove(Animator* upper, Animator* lower) : _animUpper(upper), _animLower(lower) {};
+
+private:
 
 	void MoveInput();
 	void Move();
+	void FlipSprite();
 
 	// State machine
 	void HandleState();
-
-	//void FreeStateLogic();
-	//void JumpStateLogic();
-	//void CrouchStateLogic();
 
 	void FreeTransition();   // Initial transition into free state
 	void JumpTransition();   // Initial transition into jump state
@@ -54,7 +57,8 @@ private:
 
 
 	// General
-	char _xInput;
+	PlayerState _playerState = PlayerState::Free;
+	char _xInput = 0;
 	float verticalVel = 0.0f;
 
 	// Buffering / coyote
@@ -98,11 +102,12 @@ private:
 	float _jumpCooldown = 0.5f;
 	float _jumpTimer = 0.0f;
 	
-	
-	
-
+	Animator* _animUpper = nullptr;
+	Animator* _animLower = nullptr;
 	RectCollider* _col = nullptr;
 	Rigidbody* _rb = nullptr;
-	Tmpl8::Game* _game = nullptr;
+	Game* _game = nullptr;
+
+	int _clipIndex = 0;
 };
 

@@ -6,6 +6,7 @@ Component::~Component() = default;
 
 // leaving them empty, but not gonna make it pure virtual cos not every component will need a start/update
 void Component::Start() {};
+void Component::PostStart() {};
 
 void Component::Tick() {};
 

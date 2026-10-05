@@ -131,6 +131,7 @@
     <ClCompile Include="animationLibrary.cpp" />
     <ClCompile Include="animationSet.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="playerAnimationHandler.cpp" />
     <ClCompile Include="src\animator.cpp" />
     <ClCompile Include="src\playerShoot.cpp" />
     <ClCompile Include="src\playerController.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="animationSet.h" />
     <ClInclude Include="cl\tools.cl" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="playerAnimationHandler.h" />
     <ClInclude Include="src\animationData.h" />
     <ClInclude Include="src\animationTypes.h" />
     <ClInclude Include="src\animator.h" />

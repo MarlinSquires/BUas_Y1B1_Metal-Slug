@@ -2,7 +2,6 @@
 
 #include "animationClip.h"
 #include "animationSet.h"
-//#include "animationTypes.h"
 #include "animationData.h"
 #include "animationLibrary.h"
 

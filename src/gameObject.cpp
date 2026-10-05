@@ -15,7 +15,12 @@ GameObject::GameObject(float2 spawnPos, GameObject* parent, int maxComponents) :
 	_components = new Component * [maxComponents]();
 	_children = new GameObject * [10]();
 
-	if (_parent != nullptr) SetParent(_parent);
+	if (_parent != nullptr)
+	{
+		SetParent(_parent);
+		_localPos = spawnPos;
+	}
+	
 
 	SetPos(spawnPos);
 }
@@ -28,7 +33,6 @@ GameObject::~GameObject()
 	{
 		delete _components[i];
 	}
-
 	delete[] _components;
 
 	SceneManager::UnloadObject(_index);
@@ -44,6 +48,14 @@ void GameObject::Start()
 	for (int i = 0; i < _compCount; i++)
 	{
 		_components[i]->Start();
+	}
+}
+
+void GameObject::PostStart()
+{
+	for (int i = 0; i < _compCount; i++)
+	{
+		_components[i]->PostStart();
 	}
 }
 
@@ -70,8 +82,14 @@ void GameObject::SetActive(bool isActive)
 
 void GameObject::SetPos(float2 newPos)
 {
-	if (_parent == nullptr) _worldPos = newPos;
-	else _worldPos = _parent->GetWorldPos() + _localPos;
+	if (_parent == nullptr) 
+		_worldPos = newPos;
+	else
+	{
+		//_localPos = newPos;
+		_worldPos = _parent->GetWorldPos() + _localPos;
+	}
+	
 	
 	// Update positions of all children
 	if (_childCount == 0) return;

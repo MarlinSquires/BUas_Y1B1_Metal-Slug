@@ -14,32 +14,36 @@ struct ClipData
 	int frameCount;
 	int fps;
 	bool looping;
+	float2 offset;
 };
 
+inline constexpr float2 nullOffset = { 0.0f, 0.0f};
+inline constexpr float2 playerUpperOffset = { 4.0f, -4.0f };
+inline constexpr float2 playerLowerOffset = { 2.0f, 10.0f };
 
 
 inline constexpr ClipData clipTable[] =
 {
-	{ AnimationClipName::Tileset, "assets/tileset.png", 4, 0, false },
+	{ AnimationClipName::Tileset, "assets/tileset.png", 4, 0, false, nullOffset },
 
 
 
-	{ AnimationClipName::PlayerIdleUpper,	"assets/player/IdleUpper.png", 4, 12, true },
-	{ AnimationClipName::PlayerIdleLower,	"assets/player/IdleLower.png", 1, 12, true },
+	{ AnimationClipName::PlayerIdleUpper,	"assets/player/IdleUpper.png", 4, 12, true, playerUpperOffset },
+	{ AnimationClipName::PlayerIdleLower,	"assets/player/IdleLower.png", 1, 12, true, playerLowerOffset },
 
-	{ AnimationClipName::PlayerRunUpper,	"assets/player/RunUpper.png", 12, 12, true  },
-	{ AnimationClipName::PlayerRunLower,	"assets/player/RunLower.png", 12, 12, true  },
+	{ AnimationClipName::PlayerRunUpper,	"assets/player/RunUpper.png", 12, 12, true, playerUpperOffset  },
+	{ AnimationClipName::PlayerRunLower,	"assets/player/RunLower.png", 12, 12, true, playerLowerOffset  },
 
-	{ AnimationClipName::PlayerFallUpper,	"assets/player/FallUpper.png", 6, 12, true  },
-	{ AnimationClipName::PlayerFallLower,	"assets/player/FallLower.png", 6, 12, true  },
+	{ AnimationClipName::PlayerJumpUpper,	"assets/player/JumpUpper.png", 6, 12, true, playerUpperOffset  },
+	{ AnimationClipName::PlayerJumpLower,	"assets/player/JumpLower.png", 6, 12, true, playerLowerOffset  },
 
-	{ AnimationClipName::Enemy1Idle,		"assets/enemy/Enemy1Idle.png", 4, 12, true  },
-	{ AnimationClipName::Enemy1Run,			"assets/enemy/Enemy1Run.png", 12, 12, true  },
-	{ AnimationClipName::Enemy1Knife,		"assets/enemy/Enemy1Knife.png", 12, 12, true  },
+	{ AnimationClipName::Enemy1Idle,		"assets/enemy/Enemy1Idle.png", 4, 12, true, nullOffset  },
+	{ AnimationClipName::Enemy1Run,			"assets/enemy/Enemy1Run.png", 12, 12, true, nullOffset  },
+	{ AnimationClipName::Enemy1Knife,		"assets/enemy/Enemy1Knife.png", 12, 12, true, nullOffset  },
 
 
 
-	{ AnimationClipName::Ball, "assets/ball.png", 1, 0, false },
+	{ AnimationClipName::Ball, "assets/ball.png", 1, 0, false, nullOffset },
 
 };
 
@@ -68,14 +72,14 @@ inline constexpr AnimationClipName playerUpperClips[] =
 {
 	AnimationClipName::PlayerIdleUpper, 
 	AnimationClipName::PlayerRunUpper,  
-	AnimationClipName::PlayerFallUpper, 
+	AnimationClipName::PlayerJumpUpper, 
 };
 
 inline constexpr AnimationClipName playerLowerClips[] =
 {
 	AnimationClipName::PlayerIdleLower,
 	AnimationClipName::PlayerRunLower,
-	AnimationClipName::PlayerFallLower,
+	AnimationClipName::PlayerJumpLower,
 };
 
 inline constexpr AnimationClipName enemyClips[] =

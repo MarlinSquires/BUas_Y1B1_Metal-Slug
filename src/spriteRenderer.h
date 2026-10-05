@@ -29,16 +29,23 @@ public:
 		sprite->SetFrame(_currentFrame);
 	}
 
-	int GetFrame() { return _currentFrame; };
-
-	int GetFrameCount() { return _frameCount; };
-
-	void SetSprite(AnimationClipName spr);
+	// Getters
+	int GetFrame() { return _currentFrame; }
+	int GetFrameCount() { return _frameCount; }
 	Sprite* GetSprite() { return sprite; }
+	
+
+	// Setters
+	void SetSprite(AnimationClipName spr);
+	void SetSprite(Sprite* spr);
+	void SetOffset(float2 offset) { _offset = offset; }
+	void SetFlipped(bool flipped) { _flipped = flipped; }
+	
 
 	//Structors
+	SpriteRenderer(RenderLayerType layer);
 	SpriteRenderer(RenderLayerType layer, Sprite* spr, float2 offset = { 0.0f, 0.0f });
-	SpriteRenderer(RenderLayerType layer, AnimationClipName spriteIndex, float2 offset = { 0.0f, 0.0f });
+	SpriteRenderer(RenderLayerType layer, AnimationClipName sprite, float2 offset = { 0.0f, 0.0f });
 
 protected:
 
@@ -46,10 +53,9 @@ protected:
 
 private:
 
-	int _frameCount;
+	int _frameCount = 0;
 	int _currentFrame = 0;
-
-	AnimationLibrary* _lib;
+	bool _flipped = false;
 
 	float2 _size;
 	float2 _offset = { 0.0f, 0.0f };

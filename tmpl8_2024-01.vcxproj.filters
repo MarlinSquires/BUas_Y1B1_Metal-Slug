@@ -119,6 +119,7 @@
     <ClCompile Include="animationLibrary.cpp">
       <Filter>Components\Animation</Filter>
     </ClCompile>
+    <ClCompile Include="playerAnimationHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="template\common.h">
@@ -257,6 +258,7 @@
     <ClInclude Include="animationLibrary.h">
       <Filter>Components\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="playerAnimationHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cl\kernels.cl">

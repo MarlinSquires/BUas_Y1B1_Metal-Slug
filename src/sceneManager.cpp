@@ -24,6 +24,7 @@ void SceneManager::LoadScene(int sceneID, bool debug)
 	currentScene->LoadScene();
 	currentScene->SetDebug(debug);
 	currentScene->Start();
+	currentScene->PostStart();
 }
 
 

@@ -8,6 +8,7 @@ struct AnimationClip
 	int length;
 	int fps;
 	bool looping;
+	float2 offset;
 
 	AnimationClip(AnimationClipName clipType);
 };

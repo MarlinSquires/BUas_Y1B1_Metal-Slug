@@ -43,6 +43,15 @@ void MyScene::Start()
 	}
 }
 
+
+void MyScene::PostStart()
+{
+	for (int i = 0; i < _objectCount; i++)
+	{
+		_objects[i]->PostStart();
+	}
+}
+
 void MyScene::Tick()
 {
 	for (int i = 0; i < _objectCount; i++)
