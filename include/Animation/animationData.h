@@ -24,7 +24,7 @@ inline constexpr float2 playerLowerOffset = { 2.0f, 10.0f };
 
 inline constexpr ClipData clipTable[] =
 {
-	{ AnimationClipName::Tileset, "assets/tileset.png", 4, 0, false, nullOffset },
+	{ AnimationClipName::Tileset, "assets/tiles/tileset.png", 4, 0, false, nullOffset },
 
 
 

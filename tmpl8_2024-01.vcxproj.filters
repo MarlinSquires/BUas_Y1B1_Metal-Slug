@@ -1,355 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="template\opencl.cpp">
-      <Filter>template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\opengl.cpp">
-      <Filter>template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\sprite.cpp">
-      <Filter>template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\surface.cpp">
-      <Filter>template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\template.cpp">
-      <Filter>template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\tmpl8math.cpp">
-      <Filter>template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\scene.cpp">
-      <Filter>template</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gridRenderer.cpp">
-      <Filter>Components\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer.cpp">
-      <Filter>Components\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\spriteRenderer.cpp">
-      <Filter>Components\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gameObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\grid.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gridFactory.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jsonParser.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\sceneFactory.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\collisionSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mainScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\myScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\sceneManager.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="template\game.cpp" />
-    <ClCompile Include="src\collider.cpp">
-      <Filter>Components\Colliders</Filter>
-    </ClCompile>
-    <ClCompile Include="src\rectCollider.cpp">
-      <Filter>Components\Colliders</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gridCollider.cpp">
-      <Filter>Components\Colliders</Filter>
-    </ClCompile>
-    <ClCompile Include="src\pixelCollider.cpp">
-      <Filter>Components\Colliders</Filter>
-    </ClCompile>
-    <ClCompile Include="src\rectRenderer.cpp">
-      <Filter>Components\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\debugRenderer.cpp">
-      <Filter>Components\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\camera.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="src\component.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="src\rigidbody.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="src\textRenderer.cpp">
-      <Filter>Components\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\fpsCounter.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="src\playerMove.cpp">
-      <Filter>Components\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="src\playerController.cpp">
-      <Filter>Components\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="src\playerShoot.cpp">
-      <Filter>Components\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="enemy.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="src\animator.cpp">
-      <Filter>Components\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="animationSet.cpp">
-      <Filter>Components\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="animationClip.cpp">
-      <Filter>Components\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="animationLibrary.cpp">
-      <Filter>Components\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="playerAnimationHandler.cpp">
-      <Filter>Components\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="gun.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="machinegun.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="shotgun.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="flamethrower.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="bulletPool.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="bullet.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
+    <ClInclude Include="include\central.h" />
+    <ClInclude Include="include\utils.h" />
+    <ClInclude Include="include\Animation\animationClip.h" />
+    <ClInclude Include="include\Animation\animationData.h" />
+    <ClInclude Include="include\Animation\animationLibrary.h" />
+    <ClInclude Include="include\Animation\animationSet.h" />
+    <ClInclude Include="include\Animation\animationTypes.h" />
+    <ClInclude Include="include\Components\animator.h" />
+    <ClInclude Include="include\Components\bullet.h" />
+    <ClInclude Include="include\Components\camera.h" />
+    <ClInclude Include="include\Components\collider.h" />
+    <ClInclude Include="include\Components\component.h" />
+    <ClInclude Include="include\Components\debugRenderer.h" />
+    <ClInclude Include="include\Components\enemy.h" />
+    <ClInclude Include="include\Components\flamethrower.h" />
+    <ClInclude Include="include\Components\fpsCounter.h" />
+    <ClInclude Include="include\Components\gridCollider.h" />
+    <ClInclude Include="include\Components\gridRenderer.h" />
+    <ClInclude Include="include\Components\gun.h" />
+    <ClInclude Include="include\Components\machinegun.h" />
+    <ClInclude Include="include\Components\pixelCollider.h" />
+    <ClInclude Include="include\Components\playerAnimationHandler.h" />
+    <ClInclude Include="include\Components\playerController.h" />
+    <ClInclude Include="include\Components\playerMove.h" />
+    <ClInclude Include="include\Components\playerShoot.h" />
+    <ClInclude Include="include\Components\rectCollider.h" />
+    <ClInclude Include="include\Components\rectRenderer.h" />
+    <ClInclude Include="include\Components\renderer.h" />
+    <ClInclude Include="include\Components\rigidbody.h" />
+    <ClInclude Include="include\Components\shotgun.h" />
+    <ClInclude Include="include\Components\spriteFactory.h" />
+    <ClInclude Include="include\Components\spriteRenderer.h" />
+    <ClInclude Include="include\Components\textRenderer.h" />
+    <ClInclude Include="include\Components\tileCollider.h" />
+    <ClInclude Include="include\Components\transform.h" />
+    <ClInclude Include="include\GameObjects\gameObject.h" />
+    <ClInclude Include="include\Objects\bulletPool.h" />
+    <ClInclude Include="include\Objects\collisionSystem.h" />
+    <ClInclude Include="include\Objects\grid.h" />
+    <ClInclude Include="include\Objects\gridFactory.h" />
+    <ClInclude Include="include\Objects\jsonParser.h" />
+    <ClInclude Include="include\Objects\renderSystem.h" />
+    <ClInclude Include="include\Scene\mainScene.h" />
+    <ClInclude Include="include\Scene\myScene.h" />
+    <ClInclude Include="include\Scene\sceneFactory.h" />
+    <ClInclude Include="include\Scene\sceneManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="template\common.h">
-      <Filter>template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\opencl.h">
-      <Filter>template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\opengl.h">
-      <Filter>template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\precomp.h">
-      <Filter>template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\sprite.h">
-      <Filter>template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\surface.h">
-      <Filter>template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\tmpl8math.h">
-      <Filter>template</Filter>
-    </ClInclude>
-    <ClInclude Include="cl\tools.cl">
-      <Filter>kernels</Filter>
-    </ClInclude>
-    <ClInclude Include="template\scene.h">
-      <Filter>template</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gridRenderer.h">
-      <Filter>Components\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderer.h">
-      <Filter>Components\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\spriteRenderer.h">
-      <Filter>Components\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameObject.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\grid.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gridFactory.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jsonParser.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sceneFactory.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\collisionSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="src\mainScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\myScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sceneManager.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\central.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="template\game.h" />
-    <ClInclude Include="src\collider.h">
-      <Filter>Components\Colliders</Filter>
-    </ClInclude>
-    <ClInclude Include="src\rectCollider.h">
-      <Filter>Components\Colliders</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gridCollider.h">
-      <Filter>Components\Colliders</Filter>
-    </ClInclude>
-    <ClInclude Include="src\pixelCollider.h">
-      <Filter>Components\Colliders</Filter>
-    </ClInclude>
-    <ClInclude Include="src\rectRenderer.h">
-      <Filter>Components\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\debugRenderer.h">
-      <Filter>Components\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\camera.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="src\component.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="src\rigidbody.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="src\textRenderer.h">
-      <Filter>Components\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\fpsCounter.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="src\playerMove.h">
-      <Filter>Components\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="src\playerController.h">
-      <Filter>Components\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="src\playerShoot.h">
-      <Filter>Components\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="enemy.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="src\animator.h">
-      <Filter>Components\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="animationSet.h">
-      <Filter>Components\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="animationClip.h">
-      <Filter>Components\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="src\animationTypes.h">
-      <Filter>Components\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="src\animationData.h">
-      <Filter>Components\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="animationLibrary.h">
-      <Filter>Components\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="playerAnimationHandler.h">
-      <Filter>Components\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="gun.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="machinegun.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="shotgun.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="flamethrower.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="bulletPool.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="bullet.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cl\kernels.cl">
-      <Filter>kernels</Filter>
-    </None>
-    <None Include="template\LICENSE">
-      <Filter>template</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="template">
-      <UniqueIdentifier>{c65d8edd-a382-4ee7-9af9-5d04810e2884}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="kernels">
-      <UniqueIdentifier>{96ad1716-f468-46c6-8f16-5accbc19d76c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObjects">
-      <UniqueIdentifier>{6365101e-4f84-40dd-a089-eda6ef3f7037}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components">
-      <UniqueIdentifier>{b3f995a2-c1a6-4025-80b5-cdea31f69881}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utils">
-      <UniqueIdentifier>{761024fc-aa13-4c67-8f2e-a628b2067e83}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Systems">
-      <UniqueIdentifier>{e0ea861a-3bd5-4fae-a497-6a064ca72708}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scenes">
-      <UniqueIdentifier>{6d038265-dece-4404-a7bb-8a139dce8c8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Objects">
-      <UniqueIdentifier>{dcc33d02-6449-4c6c-bccb-be21ed9e68a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Renderers">
-      <UniqueIdentifier>{d52017a7-0393-4bf5-9e1e-a5d74acba00b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Colliders">
-      <UniqueIdentifier>{4237bdb2-59a3-4bfc-8a66-2104936c1049}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Other">
-      <UniqueIdentifier>{168f3d8a-eef9-40f0-91d1-b83eed7250f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Player">
-      <UniqueIdentifier>{78fea7a3-f795-4d0c-bc0b-057cfa183caa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Animation">
-      <UniqueIdentifier>{74d90645-9853-4a83-b7e6-0219abad611a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Guns">
-      <UniqueIdentifier>{69c5ff1d-ada2-4c67-b9e8-9d1dc833cdb4}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="src\Animation\animationClip.cpp" />
+    <ClCompile Include="src\Animation\animationLibrary.cpp" />
+    <ClCompile Include="src\Animation\animationSet.cpp" />
+    <ClCompile Include="src\Components\animator.cpp" />
+    <ClCompile Include="src\Components\bullet.cpp" />
+    <ClCompile Include="src\Components\camera.cpp" />
+    <ClCompile Include="src\Components\collider.cpp" />
+    <ClCompile Include="src\Components\component.cpp" />
+    <ClCompile Include="src\Components\debugRenderer.cpp" />
+    <ClCompile Include="src\Components\enemy.cpp" />
+    <ClCompile Include="src\Components\flamethrower.cpp" />
+    <ClCompile Include="src\Components\fpsCounter.cpp" />
+    <ClCompile Include="src\Components\gridCollider.cpp" />
+    <ClCompile Include="src\Components\gridRenderer.cpp" />
+    <ClCompile Include="src\Components\gun.cpp" />
+    <ClCompile Include="src\Components\machinegun.cpp" />
+    <ClCompile Include="src\Components\pixelCollider.cpp" />
+    <ClCompile Include="src\Components\playerAnimationHandler.cpp" />
+    <ClCompile Include="src\Components\playerController.cpp" />
+    <ClCompile Include="src\Components\playerMove.cpp" />
+    <ClCompile Include="src\Components\playerShoot.cpp" />
+    <ClCompile Include="src\Components\rectCollider.cpp" />
+    <ClCompile Include="src\Components\rectRenderer.cpp" />
+    <ClCompile Include="src\Components\renderer.cpp" />
+    <ClCompile Include="src\Components\rigidbody.cpp" />
+    <ClCompile Include="src\Components\shotgun.cpp" />
+    <ClCompile Include="src\Components\spriteRenderer.cpp" />
+    <ClCompile Include="src\Components\textRenderer.cpp" />
+    <ClCompile Include="src\Components\tileCollider.cpp" />
+    <ClCompile Include="src\Components\transform.cpp" />
+    <ClCompile Include="src\GameObjects\gameObject.cpp" />
+    <ClCompile Include="src\Objects\bulletPool.cpp" />
+    <ClCompile Include="src\Objects\collisionSystem.cpp" />
+    <ClCompile Include="src\Objects\grid.cpp" />
+    <ClCompile Include="src\Objects\gridFactory.cpp" />
+    <ClCompile Include="src\Objects\jsonParser.cpp" />
+    <ClCompile Include="src\Objects\renderSystem.cpp" />
+    <ClCompile Include="src\Scene\mainScene.cpp" />
+    <ClCompile Include="src\Scene\myScene.cpp" />
+    <ClCompile Include="src\Scene\sceneFactory.cpp" />
+    <ClCompile Include="src\Scene\sceneManager.cpp" />
   </ItemGroup>
 </Project>
