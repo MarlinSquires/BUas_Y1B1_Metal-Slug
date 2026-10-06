@@ -19,7 +19,7 @@ void PlayerMove::Start()
 
 void PlayerMove::PostStart()
 {
-	FreeTransition();
+	RunTransition();
 }
 
 void PlayerMove::Tick()
@@ -41,7 +41,19 @@ void PlayerMove::HandleState()
 {
 	switch (_playerState)
 	{
-		case PlayerState::Free: // Transitions into jump, crouch, dead
+		case PlayerState::Idle:
+			MoveInput();
+			SetGroundedStats();
+			FlipSprite();
+
+
+			if (_xInput != 0) RunTransition();
+			if (_wantsToJump && _rb->Grounded() && _jumpTimer <= 0.0f) JumpTransition();
+			if (_wantsToCrouch) CrouchTransition();
+
+			break;
+
+		case PlayerState::Running: // Transitions into jump, crouch, dead
 			
 			// Logic
 			MoveInput();
@@ -50,7 +62,7 @@ void PlayerMove::HandleState()
 			FlipSprite();
 
 			// Handle run-idle sprites
-			if (_rb->velocity.x == 0)
+			/*if (_rb->velocity.x == 0)
 			{
 				_animLower->SetClip(0);
 				_animUpper->SetClip(0);
@@ -60,9 +72,10 @@ void PlayerMove::HandleState()
 				_animLower->SetClip(1);
 				_animUpper->SetClip(1);
 
-			}
+			}*/
 
 			// Transitions
+			if (_rb->velocity.x == 0.0f) IdleTransition();
 			if (_wantsToJump && _rb->Grounded() && _jumpTimer <= 0.0f) JumpTransition();
 			if (_wantsToCrouch) CrouchTransition();
 
@@ -77,7 +90,7 @@ void PlayerMove::HandleState()
 			FlipSprite();
 			
 			// Transitions
-			if (_rb->Grounded()) FreeTransition();
+			if (_rb->Grounded()) RunTransition();
 			break;
 
 		case PlayerState::Crouching: // Transitions into free, jump, dead
@@ -89,7 +102,7 @@ void PlayerMove::HandleState()
 			FlipSprite();
 
 			// Transitions
-			if (_wantsToCrouch) FreeTransition();
+			if (_wantsToCrouch) RunTransition();
 
 			break;
 
@@ -99,11 +112,24 @@ void PlayerMove::HandleState()
 			break;
 	}
 }
-
-
-void PlayerMove::FreeTransition()
+void PlayerMove::IdleTransition()
 {
-	printf("Entering / exiting free state!\n");
+	printf("Entering / exiting idle state!\n");
+
+	_animLower->SetClip(0);
+	_animUpper->SetClip(0);
+
+	_col->SetOffset(1.0f, 1.0f);
+	_col->SetScale(1.0f, 1.0f);
+
+	ChangeState(PlayerState::Idle);
+}
+
+
+
+void PlayerMove::RunTransition()
+{
+	printf("Entering / exiting run state!\n");
 
 	_animLower->SetClip(1);
 	_animUpper->SetClip(1);
@@ -112,7 +138,7 @@ void PlayerMove::FreeTransition()
 	_col->SetScale(1.0f, 1.0f);
 
 	SetStateStats(_freeMinSpeed, _freeMaxSpeed, _freeGroundAccel, _freeAirAccel, _freeGroundDecel, _freeAirDecel);
-	ChangeState(PlayerState::Free);
+	ChangeState(PlayerState::Running);
 }
 
 
@@ -210,8 +236,8 @@ void PlayerMove::Timers()
 
 void PlayerMove::FlipSprite()
 {
-	if (_rb->velocity.x == 0) return;
-	if (_rb->velocity.x > 0)
+	if (_xInput == 0) return;
+	if (_xInput > 0)
 	{
 		_animLower->SetFlipped(false);
 		_animUpper->SetFlipped(false);

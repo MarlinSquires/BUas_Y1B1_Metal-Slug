@@ -3,6 +3,7 @@
 
 #include "renderSystem.h"
 #include "collisionSystem.h"
+#include "bulletPool.h"
 
 class GameObject;
 
@@ -30,9 +31,10 @@ private:
 	int _objectCount = 0;
 	bool _debug;
 
-	GameObject* _objects[100];
+	GameObject* _objects[500];
 	RenderSystem _renderSystem = RenderSystem();
 	CollisionSystem _collisionSystem = CollisionSystem();
+	BulletPool _bulletPool = BulletPool(500);
 
 };
 

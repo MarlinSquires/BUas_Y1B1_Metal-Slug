@@ -8,6 +8,9 @@ struct AnimationSet;
 enum class AnimationClipName;
 enum class AnimationSetName;
 
+// Drives a SpriteRenderer, settings its sprite and handling frame incrementation
+// Uses AddComponent() to instantiate a SpriteRenderer component, non-owning
+
 class Animator : public Component
 {
 

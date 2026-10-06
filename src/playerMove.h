@@ -10,7 +10,8 @@ class Animator;
 
 enum class PlayerState
 {
-	Free,
+	Idle,
+	Running,
 	Jumping,
 	Crouching,
 	Parachuting,
@@ -44,7 +45,8 @@ private:
 	// State machine
 	void HandleState();
 
-	void FreeTransition();   // Initial transition into free state
+	void IdleTransition();
+	void RunTransition();   // Initial transition into free state
 	void JumpTransition();   // Initial transition into jump state
 	void CrouchTransition(); // Initial transition into crouch state
 
@@ -57,7 +59,7 @@ private:
 
 
 	// General
-	PlayerState _playerState = PlayerState::Free;
+	PlayerState _playerState = PlayerState::Idle;
 	char _xInput = 0;
 	float verticalVel = 0.0f;
 
@@ -107,7 +109,5 @@ private:
 	RectCollider* _col = nullptr;
 	Rigidbody* _rb = nullptr;
 	Game* _game = nullptr;
-
-	int _clipIndex = 0;
 };
 

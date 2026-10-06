@@ -8,17 +8,13 @@
 #include "renderSystem.h"
 
 
-Animator::Animator(AnimationSetName set, int clip) : _set(Central::animLib->GetSet(set)), _clipIndex(clip)
-{
-	//_clip = _set->clips[clip];
-}
+Animator::Animator(AnimationSetName set, int clip) : _set(Central::animLib->GetSet(set)), _clipIndex(clip) {}
 
 void Animator::Start()
 {
 	_rend = &gameObject->AddComponent<SpriteRenderer>(RenderLayerType::Actors);
 
 	SetClip(_clipIndex);
-	//_rend->SetOffset(_clip->offset);
 }
 
 void Animator::SetClip(int index) 
@@ -27,6 +23,7 @@ void Animator::SetClip(int index)
 	_clip = _set->clips[index]; 
 	_rend->SetSprite(_clip->sprite);
 	_rend->SetOffset(_clip->offset);
+	if (_rend->GetFrame() > _clip->length - 1) _rend->SetFrame(0);
 
 	_frameRate = _clip->fps;
 	_timer = 1.0f / _frameRate;

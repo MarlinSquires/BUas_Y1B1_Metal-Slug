@@ -8,6 +8,8 @@
 
 // Init all clips directly, then init sets using the indices in the sets[] array
 
+
+
 void AnimationLibrary::Init()
 {
 	// Instantiate all clips

@@ -119,7 +119,27 @@
     <ClCompile Include="animationLibrary.cpp">
       <Filter>Components\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="playerAnimationHandler.cpp" />
+    <ClCompile Include="playerAnimationHandler.cpp">
+      <Filter>Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="gun.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="machinegun.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="shotgun.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="flamethrower.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletPool.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="bullet.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="template\common.h">
@@ -258,7 +278,27 @@
     <ClInclude Include="animationLibrary.h">
       <Filter>Components\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="playerAnimationHandler.h" />
+    <ClInclude Include="playerAnimationHandler.h">
+      <Filter>Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="gun.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="machinegun.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="shotgun.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="flamethrower.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletPool.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="bullet.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cl\kernels.cl">
@@ -307,6 +347,9 @@
     </Filter>
     <Filter Include="Components\Animation">
       <UniqueIdentifier>{74d90645-9853-4a83-b7e6-0219abad611a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Guns">
+      <UniqueIdentifier>{69c5ff1d-ada2-4c67-b9e8-9d1dc833cdb4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

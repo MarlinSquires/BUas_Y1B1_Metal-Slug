@@ -17,7 +17,7 @@ struct ClipData
 	float2 offset;
 };
 
-inline constexpr float2 nullOffset = { 0.0f, 0.0f};
+inline constexpr float2 nullOffset = { 0.0f, 0.0f };
 inline constexpr float2 playerUpperOffset = { 4.0f, -4.0f };
 inline constexpr float2 playerLowerOffset = { 2.0f, 10.0f };
 

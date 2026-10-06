@@ -4,7 +4,7 @@
 
 class GameObject;
 class AnimationLibrary;
-
+class BulletPool;
 
 class Central
 {
@@ -13,7 +13,10 @@ public:
 	// Main references
 	static inline Tmpl8::Game* game = nullptr;
 	static inline Tmpl8::Surface* surface = nullptr;
+
+	// Secondary references
 	static inline AnimationLibrary* animLib = nullptr;
+	static inline BulletPool* pool = nullptr;
 
 	// Camera
 	static inline GameObject* camera = nullptr;
