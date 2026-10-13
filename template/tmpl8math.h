@@ -52,6 +52,8 @@ struct ALIGN( 8 ) float2
 	union { struct { float x, y; }; float cell[2]; };
 	float& operator [] ( const int n ) { return cell[n]; }
 	const float& operator [] ( const int n ) const { return cell[n]; }
+	
+	float magnitude() { return x + y; }
 };
 struct int3;
 struct ALIGN( 16 ) int4
@@ -524,7 +526,12 @@ inline float length( const int2& v ) { return sqrtf( (float)dot( v, v ) ); }
 inline float length( const int3& v ) { return sqrtf( (float)dot( v, v ) ); }
 inline float length( const int4& v ) { return sqrtf( (float)dot( v, v ) ); }
 
-inline float2 normalize( const float2& v ) { float invLen = rsqrtf( dot( v, v ) ); return v * invLen; }
+inline float2 normalize(const float2& v)
+{
+	float lenSq = dot(v, v);
+	if (lenSq < 1e-12f) return float2(0, 0); // or some default direction
+	return v * rsqrtf(lenSq);
+}
 inline float3 normalize( const float3& v ) { float invLen = rsqrtf( dot( v, v ) ); return v * invLen; }
 inline float4 normalize( const float4& v ) { float invLen = rsqrtf( dot( v, v ) ); return v * invLen; }
 

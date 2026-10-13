@@ -10,21 +10,25 @@
 
 Grid GridFactory::BuildGrid(const char* address)
 {
+
 	// Load json file
 	json data = JsonParser::Load(address);
 
+
 	//const bool didLoad = data == nullptr
 	FATALERROR_IF(data.is_null(), "JSON data failed to load!!!");
+
 
 	// Access json data
 	json& layer = data["layers"][1];
 	int width = layer["width"].get<int>();
 	int height = layer["height"].get<int>();
 
-	int l = width * height;
-	uint* gridData = new uint[l];
 
-	for (int i = 0; i < l; i++)
+	int length = width * height;
+	uint* gridData = new uint[length];
+
+	for (int i = 0; i < length; i++)
 	{
 		gridData[i] = (layer["data"][i].get<uint>());
 	}

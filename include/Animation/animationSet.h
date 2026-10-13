@@ -1,6 +1,6 @@
 #pragma once
 
-enum class AnimationSetName;
+enum class AnimationSetName : uint8_t;
 struct AnimationClip;
 class AnimationLibrary;
 

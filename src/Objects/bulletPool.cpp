@@ -1,51 +1,53 @@
 #include "precomp.h"
 #include "gameObject.h"
-#include "bullet.h"
 #include "bulletPool.h"
 #include "central.h"
 
+#include "guns/bullet.h"
+#include "animator.h"
+#include "colliders/rectCollider.h"
+#include "renderers/rectRenderer.h"
 
-BulletPool::BulletPool(int poolSize) : _poolSize(poolSize) 
+#include "animationTypes.h"
+#include "collisionSystem.h"
+#include "renderSystem.h"
+
+
+BulletPool::BulletPool() 
 {
-	_objects = new Bullet * [_poolSize]();
 	Central::pool = this;
 };
 
 
 void BulletPool::InstantiateToPool()
 {
-	
-	
-	for (int i = 0; i < _poolSize; i++)
+	for (int i = 0; i < POOLSIZE; i++)
 	{
 		GameObject* go = new GameObject();
 		go->SetActive(false);
+		
+		// Add bullet component
 		_objects[i] = &go->AddComponent<Bullet>(this);
-		_objects[i]->_index = i;
-		_objectCount++;
+		_objects[i]->SetIndex(i);
+		_indices[_freeCount++] = i;
 	}
 }
 
 Bullet* BulletPool::SpawnFromPool()
 {
-	Bullet* b = _objects[_objectCount--];
-	b->gameObject->SetActive(true);
+	if (_freeCount <= 0) return nullptr;
+
+	int index = _indices[--_freeCount];
+	Bullet* b = _objects[index];
+	b->GetGameObject()->SetActive(true);
+	
 	return b;
 }
 
-void BulletPool::ReturnToPool(Bullet* b)
+
+void BulletPool::ReturnToPool(Bullet* b, int index)
 {
-	if (b->_index > _objectCount)
-	{
-		Bullet* b2 = _objects[_objectCount]; // Cache bullet at top of 'stack'
-		int i = b->_index; // cache b1 index
+	_indices[_freeCount++] = index;
 
-		b->_index = _objectCount; // Swap pos of b1 and b2
-		_objects[_objectCount++] = b;
-		_objects[i] = b2;
-	}
-
-	b->gameObject->SetActive(false);
-
-
+	b->GetGameObject()->SetActive(false);
 }

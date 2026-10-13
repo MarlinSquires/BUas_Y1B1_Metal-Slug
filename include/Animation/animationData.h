@@ -1,11 +1,13 @@
 #pragma once
 #include "animationTypes.h"
+#include "utils.h"
 
 // Holds animation-relevant structs and arrays
 
 
 
 //------ Animation Clips --------------------------------------------------------------------------------------------------------------------------------------
+
 
 struct ClipData
 {
@@ -24,10 +26,11 @@ inline constexpr float2 playerLowerOffset = { 2.0f, 10.0f };
 
 inline constexpr ClipData clipTable[] =
 {
-	{ AnimationClipName::Tileset, "assets/tiles/tileset.png", 4, 0, false, nullOffset },
+	// Tiles
+	{ AnimationClipName::Tileset,			"assets/tiles/tileset.png", 4, 0, false, nullOffset },
 
 
-
+	// Player
 	{ AnimationClipName::PlayerIdleUpper,	"assets/player/IdleUpper.png", 4, 12, true, playerUpperOffset },
 	{ AnimationClipName::PlayerIdleLower,	"assets/player/IdleLower.png", 1, 12, true, playerLowerOffset },
 
@@ -37,13 +40,16 @@ inline constexpr ClipData clipTable[] =
 	{ AnimationClipName::PlayerJumpUpper,	"assets/player/JumpUpper.png", 6, 12, true, playerUpperOffset  },
 	{ AnimationClipName::PlayerJumpLower,	"assets/player/JumpLower.png", 6, 12, true, playerLowerOffset  },
 
+	// Enemy - knife
 	{ AnimationClipName::Enemy1Idle,		"assets/enemy/Enemy1Idle.png", 4, 12, true, nullOffset  },
 	{ AnimationClipName::Enemy1Run,			"assets/enemy/Enemy1Run.png", 12, 12, true, nullOffset  },
 	{ AnimationClipName::Enemy1Knife,		"assets/enemy/Enemy1Knife.png", 12, 12, true, nullOffset  },
 
+	// Projectiles
+	{ AnimationClipName::Bullet,			"assets/bulletGreen.png", 1, 0, false, nullOffset },
 
 
-	{ AnimationClipName::Ball, "assets/ball.png", 1, 0, false, nullOffset },
+	{ AnimationClipName::Ball,				"assets/ball.png", 1, 0, false, nullOffset },
 
 };
 
@@ -90,6 +96,11 @@ inline constexpr AnimationClipName enemyClips[] =
 };
 
 
+inline constexpr AnimationClipName projectileClips[] =
+{
+	AnimationClipName::Bullet,
+};
+
 struct SetData
 {
 	const AnimationClipName* clips;
@@ -101,6 +112,9 @@ inline constexpr SetData animationSetTable[]
 {
 	{ playerUpperClips, (sizeof(playerUpperClips) / sizeof(AnimationClipName))},
 	{ playerLowerClips, (sizeof(playerLowerClips) / sizeof(AnimationClipName))},
+
 	{ enemyClips, (sizeof(enemyClips) / sizeof(AnimationClipName))},
+
+	{ projectileClips, (sizeof(projectileClips) / sizeof(AnimationClipName))},
 };
 

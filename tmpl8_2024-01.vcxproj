@@ -11,51 +11,54 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Animation\animationClip.h" />
-    <ClInclude Include="include\Animation\animationData.h" />
-    <ClInclude Include="include\Animation\animationLibrary.h" />
-    <ClInclude Include="include\Animation\animationSet.h" />
-    <ClInclude Include="include\Animation\animationTypes.h" />
+    <ClInclude Include="include\accelMove.h" />
+    <ClInclude Include="include\animation\animationClip.h" />
+    <ClInclude Include="include\animation\animationData.h" />
+    <ClInclude Include="include\animation\animationLibrary.h" />
+    <ClInclude Include="include\animation\animationSet.h" />
+    <ClInclude Include="include\animation\animationTypes.h" />
     <ClInclude Include="include\central.h" />
-    <ClInclude Include="include\Components\animator.h" />
-    <ClInclude Include="include\Components\bullet.h" />
-    <ClInclude Include="include\Components\camera.h" />
-    <ClInclude Include="include\Components\collider.h" />
-    <ClInclude Include="include\Components\component.h" />
-    <ClInclude Include="include\Components\debugRenderer.h" />
-    <ClInclude Include="include\Components\enemy.h" />
-    <ClInclude Include="include\Components\flamethrower.h" />
-    <ClInclude Include="include\Components\fpsCounter.h" />
-    <ClInclude Include="include\Components\gridCollider.h" />
-    <ClInclude Include="include\Components\gridRenderer.h" />
-    <ClInclude Include="include\Components\gun.h" />
-    <ClInclude Include="include\Components\machinegun.h" />
-    <ClInclude Include="include\Components\pixelCollider.h" />
-    <ClInclude Include="include\Components\playerAnimationHandler.h" />
-    <ClInclude Include="include\Components\playerController.h" />
-    <ClInclude Include="include\Components\playerMove.h" />
-    <ClInclude Include="include\Components\playerShoot.h" />
-    <ClInclude Include="include\Components\rectCollider.h" />
-    <ClInclude Include="include\Components\rectRenderer.h" />
-    <ClInclude Include="include\Components\renderer.h" />
-    <ClInclude Include="include\Components\rigidbody.h" />
-    <ClInclude Include="include\Components\shotgun.h" />
-    <ClInclude Include="include\Components\spriteFactory.h" />
-    <ClInclude Include="include\Components\spriteRenderer.h" />
-    <ClInclude Include="include\Components\textRenderer.h" />
-    <ClInclude Include="include\Components\tileCollider.h" />
-    <ClInclude Include="include\Components\transform.h" />
-    <ClInclude Include="include\GameObjects\gameObject.h" />
-    <ClInclude Include="include\Objects\bulletPool.h" />
-    <ClInclude Include="include\Objects\collisionSystem.h" />
-    <ClInclude Include="include\Objects\grid.h" />
-    <ClInclude Include="include\Objects\gridFactory.h" />
-    <ClInclude Include="include\Objects\jsonParser.h" />
-    <ClInclude Include="include\Objects\renderSystem.h" />
-    <ClInclude Include="include\Scene\mainScene.h" />
-    <ClInclude Include="include\Scene\myScene.h" />
-    <ClInclude Include="include\Scene\sceneFactory.h" />
-    <ClInclude Include="include\Scene\sceneManager.h" />
+    <ClInclude Include="include\components\actor\animator.h" />
+    <ClInclude Include="include\components\actor\health.h" />
+    <ClInclude Include="include\components\guns\bullet.h" />
+    <ClInclude Include="include\components\actor\camera.h" />
+    <ClInclude Include="include\components\colliders\collider.h" />
+    <ClInclude Include="include\components\component.h" />
+    <ClInclude Include="include\components\renderers\debugRenderer.h" />
+    <ClInclude Include="include\components\actor\enemy.h" />
+    <ClInclude Include="include\components\guns\flamethrower.h" />
+    <ClInclude Include="include\components\fpsCounter.h" />
+    <ClInclude Include="include\components\colliders\gridCollider.h" />
+    <ClInclude Include="include\components\renderers\gridRenderer.h" />
+    <ClInclude Include="include\components\guns\gun.h" />
+    <ClInclude Include="include\components\guns\machinegun.h" />
+    <ClInclude Include="include\components\colliders\pixelCollider.h" />
+    <ClInclude Include="include\components\actor\playerAnimationHandler.h" />
+    <ClInclude Include="include\components\actor\playerController.h" />
+    <ClInclude Include="include\components\actor\playerMove.h" />
+    <ClInclude Include="include\components\actor\playerShoot.h" />
+    <ClInclude Include="include\components\colliders\rectCollider.h" />
+    <ClInclude Include="include\components\renderers\lineRenderer.h" />
+    <ClInclude Include="include\components\renderers\rectRenderer.h" />
+    <ClInclude Include="include\components\renderers\renderer.h" />
+    <ClInclude Include="include\components\actor\rigidbody.h" />
+    <ClInclude Include="include\components\guns\shotgun.h" />
+    <ClInclude Include="include\components\spriteFactory.h" />
+    <ClInclude Include="include\components\renderers\spriteRenderer.h" />
+    <ClInclude Include="include\components\renderers\textRenderer.h" />
+    <ClInclude Include="include\components\colliders\tileCollider.h" />
+    <ClInclude Include="include\gameObjects\enemyPrefab.h" />
+    <ClInclude Include="include\gameObjects\gameObject.h" />
+    <ClInclude Include="include\objects\bulletPool.h" />
+    <ClInclude Include="include\objects\collisionSystem.h" />
+    <ClInclude Include="include\objects\grid.h" />
+    <ClInclude Include="include\objects\gridFactory.h" />
+    <ClInclude Include="include\objects\jsonParser.h" />
+    <ClInclude Include="include\objects\renderSystem.h" />
+    <ClInclude Include="include\scene\mainScene.h" />
+    <ClInclude Include="include\scene\myScene.h" />
+    <ClInclude Include="include\scene\sceneFactory.h" />
+    <ClInclude Include="include\scene\sceneManager.h" />
     <ClInclude Include="include\utils.h" />
     <ClInclude Include="template\common.h" />
     <ClInclude Include="template\game.h" />
@@ -68,47 +71,50 @@
     <ClInclude Include="template\tmpl8math.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Animation\animationClip.cpp" />
-    <ClCompile Include="src\Animation\animationLibrary.cpp" />
-    <ClCompile Include="src\Animation\animationSet.cpp" />
-    <ClCompile Include="src\Components\animator.cpp" />
-    <ClCompile Include="src\Components\bullet.cpp" />
-    <ClCompile Include="src\Components\camera.cpp" />
-    <ClCompile Include="src\Components\collider.cpp" />
-    <ClCompile Include="src\Components\component.cpp" />
-    <ClCompile Include="src\Components\debugRenderer.cpp" />
-    <ClCompile Include="src\Components\enemy.cpp" />
-    <ClCompile Include="src\Components\flamethrower.cpp" />
-    <ClCompile Include="src\Components\fpsCounter.cpp" />
-    <ClCompile Include="src\Components\gridCollider.cpp" />
-    <ClCompile Include="src\Components\gridRenderer.cpp" />
-    <ClCompile Include="src\Components\gun.cpp" />
-    <ClCompile Include="src\Components\machinegun.cpp" />
-    <ClCompile Include="src\Components\pixelCollider.cpp" />
-    <ClCompile Include="src\Components\playerAnimationHandler.cpp" />
-    <ClCompile Include="src\Components\playerController.cpp" />
-    <ClCompile Include="src\Components\playerMove.cpp" />
-    <ClCompile Include="src\Components\playerShoot.cpp" />
-    <ClCompile Include="src\Components\rectCollider.cpp" />
-    <ClCompile Include="src\Components\rectRenderer.cpp" />
-    <ClCompile Include="src\Components\renderer.cpp" />
-    <ClCompile Include="src\Components\rigidbody.cpp" />
-    <ClCompile Include="src\Components\shotgun.cpp" />
-    <ClCompile Include="src\Components\spriteRenderer.cpp" />
-    <ClCompile Include="src\Components\textRenderer.cpp" />
-    <ClCompile Include="src\Components\tileCollider.cpp" />
-    <ClCompile Include="src\Components\transform.cpp" />
-    <ClCompile Include="src\GameObjects\gameObject.cpp" />
-    <ClCompile Include="src\Objects\bulletPool.cpp" />
-    <ClCompile Include="src\Objects\collisionSystem.cpp" />
-    <ClCompile Include="src\Objects\grid.cpp" />
-    <ClCompile Include="src\Objects\gridFactory.cpp" />
-    <ClCompile Include="src\Objects\jsonParser.cpp" />
-    <ClCompile Include="src\Objects\renderSystem.cpp" />
-    <ClCompile Include="src\Scene\mainScene.cpp" />
-    <ClCompile Include="src\Scene\myScene.cpp" />
-    <ClCompile Include="src\Scene\sceneFactory.cpp" />
-    <ClCompile Include="src\Scene\sceneManager.cpp" />
+    <ClCompile Include="src\animation\animationClip.cpp" />
+    <ClCompile Include="src\animation\animationLibrary.cpp" />
+    <ClCompile Include="src\animation\animationSet.cpp" />
+    <ClCompile Include="src\components\actor\accelMove.cpp" />
+    <ClCompile Include="src\components\actor\animator.cpp" />
+    <ClCompile Include="src\components\actor\health.cpp" />
+    <ClCompile Include="src\components\guns\bullet.cpp" />
+    <ClCompile Include="src\components\actor\camera.cpp" />
+    <ClCompile Include="src\components\colliders\collider.cpp" />
+    <ClCompile Include="src\components\renderers\debugRenderer.cpp" />
+    <ClCompile Include="src\components\actor\enemy.cpp" />
+    <ClCompile Include="src\components\guns\flamethrower.cpp" />
+    <ClCompile Include="src\components\fpsCounter.cpp" />
+    <ClCompile Include="src\components\colliders\gridCollider.cpp" />
+    <ClCompile Include="src\components\renderers\gridRenderer.cpp" />
+    <ClCompile Include="src\components\guns\gun.cpp" />
+    <ClCompile Include="src\components\renderers\lineRenderer.cpp" />
+    <ClCompile Include="src\components\guns\machinegun.cpp" />
+    <ClCompile Include="src\components\colliders\pixelCollider.cpp" />
+    <ClCompile Include="src\components\actor\playerAnimationHandler.cpp" />
+    <ClCompile Include="src\components\actor\playerController.cpp" />
+    <ClCompile Include="src\components\actor\playerMove.cpp" />
+    <ClCompile Include="src\components\actor\playerShoot.cpp" />
+    <ClCompile Include="src\components\colliders\rectCollider.cpp" />
+    <ClCompile Include="src\components\renderers\rectRenderer.cpp" />
+    <ClCompile Include="src\components\renderers\renderer.cpp" />
+    <ClCompile Include="src\components\actor\rigidbody.cpp" />
+    <ClCompile Include="src\components\guns\shotgun.cpp" />
+    <ClCompile Include="src\components\renderers\spriteRenderer.cpp" />
+    <ClCompile Include="src\components\renderers\textRenderer.cpp" />
+    <ClCompile Include="src\components\colliders\tileCollider.cpp" />
+    <ClCompile Include="src\gameObjects\enemyPrefab.cpp" />
+    <ClCompile Include="src\gameObjects\gameObject.cpp" />
+    <ClCompile Include="src\objects\bulletPool.cpp" />
+    <ClCompile Include="src\objects\collisionSystem.cpp" />
+    <ClCompile Include="src\objects\grid.cpp" />
+    <ClCompile Include="src\objects\gridFactory.cpp" />
+    <ClCompile Include="src\objects\jsonParser.cpp" />
+    <ClCompile Include="src\objects\renderSystem.cpp" />
+    <ClCompile Include="src\scene\mainScene.cpp" />
+    <ClCompile Include="src\scene\myScene.cpp" />
+    <ClCompile Include="src\scene\sceneFactory.cpp" />
+    <ClCompile Include="src\scene\sceneManager.cpp" />
+    <ClCompile Include="src\utils.cpp" />
     <ClCompile Include="template\game.cpp" />
     <ClCompile Include="template\opencl.cpp" />
     <ClCompile Include="template\opengl.cpp" />
@@ -136,6 +142,12 @@
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <EnableASAN>false</EnableASAN>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -167,7 +179,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>.;template;lib;lib\glad;lib\glfw\include;lib\OpenCL\inc;lib\zlib;include\Scene;include\Objects;include\GameObjects;include\Components;include\Animation;include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Visual Leak Detector\include;.;template;lib;lib\glad;lib\glfw\include;lib\OpenCL\inc;lib\zlib;include;include\Scene;include\Objects;include\GameObjects;include\Animation;include\Components;include\Components\renderers;include\Components\guns;include\Components\colliders;include\Components\actor</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>precomp.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
@@ -184,7 +196,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Platform)'=='x64'">
     <Link>
-      <AdditionalLibraryDirectories>lib/glfw/lib-vc2022;lib/zlib;lib/OpenCL/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Visual Leak Detector\lib\Win64;lib/glfw/lib-vc2022;lib/zlib;lib/OpenCL/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
@@ -201,6 +213,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp20</LanguageStandard>
       <OpenMPSupport Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</OpenMPSupport>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4324</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -237,6 +250,7 @@
       <PreprocessorDefinitions>WIN64;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <OpenMPSupport>true</OpenMPSupport>
+      <DisableSpecificWarnings>4324</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
   <!-- END Custom section -->

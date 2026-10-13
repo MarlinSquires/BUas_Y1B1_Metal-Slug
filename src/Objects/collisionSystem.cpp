@@ -1,64 +1,61 @@
 #include "precomp.h"
+
 #include "collider.h"
 #include "rectCollider.h"
 #include "gridCollider.h"
 #include "pixelCollider.h"
+
 #include "collisionSystem.h"
 #include "grid.h"
+
 #include "central.h"
-
-#include <iostream>
-
-
-CollisionSystem::~CollisionSystem()
-{
-	delete[] collisionLayers;
-}
+#include "utils.h"
 
 
-CollisionLayer CollisionSystem::collisionLayers[] = {
-	CollisionLayer(),
-	CollisionLayer(),
-	CollisionLayer(),
-	CollisionLayer(),
-};
-
-
-int CollisionSystem::Register(const CollisionLayerType collisionLayer, Collider* col)
+int CollisionSystem::Register(const CollisionLayerName collisionLayer, Collider* col)
 {
 	CollisionLayer& layer = collisionLayers[static_cast<int>(collisionLayer)];
-	layer.colliders[layer.colCount++] = col;
-	return layer.colCount - 1;
+	assert(layer.count < layer.SIZE);
+	layer.colliders[layer.count++] = col;
+	return layer.count - 1; // Return val is used to set collider index
 }
 
-void CollisionSystem::Deregister(const CollisionLayerType collisionLayer, int index)
+void CollisionSystem::Deregister(const CollisionLayerName collisionLayer, int index)
 {
 	CollisionLayer& layer = collisionLayers[static_cast<int>(collisionLayer)];
-	layer.colliders[index] = layer.colliders[layer.colCount--];
+	assert(index >= 0 && index < layer.count);
+
+	layer.colliders[index] = layer.colliders[--layer.count];
+	layer.colliders[index]->index = index;
+	layer.colliders[layer.count] = nullptr;
 }
 
 
-CollisionResult CollisionSystem::Query(Collider* collider, const CollisionLayerType collisionLayer, const float2 pos)
+CollisionResult CollisionSystem::Query(const Collider& col, const CollisionLayerName collisionLayer, const float2 pos)
 {
 	// Only rectColliders and pixelColliders will be passed into here, no need for a tileCollider to ever be passed
 	
 	CollisionLayer& layer = collisionLayers[static_cast<int>(collisionLayer)];
-	Collider& col = *collider;
 
-	for (int i = 0; i < layer.colCount; i++)
+	for (int i = 0; i < layer.count; i++)
 	{
 		Collider& col2 = *layer.colliders[i];
-		if (&col2 == collider) return false;
+		if (&col2 == &col) continue; // Stop self-collision
 
 		if (col.GetType() == ColliderType::Rect)
 		{
 			if (col2.GetType() == ColliderType::Rect)
 			{
-				return (RectVsRect(static_cast<RectCollider&>(col), static_cast<RectCollider&>(col2), pos));
+				// Pass layer to prevent expensive position resolution against non-solid rects
+				CollisionResult cr = (RectVsRect(collisionLayer, static_cast<const RectCollider&>(col), static_cast<const RectCollider&>(col2), pos));
+				if (cr.collided == true) return cr;
+				else continue;
 			}
 			else if (col2.GetType() == ColliderType::Tile)
 			{
-				return (RectVsTile(static_cast<RectCollider&>(col), static_cast<GridCollider&>(col2), pos));
+				CollisionResult cr = (RectVsTile(static_cast<const RectCollider&>(col), static_cast<GridCollider&>(col2), pos));
+				if (cr.collided == true) return cr;
+				else continue;
 			}
 			/*else
 			{
@@ -78,43 +75,51 @@ CollisionResult CollisionSystem::Query(Collider* collider, const CollisionLayerT
 		//	}
 		//}
 	}
-	return false;
+	return CollisionResult(false);
 }
 
 	
 
 
-CollisionResult CollisionSystem::RectVsRect(RectCollider& rectCol1, RectCollider& rectCol2, const float2 pos)
+CollisionResult CollisionSystem::RectVsRect(CollisionLayerName collisionLayer, const RectCollider& rectCol1, const RectCollider& rectCol2, const float2 pos)
 {
 	if (!rectCol2.active) return CollisionResult(false);
 
-	float2 originalPos = rectCol1.gameObject->GetWorldPos();
+	float2 originalPos = rectCol1.GetGameObject()->GetWorldPos();
 
-	// Move rect to check position
-	rectCol1.UpdateRect(pos);
+	const float2 col1P1 = rectCol1.GetP1(pos);
+	const float2 col1P2 = rectCol1.GetP2(pos);
 
-	const float2 colP1 = rectCol2.GetP1(); // float2 and pointer are both 8 bytes, so does it matter whther I pass by value or ptr / ref?
-	const float2 colP2 = rectCol2.GetP2(); // Pass by pointer would cause more cache misses ??
+	const float2 col2P1 = rectCol2.GetP1();
+	const float2 col2P2 = rectCol2.GetP2(); 
 
 	// AABB logic
-	bool xCollision = CheckCollisionAxis(rectCol1.GetP1().x, rectCol1.GetP2().x, colP1.x, colP2.x);
-	bool yCollision = CheckCollisionAxis(rectCol1.GetP1().y, rectCol1.GetP2().y, colP1.y, colP2.y);
+	bool xCollision = CheckCollisionAxis(col1P1.x, col1P2.x, col2P1.x, col2P2.x);
+	bool yCollision = CheckCollisionAxis(col1P1.y, col1P2.y, col2P1.y, col2P2.y);
 
-	// Move rect back
-	rectCol1.UpdateRect(originalPos);
 
 	if (xCollision && yCollision)
 	{
-		//cout << "I'm colliding!!!" << endl;
-		rectCol1.overlapping = true;
-		rectCol2.overlapping = true;
-		return CollisionResult(true);
+		//printf("I'm colliding!!!\n");
+		CollisionResult cr = { true };
+
+		// Handle resolution
+		if (collisionLayer == CollisionLayerName::Solids)
+		{
+			char xDir = (char)utils::sign(pos.x - originalPos.x);
+			char yDir = (char)utils::sign(pos.y - originalPos.y);
+
+			float xPos = rectCol2.GetGameObject()->GetWorldPos().x + (((rectCol1.GetSize().x / 2) + (rectCol2.GetSize().x / 2)) * -xDir);
+			float yPos = rectCol2.GetGameObject()->GetWorldPos().y + (((rectCol1.GetSize().y / 2) + (rectCol2.GetSize().y / 2)) * -yDir);
+
+			cr.resolvedPos = { xPos, yPos };
+		}
+		
+		cr.col = &rectCol2;
+		return cr;
 	}
 	
-	// No collision found
-	rectCol1.overlapping = false;
-	rectCol2.overlapping = false;
-	
+	// No collision found	
 	return CollisionResult(false);
 }
 
@@ -122,63 +127,83 @@ CollisionResult CollisionSystem::RectVsRect(RectCollider& rectCol1, RectCollider
 
 
 
-CollisionResult CollisionSystem::RectVsTile(RectCollider& rectCol, GridCollider& tileCol, const float2 pos)
+CollisionResult CollisionSystem::RectVsTile(const RectCollider& rectCol, GridCollider& tileCol, const float2 pos)
 {
-	float2 originalPos = rectCol.gameObject->GetWorldPos();
+	// Init grid values
+	Grid& grid = tileCol.GetGrid();
+	int tileSize = grid.tileSize;
+	int arrayMax = grid.width * grid.height - 1;
+
+
+	float2 originalPos = rectCol.GetGameObject()->GetWorldPos();
 	float2 prevP1 = rectCol.GetP1();
 	float2 prevP2 = rectCol.GetP2();
 
-	// Convert worldspace positions to gridspace
-	rectCol.UpdateRect(pos);
+	float2 p1 = rectCol.GetP1(pos);
+	float2 p2 = rectCol.GetP2(pos);
 
-	Grid& grid = tileCol.GetGrid();
-	int tileSize = grid.tileSize;
-	int arrayMax = grid.width * grid.height;
+	int xmin = (int)floorf(p1.x / tileSize); // Leftmost tile being overlapped
+	int ymin = (int)floorf(p1.y / tileSize); // Topmost tile being overlapped
 
-	float2 p1 = rectCol.GetP1();
-	float2 p2 = rectCol.GetP2();
+	int xmax = (int)ceilf(p2.x / tileSize) - 1; // Rightmost
+	int ymax = (int)ceilf(p2.y / tileSize) - 1; // Bottommost
 
-	int xmin = (int)(p1.x / tileSize);
-	int ymin = (int)(p1.y / tileSize);
-	
-	int xmax = (int)(p2.x / tileSize);
-	int ymax = (int)(p2.y / tileSize);
+	// Loop over all overlapping tiles positions and check for solidity
+	for (int y = ymin; y <= ymax; y++)
+	{
+		if (y < 0 || y >= grid.height) continue; // Ensure you cant check outside array
 
-	rectCol.UpdateRect(originalPos);
+		for (int x = xmin; x <= xmax; x++)
+		{
+			if (x < 0 || x >= grid.width) continue; 
+
+			int i = x + y * grid.width;
+
+			TileType tileType = grid.tiles[i];
+
+			switch (tileType)
+			{
+			default: // Cant return false here because it would exit func before checking all tile positions
+				break;
+				
+			case TileType::Solid:
+			{
+				// Determine direction between GO and colliding tile1
+				char xDir = (char)utils::sign(pos.x - originalPos.x);
+				char yDir = (char)utils::sign(pos.y - originalPos.y);
+
+				char offsetX = (xDir == 1) ? 0 : (char)tileSize;
+				char offsetY = (yDir == 1) ? 0 : (char)tileSize;
+
+				float xPos = (x * tileSize + offsetX + ((rectCol.GetSize().x / 2) * - xDir));
+				float yPos = (y * tileSize + offsetY + ((rectCol.GetSize().y / 2) * - yDir));
+
+				return CollisionResult(true, float2(xPos, yPos));
+			}
+				
+			case TileType::Passthrough:
+				if ((y * tileSize > static_cast<int>(prevP2.y)))
+				{
+					float yPos = (y * tileSize - ((rectCol.GetSize().y / 2)));
+					return CollisionResult(true, float2(0.0f, yPos));
+				}
+					
+				else break;
+			}
+		}
+	}
+
+	// Sloped tile checks
 
 	float relRightX = 0;
 	float relRightY = 0;
 	float relLeftX = 0;
 	float relLeftY = 0;
 
-	// Loop over all overlapping tiles positions and check for solidity
-	for (int y = ymin; y <= ymax; y++)
-	{
-		for (int x = xmin; x <= xmax; x++)
-		{
-			int i = x + y * grid.width;
-			if (i < 0 || i > arrayMax) return CollisionResult(false); // Ensure you cant check outside array
-
-			TileType tileType = grid.tiles[i];
-
-			switch (tileType)
-			{
-			case TileType::Empty:
-				break;
-
-			case TileType::Solid:
-				return CollisionResult(true);
-
-			case TileType::Passthrough:
-				if ((y * tileSize > static_cast<int>(prevP2.y)))
-					return CollisionResult(true);
-				else break;
-			}
-		}
-	}
-
 	// Slopeleft check, don't want to iterate over every overlapped tile, only the bottomright-most tile
 	int bottomRightTile = xmax + ymax * grid.width;
+	if (bottomRightTile < 0 || bottomRightTile > arrayMax ) return CollisionResult(false);
+
 	if (grid.tiles[bottomRightTile] == TileType::SlopeLeft)
 	{
 		// only need to check the rightmost corner of the rect
@@ -186,12 +211,14 @@ CollisionResult CollisionSystem::RectVsTile(RectCollider& rectCol, GridCollider&
 		relRightY = p2.y - ymax * tileSize;
 		if (relRightX + relRightY + 2 >= tileSize) // Why do we need +2 here for it to align correctly?
 		{
-			float2 resolvedPos = float2(pos.x, (ymax * tileSize) + tileSize - relRightX - (rectCol.GetSize().y / 2) - 3); // -3 here
-			return CollisionResult(true, resolvedPos);
+			CollisionResult cr = { true };
+			cr.resolvedPos = float2(pos.x, ymax * tileSize + tileSize - relRightX - (rectCol.GetSize().y / 2) - 3);  // -3 here
+			return cr; 
 		}
 	}
 
 	int bottomLeftTile = xmin + ymax * grid.width;
+	if (bottomLeftTile < 0 || bottomLeftTile > arrayMax) return CollisionResult(false);
 	if (grid.tiles[bottomLeftTile] == TileType::SlopeRight)
 	{
 		// only need to check the lefttmost corner of the rect
@@ -199,18 +226,13 @@ CollisionResult CollisionSystem::RectVsTile(RectCollider& rectCol, GridCollider&
 		relLeftY = p2.y - ymax * tileSize;
 		if (relLeftY >= relLeftX)
 		{
-			float2 resolvedPos = float2(pos.x, ymax * tileSize) + relLeftX - tileSize - (rectCol.GetSize().y / 2);
-			return CollisionResult(true, resolvedPos);
+			CollisionResult cr = { true };
+			cr.resolvedPos = float2(pos.x, ymax * tileSize + relLeftX - tileSize - (rectCol.GetSize().y / 2));
+			return cr;
 		}
 	}
 
-
-	// Highlight the bottom right overlapped tile
-	//float2 offset = Central::camera->pos;
-	//Central::surface->Box(xmax * tileSize - offset.x, ymax * tileSize - offset.y, xmax * tileSize + tileSize - offset.x, ymax * tileSize + tileSize - offset.y, 0x00FF00);
-
-
-	return false;
+	return CollisionResult(false);
 }
 
 

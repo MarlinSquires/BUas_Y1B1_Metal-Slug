@@ -3,32 +3,42 @@
 #include "mainScene.h"
 #include "sceneManager.h"
 #include "sceneFactory.h"
+#include "central.h"
 
 
 
-void SceneManager::LoadObject(GameObject* go)
+
+
+// Scene functionality
+void SceneManager::LoadScene(int sceneID, bool debug) // Loads with debug info
 {
-	currentScene->LoadObject(go);
+	if (_currentScene != nullptr) delete _currentScene;
+	_currentScene = new MainScene(); // Hardcoded to init mainScene, no real system yet
+	_currentScene->LoadScene();
+	_currentScene->SetDebug(debug);
+	_currentScene->Start();
+	_currentScene->PostStart();
 }
 
-void SceneManager::UnloadObject(int index)
-{
-	currentScene->UnloadObject(index);
-}
-
-// Loads with debug info
-void SceneManager::LoadScene(int sceneID, bool debug)
-{
-	if (currentScene != nullptr) delete currentScene;
-	currentScene = new MainScene(); // Hardcoded to init mainScene, no real system yet
-	currentScene->LoadScene();
-	currentScene->SetDebug(debug);
-	currentScene->Start();
-	currentScene->PostStart();
-}
+void SceneManager::LoadObject(GameObject& go) {	_currentScene->LoadObject(go); }
+void SceneManager::UnloadObject(int index) { _currentScene->UnloadObject(index); }
 
 
-void SceneManager::Tick()
-{
-	currentScene->Tick();
+
+// Lifecycle
+void SceneManager::Tick() {
+	
+	_currentScene->Tick();
+
+	if (Central::game->KeyPressed(GLFW_KEY_G))
+	{
+		_currentScene->ToggleDebug();
+	}
+
 }
+
+
+
+// Getters
+bool SceneManager::RanStart() { return _currentScene->RanStart(); }
+bool SceneManager::RanPostStart() {	return _currentScene->RanPostStart(); }

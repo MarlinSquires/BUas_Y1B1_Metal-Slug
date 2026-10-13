@@ -10,11 +10,13 @@
 
 
 
+
 void AnimationLibrary::Init()
 {
 	// Instantiate all clips
 	for (int i = 0; i < static_cast<int>(AnimationClipName::COUNT); i++)
 	{
+		
 		clips[i] = new AnimationClip(static_cast<AnimationClipName>(i));
 	}
 

@@ -11,7 +11,7 @@ class Central
 
 public:
 	// Main references
-	static inline Tmpl8::Game* game = nullptr;
+	static inline TheApp* game = nullptr;
 	static inline Tmpl8::Surface* surface = nullptr;
 
 	// Secondary references
@@ -28,10 +28,6 @@ public:
 	static inline float dts = 0;
 
 	static inline float elapsed = 0;
-
-
-	// Input
-	static inline uint keystate[512];
 
 
 };

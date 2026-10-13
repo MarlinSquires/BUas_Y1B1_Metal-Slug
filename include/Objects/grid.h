@@ -2,13 +2,14 @@
 
 
 
-enum class TileType
+enum class TileType : uint8_t
 {
 	Empty,
 	Solid,
 	Passthrough,
 	SlopeLeft,
-	SlopeRight
+	SlopeRight, 
+	COUNT
 };
 
 

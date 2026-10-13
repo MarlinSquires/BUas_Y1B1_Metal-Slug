@@ -1,11 +1,30 @@
 #include "precomp.h"
 
-#include "spriteRenderer.h"
+#include "renderers/spriteRenderer.h"
 #include "renderSystem.h"
 #include "central.h"
 
 
 
+
+
+
+
+RenderLayer& RenderSystem::GetLayer(RenderLayerName layer)
+{
+	return layers[static_cast<int>(layer)];
+}
+
+
+
+void RenderSystem::Render()
+{
+	Central::surface->Clear(0x000000);
+	for (RenderLayer& layer : layers)
+	{
+		layer.Render();
+	}
+}
 
 void RenderLayer::Render()
 {
@@ -18,36 +37,22 @@ void RenderLayer::Render()
 }
 
 
-RenderLayer& RenderSystem::GetLayer(RenderLayerType layer)
-{
-	return layers[static_cast<int>(layer)];
-}
-
-
-// Renders layers one after the other, ensuring layers with a higher
-// index are drawn on top
-void RenderSystem::Render()
-{
-	Central::surface->Clear(0x000000);
-	for (RenderLayer& layer : layers)
-	{
-		layer.Render();
-	}
-}
-
-
-void RenderSystem::Register(RenderLayerType layerIndex, Renderer* spr)
-{
-	RenderLayer& rend = layers[static_cast<int>(layerIndex)];
-	rend.renderers[rend.count++] = spr;
-}
-
-
-void RenderSystem::Deregister(RenderLayerType layerIndex, int index)
+void RenderSystem::Register(RenderLayerName layerIndex, Renderer* renderer)
 {
 	RenderLayer& layer = layers[static_cast<int>(layerIndex)];
+	Renderer* rend = layer.renderers[layer.count++] = renderer;
+	rend->index = layer.count - 1;
+}
 
-	layer.renderers[index] = layer.renderers[layer.count--]; // Will this cause UB? array is being iterated over by renderSystem, while the index is being replaced
+
+void RenderSystem::Deregister(RenderLayerName layerIndex, const int index)
+{
+	RenderLayer& layer = layers[static_cast<int>(layerIndex)];
+	assert(index >= 0 && index < layer.count);
+
+	layer.renderers[index] = layer.renderers[--layer.count];
+	layer.renderers[index]->index = index;
+	layer.renderers[layer.count] = nullptr;
 }
 
 

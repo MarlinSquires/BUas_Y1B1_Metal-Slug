@@ -5,6 +5,7 @@
 #include "precomp.h"
 #include "game.h"
 #include "central.h"
+//#include <vld.h> // Visual leak detector
 
 #pragma comment( linker, "/subsystem:windows /ENTRY:mainCRTStartup" )
 
@@ -48,7 +49,7 @@ GLTexture* GetRenderTarget() { return renderTarget; }
 bool WindowHasFocus() { return hasFocus; }
 
 // provide access to key state array
-bool IsKeyDown( const uint key ) { return Central::keystate[key & 511] == 1; }
+bool IsKeyDown( const uint key ) { return app->keystate[key & 511] == 1; }
 
 // GLFW callbacks
 void InitRenderTarget( int w, int h )
@@ -64,8 +65,8 @@ void ReshapeWindowCallback( GLFWwindow*, int w, int h )
 void KeyEventCallback( GLFWwindow*, int key, int, int action, int )
 {
 	if (key == GLFW_KEY_ESCAPE) running = false;
-	if (action == GLFW_PRESS) { if (app) if (key >= 0) app->KeyDown( key ); Central::keystate[key & 511] = 1; }
-	else if (action == GLFW_RELEASE) { if (app) if (key >= 0) app->KeyUp( key ); Central::keystate[key & 511] = 0; }
+	if (action == GLFW_PRESS) { if (app) if (key >= 0) app->keystate[key & 511] = 1; }
+	else if (action == GLFW_RELEASE) { if (app) if (key >= 0) app->keystate[key & 511] = 0; }
 }
 void CharEventCallback( GLFWwindow*, uint ) { /* nothing here yet */ }
 void WindowFocusCallback( GLFWwindow*, int focused ) { hasFocus = (focused == GL_TRUE); }
@@ -148,6 +149,7 @@ int main()
 	app = new Game();
 	app->screen = screen;
 	Central::surface = screen;
+	Central::game = app;
 	app->Init();
 	// done, enter main loop
 #if 0

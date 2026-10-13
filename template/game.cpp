@@ -22,23 +22,21 @@ void Game::Init()
 
 void Game::Tick( float /*dt*/)
 {
+    UpdateKeys();
 	sceneManager.Tick();
 }
 
 
-void Game::KeyDown(int key)
-{
-	Central::keystate[key] = true;
-}
 
-void Game::KeyUp(int key)
+void Game::UpdateKeys()
 {
+    for (int i = 0; i < keycount; i++)
+    {
+        const uint down = keystate[i] != 0;   // normalise to 0/1
+        const uint was = prevKeys[i] != 0;
 
-	Central::keystate[key] = false;
-}
-
-// Inputs
-bool Game::IsKeyDown(int key)
-{
-	return Central::keystate[key];
+        pressed[i] = down & ~was & 1;        // down now, not down before
+        released[i] = ~down & was & 1;        // down before, not down now
+        prevKeys[i] = down;                   // remember for next tick
+    }
 }

@@ -5,15 +5,23 @@
 
 class Component // Abstract class
 {
-public:
+	friend class GameObject;
 
-	GameObject* gameObject; 
+public:
+	
 	bool active = true;
 
-	virtual void Start();
-	virtual void PostStart();
-	virtual void Tick();
+	GameObject* GetGameObject() const { return _gameObject; }
+
+	virtual void Start() {};
+	virtual void PostStart() {};
+	virtual void Tick() {};
 
 	virtual ~Component() = 0;
+
+private:
+	
+	GameObject* _gameObject = nullptr;
 };
 
+inline Component::~Component() = default; // Defining it inline here means I don't need a component.cpp file

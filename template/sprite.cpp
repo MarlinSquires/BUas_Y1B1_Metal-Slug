@@ -63,7 +63,7 @@ void Sprite::Draw( Surface* target, int x, int y )
 }
 
 // draw sprite to target surface
-void Sprite::DrawFrame(Surface* target, int x, int y, int frame, bool flipped)
+void Sprite::DrawFrame(Surface* target, int x, int y, uint frame, bool flipped)
 {
 	if (frame > numFrames) frame = numFrames - 1;
 	if (x < -width || x >(target->width + width)) return;

@@ -3,18 +3,21 @@
 
 // Holds animation-relevant enums
 
-enum class AnimationSetName
+enum class AnimationSetName : uint8_t
 {
 	PlayerUpper,
 	PlayerLower,
+
 	Enemy,
+
+	Projectiles,
 
 	COUNT // Used to verify number of elements in enum
 };
 
 
 
-enum class AnimationClipName
+enum class AnimationClipName : uint8_t
 {
 	Tileset,
 
@@ -31,6 +34,10 @@ enum class AnimationClipName
 	Enemy1Idle,
 	Enemy1Run,
 	Enemy1Knife,
+
+	Bullet,
+
+
 
 
 	Ball,

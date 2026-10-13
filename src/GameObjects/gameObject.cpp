@@ -7,38 +7,32 @@
 
 using namespace Tmpl8;
 
-#pragma region Structors
+
 
 GameObject::GameObject(float2 spawnPos, GameObject* parent, int maxComponents) : _parent(parent), _maxComponents(maxComponents)
 {
-	SceneManager::LoadObject(this);
+	SceneManager::LoadObject(*this);
 	_components = new Component * [maxComponents]();
-	_children = new GameObject * [10]();
+	_children = new GameObject * [_maxChildren]();
 
 	if (_parent != nullptr)
 	{
 		SetParent(_parent);
 		_localPos = spawnPos;
 	}
-	
-
 	SetPos(spawnPos);
 }
-
 
 GameObject::~GameObject()
 {
 	// 2 step process is required to properly free up the memory of the components array
-	for (int i = 0; i < _maxComponents; i++)
+	for (int i = 0; i < _compCount; i++)
 	{
 		delete _components[i];
 	}
 	delete[] _components;
-
-	SceneManager::UnloadObject(_index);
 }
 
-#pragma endregion
 
 
 
@@ -66,6 +60,13 @@ void GameObject::Tick()
 	{
 		_components[i]->Tick();
 	}
+}
+
+
+void GameObject::JumpStartComponent(Component* comp)
+{
+	if (SceneManager::RanStart()) comp->Start();
+	if (SceneManager::RanPostStart()) comp->PostStart();
 }
 
 
@@ -101,6 +102,12 @@ void GameObject::SetPos(float2 newPos)
 }
 
 
+void GameObject::UpdatePos(float2 moveBy)
+{
+	SetPos(_worldPos + moveBy);
+}
+
+
 
 void GameObject::SetParent(GameObject* parent)
 {
@@ -111,4 +118,14 @@ void GameObject::SetParent(GameObject* parent)
 void GameObject::AddChild(GameObject* child)
 {
 	_children[_childCount++] = child;
+}
+
+
+void GameObject::MarkForDestruction()
+{
+	_pendingDestroy = true;
+	for (int i = 0; i < _childCount; i++)
+	{
+		_children[i]->MarkForDestruction();
+	}
 }

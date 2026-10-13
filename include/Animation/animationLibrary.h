@@ -3,9 +3,6 @@
 struct AnimationSet;
 struct AnimationClip;
 
-//enum class AnimationSetName;
-//enum class AnimationClipName;
-
 #include "animationTypes.h"
 #include "animationClip.h"
 #include "animationSet.h"
@@ -21,15 +18,6 @@ public:
 	void Init();
 	AnimationSet* GetSet(AnimationSetName name) { return sets[static_cast<int>(name)]; }
 	AnimationClip* GetClip(AnimationClipName name) { return clips[static_cast<int>(name)]; }
-
-	/*AnimationClip* GetClip(AnimationClipName name)
-	{
-		int i = static_cast<int>(name);
-		assert(i >= 0 && i < static_cast<int>(AnimationClipName::COUNT));
-		assert(clips[i] != nullptr);
-		return clips[i];
-	}*/
-
 
 private:
 	

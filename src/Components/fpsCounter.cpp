@@ -1,11 +1,11 @@
 #include "precomp.h"
 #include "fpsCounter.h"
 #include "central.h"
-#include "textRenderer.h"
+#include "renderers/textRenderer.h"
 
 void FpsCounter::Start()
 {
-    rend = gameObject->GetComponent<TextRenderer>();
+    rend = GetGameObject()->GetComponent<TextRenderer>();
     //rend->text = to_string(smoothedFPS).c_str();
 }
 

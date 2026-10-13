@@ -1,7 +1,5 @@
 #pragma once
 
-#include "bulletPool.h"
-
 class Bullet;
 
 
@@ -9,21 +7,25 @@ class BulletPool
 {
 public:
 
+	void InstantiateToPool();
+
 	Bullet* SpawnFromPool(); // Called by gun
-	void ReturnToPool(Bullet* b); // Called by bullet
+	void ReturnToPool(Bullet* b, int index); // Called by bullet
 
 
-	BulletPool(int poolSize);
+	BulletPool();
 
 
 private:
 
-	void InstantiateToPool();
 
-	Bullet** _objects;
+	static const int POOLSIZE = 100;
 
-	int _poolSize = 0;
-	int _objectCount = 0; // Number of objects currently in pool
+	Bullet* _objects[POOLSIZE];
+	int _indices[POOLSIZE]; // Holds all the currently free indices
+
+	
+	int _freeCount = 0; // Number of objects currently in pool
 
 
 

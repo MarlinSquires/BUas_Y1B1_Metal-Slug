@@ -403,8 +403,18 @@ public:
 	virtual void MouseDown( int button ) = 0;
 	virtual void MouseMove( int x, int y ) = 0;
 	virtual void MouseWheel( float y ) = 0;
-	virtual void KeyUp( int key ) = 0;
-	virtual void KeyDown( int key ) = 0;
+
+	bool KeyReleased(int key) { return released[key]; };
+	bool KeyPressed(int key) { return pressed[key]; };
+	bool KeyHeld(int key) { return keystate[key]; }; // The actually useful one
+
+
+	static const int keycount = 512;
+	uint keystate[keycount] = {};
+	uint prevKeys[keycount] = {};
+	uint pressed[keycount] = {};
+	uint released[keycount] = {};
+
 	Surface* screen = 0;
 };
 

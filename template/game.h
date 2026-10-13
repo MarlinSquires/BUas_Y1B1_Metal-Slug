@@ -17,19 +17,19 @@ public:
 	void MouseDown( int ) { /* implement if you want to detect mouse button presses */ }
 	void MouseMove( int x, int y ) { mousePos.x = x, mousePos.y = y; }
 	void MouseWheel( float ) { /* implement if you want to handle the mouse wheel */ }
-	void KeyUp(int key);
-	void KeyDown(int key);
-	bool IsKeyDown(int key); // The actually useful one
+
+
+	void UpdateKeys();
+
+	
 
 
 	// data members
-	int2 mousePos;
-	
+	int2 mousePos = { 0, 0 };
 
-private:
+	static const int keycount = 512;
 
-	
-	
+
 };
 
 } // namespace Tmpl8

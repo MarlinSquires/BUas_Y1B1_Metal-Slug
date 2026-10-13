@@ -4,7 +4,6 @@
 #include "animationClip.h"
 
 
-
 AnimationClip::AnimationClip(AnimationClipName type)
 {
 	const ClipData& data = clipTable[static_cast<int>(type)];
