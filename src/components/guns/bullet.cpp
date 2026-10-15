@@ -51,7 +51,7 @@ void Bullet::Spawn(float2 dir)
 // Logic
 void Bullet::Move()
 {
-	GetGameObject()->UpdatePos(_moveDir * _moveSpeed * Central::dts);
+	GetGameObject()->UpdateWorldPos(_moveDir * _moveSpeed * Central::dts);
 }
 
 void Bullet::CheckCollision()
@@ -83,4 +83,11 @@ void Bullet::Timer()
 void Bullet::Despawn()
 {
 	_pool->ReturnToPool(this, _index);
+}
+
+
+
+void Bullet::SetFrame(int frame)
+{
+	_anim->SetFrame(frame);
 }

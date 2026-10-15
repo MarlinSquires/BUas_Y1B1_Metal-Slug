@@ -8,6 +8,7 @@
 
 //------ Animation Clips --------------------------------------------------------------------------------------------------------------------------------------
 
+using should_loop = utils::bool_value<struct anim_loop_tag>;
 
 struct ClipData
 {
@@ -15,7 +16,7 @@ struct ClipData
 	const char* address;
 	int frameCount;
 	int fps;
-	bool looping;
+	should_loop looping;
 	float2 offset;
 };
 
@@ -24,32 +25,49 @@ inline constexpr float2 playerUpperOffset = { 4.0f, -4.0f };
 inline constexpr float2 playerLowerOffset = { 2.0f, 10.0f };
 
 
+inline constexpr float2 enemy1KnifeOffset = { -6.0f, 0.0f };
+
+
 inline constexpr ClipData clipTable[] =
 {
 	// Tiles
-	{ AnimationClipName::Tileset,			"assets/tiles/tileset.png", 4, 0, false, nullOffset },
+	{ AnimationClipName::Tileset,			"assets/tiles/tileset.png", 4, 0, should_loop::no, nullOffset },
 
 
 	// Player
-	{ AnimationClipName::PlayerIdleUpper,	"assets/player/IdleUpper.png", 4, 12, true, playerUpperOffset },
-	{ AnimationClipName::PlayerIdleLower,	"assets/player/IdleLower.png", 1, 12, true, playerLowerOffset },
+	{ AnimationClipName::PlayerIdleUpper,	"assets/player/idle_upper.png", 4, 6, should_loop::yes, playerUpperOffset },
+	{ AnimationClipName::PlayerIdleLower,	"assets/player/idle_lower.png", 4, 6, should_loop::yes, playerLowerOffset },
 
-	{ AnimationClipName::PlayerRunUpper,	"assets/player/RunUpper.png", 12, 12, true, playerUpperOffset  },
-	{ AnimationClipName::PlayerRunLower,	"assets/player/RunLower.png", 12, 12, true, playerLowerOffset  },
+	{ AnimationClipName::PlayerRunUpper,	"assets/player/run_upper.png", 12, 12, should_loop::yes, playerUpperOffset  },
+	{ AnimationClipName::PlayerRunLower,	"assets/player/run_lower.png", 12, 12, should_loop::yes, playerLowerOffset  },
 
-	{ AnimationClipName::PlayerJumpUpper,	"assets/player/JumpUpper.png", 6, 12, true, playerUpperOffset  },
-	{ AnimationClipName::PlayerJumpLower,	"assets/player/JumpLower.png", 6, 12, true, playerLowerOffset  },
+	{ AnimationClipName::PlayerJumpUpper,	"assets/player/jump_upper.png", 6, 12, should_loop::yes, playerUpperOffset  },
+	{ AnimationClipName::PlayerJumpLower,	"assets/player/jump_lower.png", 6, 12, should_loop::yes, playerLowerOffset  },
 
-	// Enemy - knife
-	{ AnimationClipName::Enemy1Idle,		"assets/enemy/Enemy1Idle.png", 4, 12, true, nullOffset  },
-	{ AnimationClipName::Enemy1Run,			"assets/enemy/Enemy1Run.png", 12, 12, true, nullOffset  },
-	{ AnimationClipName::Enemy1Knife,		"assets/enemy/Enemy1Knife.png", 12, 12, true, nullOffset  },
+
+
+	// Enemy1
+	{ AnimationClipName::Enemy1Idle,		"assets/enemy/enemy_1_idle.png", 4, 12, should_loop::yes, nullOffset  },
+	{ AnimationClipName::Enemy1Run,			"assets/enemy/enemy_1_run.png", 12, 12, should_loop::yes, nullOffset  },
+	{ AnimationClipName::Enemy1Sneak,		"assets/enemy/enemy_1_sneak.png", 12, 12, should_loop::yes, nullOffset  },
+
+	{ AnimationClipName::Enemy1Scared,		"assets/enemy/enemy_1_scared.png", 11, 12, should_loop::no, nullOffset  },
+	{ AnimationClipName::Enemy1RunAway,		"assets/enemy/enemy_1_running_away.png", 12, 12, should_loop::yes, nullOffset  },
+
+	{ AnimationClipName::Enemy1Knife,		"assets/enemy/enemy_1_knife.png", 12, 12, should_loop::no, enemy1KnifeOffset  },
+	{ AnimationClipName::Enemy1Throwing,	"assets/enemy/enemy_1_throwing.png", 16, 12, should_loop::no, nullOffset },
+
+	{ AnimationClipName::Enemy1Death,		"assets/enemy/enemy_1_death.png", 12, 12, should_loop::no, nullOffset  },
+	
+
 
 	// Projectiles
-	{ AnimationClipName::Bullet,			"assets/bulletGreen.png", 1, 0, false, nullOffset },
+	{ AnimationClipName::Bullet,			"assets/weapons/pistol_bullet.png", 4, 0, should_loop::no, nullOffset },
 
 
-	{ AnimationClipName::Ball,				"assets/ball.png", 1, 0, false, nullOffset },
+
+	// Other
+	{ AnimationClipName::Ball,				"assets/ball.png", 1, 0, should_loop::no, nullOffset },
 
 };
 
@@ -69,6 +87,8 @@ constexpr bool ClipTableMatchesEnum()
 static_assert((sizeof(clipTable) / sizeof(ClipData)) == static_cast<size_t>(AnimationClipName::COUNT), "clipTable is missing entries!");
 
 static_assert(ClipTableMatchesEnum(), "clipTable is out of order!");
+
+
 
 
 
@@ -92,7 +112,15 @@ inline constexpr AnimationClipName enemyClips[] =
 {
 	AnimationClipName::Enemy1Idle, 
 	AnimationClipName::Enemy1Run,
+	AnimationClipName::Enemy1Sneak,
+
+	AnimationClipName::Enemy1Scared,
+	AnimationClipName::Enemy1RunAway,
+
 	AnimationClipName::Enemy1Knife,
+	AnimationClipName::Enemy1Throwing,
+
+	AnimationClipName::Enemy1Death,
 };
 
 

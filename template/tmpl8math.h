@@ -1011,7 +1011,7 @@ float3 TransformVector_SSE( const __m128& a, const mat4& M );
 template <class T> void Swap( T& x, T& y ) { T t; t = x, x = y, y = t; }
 
 // random numbers
-uint InitSeed( uint seedBase );
+void InitSeed( uint seedBase );
 uint RandomUInt();
 uint RandomUInt( uint& seed );
 float RandomFloat();

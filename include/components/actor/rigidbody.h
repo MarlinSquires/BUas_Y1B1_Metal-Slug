@@ -14,7 +14,8 @@ public:
 	void Tick() override;
 
 	void AddForce(float2 accelVector); // Alters the object's velocity vector
-	
+	void Friction(float friction);
+
 	bool Grounded() const { return _grounded; }
 
 	float2 velocity{ 0.0f, 0.0f };

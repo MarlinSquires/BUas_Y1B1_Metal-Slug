@@ -2,12 +2,12 @@
 
 class GameObject;
 
-
+enum class EnemyType : uint8_t;
 
 
 class EnemyPrefab
 {
 public:
-	GameObject* Load(float2 spawnPos, GameObject* player);
+	GameObject* Load(float2 spawnPos, GameObject* player, EnemyType type);
 
 };

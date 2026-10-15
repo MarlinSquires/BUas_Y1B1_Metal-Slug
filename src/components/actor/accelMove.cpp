@@ -16,19 +16,21 @@ void AccelMove::Move(Rigidbody& rb, char moveDir, float accel, float decel, floa
 		rb.AddForce(float2(moveDir * accel, 0.0f)); // Accelerate if above minSpeed
 
 	// Decelerate
-	else
-	{
-		if (xVel >= 0)
-		{
-			rb.AddForce(float2(-decel, 0.0f));
-			if (xVel < 0) rb.velocity.x = 0; // Stops overshoot
-		}
-		if (xVel < 0)
-		{
-			rb.AddForce(float2(decel, 0.0f));
-			if (xVel > 0) rb.velocity.x = 0;
-		}
-	}
+	else rb.Friction(decel);
+	//{
+	//	if (xVel > 0)
+	//	{
+	//		rb.AddForce(float2(-decel, 0.0f));
+	//		if (xVel < 0) rb.velocity.x = 0; // Stops overshoot
+	//	}
+	//	if (xVel < 0)
+	//	{
+	//		rb.AddForce(float2(decel, 0.0f));
+	//		if (xVel > 0) rb.velocity.x = 0;
+	//	}
+	//}
+
+	
 
 	xVel = clamp(rb.velocity.x, -maxSpeed, maxSpeed);
 }

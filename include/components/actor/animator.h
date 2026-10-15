@@ -21,10 +21,13 @@ public:
 
 	// Getters
 	Sprite* GetSprite() const;
+	bool Finished() const { return _finished; }
 
 	// Setters
 	void SetClip(int index);
+	//void SetClip(AnimationClipName name);
 	void SetFlipped(bool flipped);
+	void SetFrame(int frame);
 
 	// Structors
 	Animator(RenderLayerName renderLayer, AnimationSetName set, int clip = 0);
@@ -32,7 +35,7 @@ public:
 
 private:
 
-	bool _animating = true;
+	bool _finished = false;
 	bool _flipped = false;
 	int _frameRate = 12; // Caches framerate from currently held clip
 	float _timer = 0;

@@ -49,19 +49,32 @@ void MainScene::LoadScene()
 
 	MyScene::LoadScene();
 
+	// Background
+	GameObject* bg2 = new GameObject(float2(0.0f, 0.0f));
+	SpriteRenderer* bg2Spr = &bg2->AddComponent<SpriteRenderer>(RenderLayerName::Background, new Sprite(new Surface("assets/background/sky_palms.png"), 1));
+	bg2Spr->SetOffset(float2(bg2Spr->GetSprite()->GetWidth() / 2, bg2Spr->GetSprite()->GetHeight() / 2));
 
+	GameObject* bg = new GameObject(float2(0.0f, 0.0f));
+	SpriteRenderer* bgSpr = &bg->AddComponent<SpriteRenderer>(RenderLayerName::Background, new Sprite(new Surface("assets/background/main_background.png"), 1));
+	bgSpr->SetOffset(float2(bgSpr->GetSprite()->GetWidth() / 2, bgSpr->GetSprite()->GetHeight() / 2));
+
+	
 	// Rock object
-	GameObject* rock = new GameObject(float2(400.0f, 228.0f));
-	RectCollider& rockCol = rock->AddComponent<RectCollider>(CollisionLayerName::Solids, float2(80.0f, 40.0f));
+	GameObject* rock = new GameObject(float2(580.0f, 232.0f));
+	SpriteRenderer* rockSpr = &rock->AddComponent<SpriteRenderer>(RenderLayerName::Background, new Sprite(new Surface("assets/props/rock.png"), 1));
+	RectCollider& rockCol = rock->AddComponent<RectCollider>(CollisionLayerName::Solids, rockSpr->GetSprite());
 	rock->AddComponent<RectRenderer>(&rockCol);
+
+
+
 
 
 	// Player object
 	GameObject* player = new GameObject(float2(200.0f, 50.0f)); 
-	RectCollider& playerCol = player->AddComponent<RectCollider>(CollisionLayerName::Player, float2(20.0f, 38.0f));
+	RectCollider& playerCol = player->AddComponent<RectCollider>(CollisionLayerName::Player, float2(20.0f, 34.0f));
 	player->AddComponent<RectRenderer>(&playerCol);
 	player->AddComponent<Rigidbody>();
-	player->AddComponent<PlayerController>();
+	//player->AddComponent<PlayerController>();
 
 
 	// PlayerUpper child object
@@ -78,9 +91,7 @@ void MainScene::LoadScene()
 
 
 	// Enemy objects
-	enemyPrefab.Load(float2(100.0f, 0.0f), player);
-	//enemyPrefab.Load(float2(200.0f, 0.0f), player);
-	//enemyPrefab.Load(float2(300.0f, 0.0f), player);
+	enemyPrefab.Load(float2(800.0f, 0.0f), player, EnemyType::Scared);
 
 
 	// Camera object

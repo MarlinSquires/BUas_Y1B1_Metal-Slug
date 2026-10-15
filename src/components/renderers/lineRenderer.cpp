@@ -9,7 +9,7 @@ LineRenderer::LineRenderer() : DebugRenderer(RenderLayerName::Debug) {};
 
 void LineRenderer::Render()
 {
-	float2 camOffset = Central::camera->GetWorldPos();
+	if (!debug) return;
 
 	Central::surface->Line(
 		_p1.x - camOffset.x, _p1.y - camOffset.y, 

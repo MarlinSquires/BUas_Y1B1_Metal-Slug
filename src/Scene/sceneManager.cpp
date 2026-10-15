@@ -35,6 +35,13 @@ void SceneManager::Tick() {
 		_currentScene->ToggleDebug();
 	}
 
+	if (Central::game->KeyPressed(GLFW_KEY_R))
+	{
+		LoadScene(0, true);
+	}
+
+
+
 }
 
 

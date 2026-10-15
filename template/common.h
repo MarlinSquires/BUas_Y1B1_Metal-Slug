@@ -9,7 +9,7 @@
 
 // default screen resolution
 #define SCRWIDTH	320
-#define SCRHEIGHT	240
+#define SCRHEIGHT	220
 //#define SCRWIDTH	1920
 //#define SCRHEIGHT	1080
 #define MAXSCALE	8

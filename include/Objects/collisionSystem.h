@@ -58,6 +58,7 @@ public:
 
 
 private:
+
 	static inline CollisionLayer collisionLayers[static_cast<int>(CollisionLayerName::COUNT)];
 
 };

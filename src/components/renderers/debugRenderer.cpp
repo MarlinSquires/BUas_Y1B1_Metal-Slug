@@ -10,8 +10,8 @@ DebugRenderer::DebugRenderer(RenderLayerName layer) : Renderer(layer){};
 
 void DebugRenderer::Render() // Renders object origin
 {
-	if (!GetGameObject()->debug) return;
-	float2 screenPos = GetGameObject()->GetWorldPos() - Central::camera->GetWorldPos();
+	if (!debug) return;
+	float2 screenPos = GetGameObject()->GetWorldPos() - camOffset;
 
 	Central::surface->Box(
 		(int)round(screenPos.x - 2), // Rounding keeps box size consistent - truncation causes jitter

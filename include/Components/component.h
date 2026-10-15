@@ -9,8 +9,6 @@ class Component // Abstract class
 
 public:
 	
-	bool active = true;
-
 	GameObject* GetGameObject() const { return _gameObject; }
 
 	virtual void Start() {};
@@ -18,6 +16,10 @@ public:
 	virtual void Tick() {};
 
 	virtual ~Component() = 0;
+
+	bool active = true;
+	bool debug = false;
+
 
 private:
 	

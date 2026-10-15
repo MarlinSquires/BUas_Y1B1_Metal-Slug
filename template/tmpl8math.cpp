@@ -18,16 +18,19 @@ static uint seed = 0x12345678;
 // integer. Use this to create your own seed based on e.g. thread index.
 uint WangHash( uint s )
 {
+	srand(time(0));
+	s += rand();
 	s = (s ^ 61) ^ (s >> 16);
 	s *= 9, s = s ^ (s >> 4);
 	s *= 0x27d4eb2d;
 	s = s ^ (s >> 15);
 	return s;
 }
-uint InitSeed( uint seedBase )
+void InitSeed( uint seedBase )
 {
-	return WangHash( (seedBase + 1) * 17 );
+	seed = WangHash( (seedBase + 1) * 17 );
 }
+
 
 // RandomUInt()
 // Update the seed and return it as a random 32-bit unsigned int.

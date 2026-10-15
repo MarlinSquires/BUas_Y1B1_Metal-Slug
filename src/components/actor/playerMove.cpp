@@ -65,7 +65,7 @@ void PlayerMove::HandleState()
 
 
 			// Transitions
-			if (_rb->velocity.x == 0.0f) IdleTransition();
+			if (abs(_rb->velocity.x) < 0.1f) IdleTransition();
 			if (_wantsToJump && _rb->Grounded() && _jumpTimer <= 0.0f) JumpTransition();
 			if (_wantsToCrouch) CrouchTransition();
 

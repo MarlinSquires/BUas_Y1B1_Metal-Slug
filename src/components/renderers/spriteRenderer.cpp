@@ -37,7 +37,39 @@ SpriteRenderer::SpriteRenderer(RenderLayerName layer, AnimationClipName spr, flo
 #pragma endregion
 
 
+// Lifecycle
+void SpriteRenderer::Start()
+{
+	if (camera == nullptr) camera = Central::camera; // In case of init issues
+}
 
+void SpriteRenderer::Tick()
+{
+	Renderer::Tick();
+	CheckOffScreen();
+}
+
+
+void SpriteRenderer::Render()
+{
+	
+	float2 originOffset = _size * 0.5; // Ensures origin is centre, not top-left
+
+	int mult = _flipped ? -1 : 1;
+
+	float2 screenPos = GetGameObject()->GetWorldPos() - originOffset - camOffset + (float2(_offset.x * mult, _offset.y));
+
+	// Draw from centre rather than top left
+	sprite->DrawFrame(surface,
+		(int)round(screenPos.x),
+		(int)round(screenPos.y),
+		_currentFrame, _flipped
+	);
+}
+
+
+
+// Setters
 void SpriteRenderer::SetSprite(AnimationClipName spr)
 {
 	sprite = Central::animLib->GetClip(spr)->sprite;
@@ -57,26 +89,26 @@ void SpriteRenderer::SetSprite(Sprite* spr)
 }
 
 
-void SpriteRenderer::Start()
+
+// Logic
+void SpriteRenderer::CheckOffScreen()
 {
-	if (camera == nullptr) camera = Central::camera; // In case of init issues
-}
+	float2 pos = GetGameObject()->GetWorldPos();
+	float2 camPos = Central::camera->GetWorldPos();
 
+	float xMin = camPos.x - SCRWIDTH / 2;
+	float yMin = camPos.y - SCRHEIGHT / 2;
 
-void SpriteRenderer::Render()
-{
-	float2 camOffset = Central::camera->GetWorldPos();
-	float2 originOffset = _size * 0.5; // Ensures origin is centre, not top-left
+	float xMax = camPos.x + SCRWIDTH / 2;
+	float yMax = camPos.y + SCRHEIGHT / 2;
 
-	int mult = _flipped ? -1 : 1;
+	float width = sprite->GetWidth();
+	float height = sprite->GetHeight();
 
-	float2 screenPos = GetGameObject()->GetWorldPos() - originOffset - camOffset + (float2(_offset.x * mult, _offset.y));
-
-	// Draw from centre rather than top left
-	sprite->DrawFrame(surface,
-		(int)round(screenPos.x),
-		(int)round(screenPos.y),
-		_currentFrame, _flipped
-	);
+	bool offX = (pos.x + width / 2 < xMin || pos.x - width / 2 > xMax);
+	bool offY = (pos.y + height / 2 < yMin || pos.y - height / 2 > yMax);
+	
+	if (offX || offY) _offScreen = true;
+	else _offScreen = false;
 }
 

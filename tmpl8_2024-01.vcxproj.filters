@@ -10,7 +10,7 @@
     <ClInclude Include="include\animation\animationTypes.h" />
     <ClInclude Include="include\components\actor\animator.h" />
     <ClInclude Include="include\components\guns\bullet.h" />
-    <ClInclude Include="include\components\actor\camera.h" />
+    <ClInclude Include="include\components\camera.h" />
     <ClInclude Include="include\components\colliders\collider.h" />
     <ClInclude Include="include\components\component.h" />
     <ClInclude Include="include\components\renderers\debugRenderer.h" />
@@ -66,7 +66,7 @@
     <ClCompile Include="src\animation\animationSet.cpp" />
     <ClCompile Include="src\components\actor\animator.cpp" />
     <ClCompile Include="src\components\guns\bullet.cpp" />
-    <ClCompile Include="src\components\actor\camera.cpp" />
+    <ClCompile Include="src\components\camera.cpp" />
     <ClCompile Include="src\components\colliders\collider.cpp" />
     <ClCompile Include="src\components\renderers\debugRenderer.cpp" />
     <ClCompile Include="src\components\actor\enemy.cpp" />

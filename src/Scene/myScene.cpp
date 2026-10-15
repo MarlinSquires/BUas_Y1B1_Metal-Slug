@@ -91,7 +91,7 @@ void MyScene::SetDebug(bool debugState)
 
 	for (int i = 0; i < _objectCount; i++)
 	{
-		_objects[i]->debug = _debug;
+		_objects[i]->SetDebug(_debug);
 	}
 }
 

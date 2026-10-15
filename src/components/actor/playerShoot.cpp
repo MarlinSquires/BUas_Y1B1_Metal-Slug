@@ -12,6 +12,7 @@ void PlayerShoot::Start()
 {
 	_game = Central::game;
 	_rend = &GetGameObject()->AddComponent<LineRenderer>();
+	_rend->debug = true;
 	_gun.SetGameObject(GetGameObject());
 }
 
@@ -19,7 +20,6 @@ void PlayerShoot::Start()
 void PlayerShoot::Tick()
 {
 	HandleInputs();
-	LerpAim();
 	ShowAim();
 	Shoot();
 }
@@ -27,18 +27,15 @@ void PlayerShoot::Tick()
 
 void PlayerShoot::HandleInputs()
 {
-	_targetVector.x = (float)(_game->KeyHeld(GLFW_KEY_D) - _game->KeyHeld(GLFW_KEY_A));
-	_targetVector.y = (float)(_game->KeyHeld(GLFW_KEY_S) - _game->KeyHeld(GLFW_KEY_W));
-	//_targetVector = normalize(_targetVector);
+	_aimVector.x = (float)(_game->KeyHeld(GLFW_KEY_D) - _game->KeyHeld(GLFW_KEY_A));
+	_aimVector.y = (float)(_game->KeyHeld(GLFW_KEY_S) - _game->KeyHeld(GLFW_KEY_W));
+	_aimVector = normalize(_aimVector);
+
+	if (_aimVector.magnitude() == 0.0f) _aimVector.x = 1.0f;
 
 	_wantsToShoot = _game->KeyPressed(GLFW_KEY_F);
 }
 
-void PlayerShoot::LerpAim()
-{
-	_aimVector = lerp(_aimVector, _targetVector, (_aimRate * Central::dts));
-	_aimVector = normalize(_aimVector);
-}
 
 void PlayerShoot::ShowAim()
 {

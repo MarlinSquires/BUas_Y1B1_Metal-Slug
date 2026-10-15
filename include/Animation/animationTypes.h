@@ -21,7 +21,7 @@ enum class AnimationClipName : uint8_t
 {
 	Tileset,
 
-
+	// Player
 	PlayerIdleUpper,
 	PlayerIdleLower,
 
@@ -31,9 +31,22 @@ enum class AnimationClipName : uint8_t
 	PlayerJumpUpper,
 	PlayerJumpLower,
 
+
+
+	// Enemy1
 	Enemy1Idle,
 	Enemy1Run,
+	Enemy1Sneak,
+
+	Enemy1Scared,
+	Enemy1RunAway,
+
 	Enemy1Knife,
+	Enemy1Throwing,
+
+	Enemy1Death,
+
+
 
 	Bullet,
 

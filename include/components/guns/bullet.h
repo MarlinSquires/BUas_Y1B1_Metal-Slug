@@ -20,6 +20,7 @@ public:
 	void Spawn(float2 dir);
 	
 	void SetIndex(int index) { _index = index; }
+	void SetFrame(int frame);
 
 	Bullet(BulletPool* pool = nullptr);
 

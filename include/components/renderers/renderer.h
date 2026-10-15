@@ -9,10 +9,14 @@ class Renderer : public Component
 {
 public:
 
+	void Tick() override;
 	virtual void Render() = 0;
 
-	Tmpl8::Surface* GetSurface() { return surface; }
+	// Getters
+	Surface* GetSurface() { return surface; }
+	
 
+	// Structors
 	Renderer(RenderLayerName layer);
 	~Renderer();
 
@@ -20,7 +24,9 @@ public:
 
 protected:
 
-	Tmpl8::Surface* surface;
+	float2 camOffset = {};
+
+	Surface* surface;
 	GameObject* camera;
 
 	RenderLayerName layer;

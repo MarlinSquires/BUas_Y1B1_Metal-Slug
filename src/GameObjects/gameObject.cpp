@@ -20,7 +20,7 @@ GameObject::GameObject(float2 spawnPos, GameObject* parent, int maxComponents) :
 		SetParent(_parent);
 		_localPos = spawnPos;
 	}
-	SetPos(spawnPos);
+	SetWorldPos(spawnPos);
 }
 
 GameObject::~GameObject()
@@ -80,32 +80,63 @@ void GameObject::SetActive(bool isActive)
 	}
 }
 
-
-void GameObject::SetPos(float2 newPos)
+void GameObject::SetDebug(bool debug)
 {
-	if (_parent == nullptr) 
-		_worldPos = newPos;
-	else
+	_debug = debug;
+
+	for (int i = 0; i < _compCount; i++)
 	{
-		//_localPos = newPos;
-		_worldPos = _parent->GetWorldPos() + _localPos;
+		_components[i]->debug = _debug;
 	}
-	
+}
+
+
+
+void GameObject::SetWorldPos(float2 newPos)
+{
+	_worldPos = newPos;
+
+	if (_parent != nullptr)
+	{
+		_localPos = _parent->GetWorldPos() - _worldPos;
+	}
+
 	
 	// Update positions of all children
 	if (_childCount == 0) return;
 
 	for (int i = 0; i < _childCount; i++)
 	{
-		_children[i]->SetPos(newPos);
+		_children[i]->SetWorldPos(newPos);
 	}
 }
 
-
-void GameObject::UpdatePos(float2 moveBy)
+void GameObject::UpdateWorldPos(float2 moveBy)
 {
-	SetPos(_worldPos + moveBy);
+	SetWorldPos(_worldPos + moveBy);
 }
+
+void GameObject::SetLocalPos(float2 newPos)
+{
+	if (_parent == nullptr) _worldPos = newPos;
+
+	else
+	{
+		_localPos = newPos;
+		_worldPos = _parent->GetWorldPos() + _localPos;
+	}
+
+	for (int i = 0; i < _childCount; i++)
+	{
+		_children[i]->SetWorldPos(_worldPos);
+	}
+}
+
+void GameObject::UpdateLocalPos(float2 moveBy)
+{
+	SetLocalPos(_localPos + moveBy);
+}
+
 
 
 

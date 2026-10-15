@@ -16,6 +16,7 @@ int CollisionSystem::Register(const CollisionLayerName collisionLayer, Collider*
 {
 	CollisionLayer& layer = collisionLayers[static_cast<int>(collisionLayer)];
 	assert(layer.count < layer.SIZE);
+
 	layer.colliders[layer.count++] = col;
 	return layer.count - 1; // Return val is used to set collider index
 }
@@ -109,10 +110,18 @@ CollisionResult CollisionSystem::RectVsRect(CollisionLayerName collisionLayer, c
 			char xDir = (char)utils::sign(pos.x - originalPos.x);
 			char yDir = (char)utils::sign(pos.y - originalPos.y);
 
-			float xPos = rectCol2.GetGameObject()->GetWorldPos().x + (((rectCol1.GetSize().x / 2) + (rectCol2.GetSize().x / 2)) * -xDir);
-			float yPos = rectCol2.GetGameObject()->GetWorldPos().y + (((rectCol1.GetSize().y / 2) + (rectCol2.GetSize().y / 2)) * -yDir);
+			const float2 worldPos = rectCol2.GetGameObject()->GetWorldPos();
 
-			cr.resolvedPos = { xPos, yPos };
+			const float2 col1Size = rectCol1.GetSize();
+			const float2 col2Size = rectCol2.GetSize();
+
+			float xPos = worldPos.x + (((col1Size.x / 2) + (col2Size.x / 2)) * -xDir);
+			float yPos = worldPos.y + (((col1Size.y / 2) + (col2Size.y / 2)) * -yDir);
+
+			cr.resolvedPos = { 
+				xPos, 
+				yPos 
+			};
 		}
 		
 		cr.col = &rectCol2;

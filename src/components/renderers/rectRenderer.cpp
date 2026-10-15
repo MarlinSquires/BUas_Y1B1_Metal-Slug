@@ -10,6 +10,7 @@ RectRenderer::RectRenderer(RectCollider* col) : DebugRenderer(RenderLayerName::D
 
 void RectRenderer::Tick()
 {
+	Renderer::Tick();
 	assert(col != nullptr);
 
 	if (col->Overlapping()) _currentColour = _overlapColour;
@@ -19,17 +20,14 @@ void RectRenderer::Tick()
 
 void RectRenderer::Render()
 {
-	if (!GetGameObject()->debug) return;
-
 	DebugRenderer::Render();
-
-	float2 offset = Central::camera->GetWorldPos();
+	if (!debug) return;
 
 	Central::surface->Box(
-		(int)round(col->GetP1().x - offset.x),
-		(int)round(col->GetP1().y - offset.y),
-		(int)round(col->GetP2().x - offset.x),
-		(int)round(col->GetP2().y - offset.y),
+		(int)round(col->GetP1().x - camOffset.x),
+		(int)round(col->GetP1().y - camOffset.y),
+		(int)round(col->GetP2().x - camOffset.x),
+		(int)round(col->GetP2().y - camOffset.y),
 		_currentColour);
 }
 

@@ -22,11 +22,9 @@ private:
 
 	void Shoot();
 	void HandleInputs();
-	void LerpAim();
 	void ShowAim();
 
-	float2 _aimVector = { 1.0f, 0.0f }; // current aim vector, lerps towards targetVector
-	float2 _targetVector = { 0.0f, 0.0f }; // target aim vector
+	float2 _aimVector = { 1.0f, 0.0f };
 
 	float _aimRate = 50.0f;
 	bool _wantsToShoot = false;

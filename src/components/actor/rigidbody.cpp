@@ -35,11 +35,11 @@ void Rigidbody::Move()
 	CollisionResult crX = CheckCollision(float2(velocity.x * Central::dts, 0.0f));
 	if (crX.collided)
 	{
-		GetGameObject()->SetPos(float2(crX.resolvedPos.x, GetGameObject()->GetWorldPos().y));
+		GetGameObject()->SetWorldPos(float2(crX.resolvedPos.x, GetGameObject()->GetWorldPos().y));
 		velocity.x = 0.0f;
 	}
 
-	GetGameObject()->UpdatePos(float2(velocity.x * Central::dts, 0.0f));
+	GetGameObject()->UpdateWorldPos(float2(velocity.x * Central::dts, 0.0f));
 	
 
 	
@@ -47,11 +47,11 @@ void Rigidbody::Move()
 	CollisionResult crY = CheckCollision(float2(0.0f, velocity.y * Central::dts));
 	if (crY.collided)
 	{
-		GetGameObject()->SetPos(float2(GetGameObject()->GetWorldPos().x, crY.resolvedPos.y));
+		GetGameObject()->SetWorldPos(float2(GetGameObject()->GetWorldPos().x, crY.resolvedPos.y));
 		velocity.y = 0.0f;
 	}
 
-	GetGameObject()->UpdatePos(float2(0.0f, velocity.y * Central::dts));
+	GetGameObject()->UpdateWorldPos(float2(0.0f, velocity.y * Central::dts));
 	
 	velocity += _accel / 2;
 	_accel = float2(0.0f, 0.0f);
@@ -68,6 +68,21 @@ void Rigidbody::Gravity()
 	if (!_grounded && (velocity.y < _maxFallSpeed))
 	{
 		AddForce(float2(0.0f, _grav));
+	}
+}
+
+
+void Rigidbody::Friction(float friction)
+{
+	if (velocity.x > 0)
+	{
+		AddForce(float2(-friction, 0.0f));
+		if (velocity.x < 0) velocity.x = 0; // Stops overshoot
+	}
+	if (velocity.x < 0)
+	{
+		AddForce(float2(friction, 0.0f));
+		if (velocity.x > 0) velocity.x = 0;
 	}
 }
 

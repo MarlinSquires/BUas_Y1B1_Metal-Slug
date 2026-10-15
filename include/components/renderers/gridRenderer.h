@@ -11,6 +11,7 @@ class GridRenderer : public SpriteRenderer
 
 public:
 
+	void Tick() override; // override and leave empty so it doesn't run SpriteRenderers Tick()
 	void Render() override;
 
 	GridRenderer(GridCollider* gridCollider);
