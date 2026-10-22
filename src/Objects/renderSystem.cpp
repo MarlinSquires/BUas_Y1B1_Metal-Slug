@@ -19,7 +19,7 @@ RenderLayer& RenderSystem::GetLayer(RenderLayerName layer)
 
 void RenderSystem::Render()
 {
-	Central::surface->Clear(0x000000);
+	Central::surface->Clear(0x99BBFF);
 	for (RenderLayer& layer : layers)
 	{
 		layer.Render();

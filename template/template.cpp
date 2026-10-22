@@ -91,7 +91,7 @@ void ErrorCallback( int, const char* description )
 // Application entry point
 int main()
 {
-	InitSeed(time(0));
+	InitSeed((uint)time(0));
 	// open a window
 	if (!glfwInit()) FatalError( "glfwInit failed." );
 	glfwSetErrorCallback( ErrorCallback );

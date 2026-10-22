@@ -15,7 +15,7 @@ Animator::Animator(RenderLayerName renderLayer, AnimationSetName set, int clip) 
 
 void Animator::Start()
 {
-	_rend = &GetGameObject()->AddComponent<SpriteRenderer>(_renderLayer);
+	_rend = &_gameObject->AddComponent<SpriteRenderer>(_renderLayer);
 
 	SetClip(_clipIndex);
 }

@@ -7,9 +7,11 @@ class RectRenderer : public DebugRenderer
 {
 public:
 
+	// Lifecycle
 	void Tick() override;
 	void Render() override; // Bool set by gameObject
 
+	// Structors
 	RectRenderer(RectCollider* col);
 
 

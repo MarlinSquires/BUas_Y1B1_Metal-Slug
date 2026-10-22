@@ -8,6 +8,15 @@ class GameObject;
 
 // Handles inputs, and sends commands to PlayerMove and PlayerShoot, coordinating their states
 
+enum class PlayerState
+{
+	Inactive,
+	Free, 
+	Dead, 
+	Respawning
+};
+
+
 class PlayerController : public Component
 {
 public:

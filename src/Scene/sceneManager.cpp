@@ -6,14 +6,20 @@
 #include "central.h"
 
 
-
-
-
 // Scene functionality
-void SceneManager::LoadScene(int sceneID, bool debug) // Loads with debug info
+void SceneManager::LoadScene(SceneName sceneName, bool debug) // Loads with debug info
 {
 	if (_currentScene != nullptr) delete _currentScene;
-	_currentScene = new MainScene(); // Hardcoded to init mainScene, no real system yet
+	_currentSceneName = sceneName;
+
+	if (sceneName == SceneName::Intro)
+	{
+
+	}
+	else if (sceneName == SceneName::Main)
+		_currentScene = new MainScene(); // Hardcoded to init mainScene, no real system yet
+	
+
 	_currentScene->LoadScene();
 	_currentScene->SetDebug(debug);
 	_currentScene->Start();
@@ -37,7 +43,7 @@ void SceneManager::Tick() {
 
 	if (Central::game->KeyPressed(GLFW_KEY_R))
 	{
-		LoadScene(0, true);
+		LoadScene(_currentSceneName, true);
 	}
 
 

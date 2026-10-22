@@ -20,10 +20,10 @@ Bullet::Bullet(BulletPool* pool) : _pool(pool) {}
 // Lifecycle
 void Bullet::Start()
 {
-	_anim = &GetGameObject()->AddComponent<Animator>(RenderLayerName::BGActors, AnimationSetName::Projectiles);
-	_col = &GetGameObject()->AddComponent<RectCollider>(CollisionLayerName::Bullets);
+	_anim = &_gameObject->AddComponent<Animator>(RenderLayerName::BGActors, AnimationSetName::Projectiles);
+	_col = &_gameObject->AddComponent<RectCollider>(CollisionLayerName::Bullets);
 	
-	GetGameObject()->AddComponent<RectRenderer>(_col);
+	_gameObject->AddComponent<RectRenderer>(_col);
 	
 }
 
@@ -51,12 +51,12 @@ void Bullet::Spawn(float2 dir)
 // Logic
 void Bullet::Move()
 {
-	GetGameObject()->UpdateWorldPos(_moveDir * _moveSpeed * Central::dts);
+	_gameObject->UpdateWorldPos(_moveDir * _moveSpeed * Central::dts);
 }
 
 void Bullet::CheckCollision()
 {
-	float2 pos = GetGameObject()->GetWorldPos();
+	float2 pos = _gameObject->GetWorldPos();
 
 	CollisionResult crt = _col->CollideWith(CollisionLayerName::Solids, pos);
 	CollisionResult cre = _col->CollideWith(CollisionLayerName::Enemies, pos);

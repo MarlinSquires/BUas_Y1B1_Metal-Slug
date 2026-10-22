@@ -57,7 +57,7 @@ void SpriteRenderer::Render()
 
 	int mult = _flipped ? -1 : 1;
 
-	float2 screenPos = GetGameObject()->GetWorldPos() - originOffset - camOffset + (float2(_offset.x * mult, _offset.y));
+	float2 screenPos = _gameObject->GetWorldPos() - originOffset - camOffset + (float2(_offset.x * mult, _offset.y));
 
 	// Draw from centre rather than top left
 	sprite->DrawFrame(surface,
@@ -93,7 +93,7 @@ void SpriteRenderer::SetSprite(Sprite* spr)
 // Logic
 void SpriteRenderer::CheckOffScreen()
 {
-	float2 pos = GetGameObject()->GetWorldPos();
+	float2 pos = _gameObject->GetWorldPos();
 	float2 camPos = Central::camera->GetWorldPos();
 
 	float xMin = camPos.x - SCRWIDTH / 2;
@@ -102,10 +102,10 @@ void SpriteRenderer::CheckOffScreen()
 	float xMax = camPos.x + SCRWIDTH / 2;
 	float yMax = camPos.y + SCRHEIGHT / 2;
 
-	float width = sprite->GetWidth();
-	float height = sprite->GetHeight();
+	float width = (float)sprite->GetWidth();
+	float height = (float)sprite->GetHeight();
 
-	bool offX = (pos.x + width / 2 < xMin || pos.x - width / 2 > xMax);
+	bool offX = (pos.x + width / 2 < xMin  || pos.x - width / 2 > xMax);
 	bool offY = (pos.y + height / 2 < yMin || pos.y - height / 2 > yMax);
 	
 	if (offX || offY) _offScreen = true;

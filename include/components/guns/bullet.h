@@ -14,17 +14,20 @@ class Bullet : public Component
 
 public:
 
+	// Lifecycle
 	void Start() override;
 	void PostStart() override;
 	void Tick() override;
+
+	// Logic
 	void Spawn(float2 dir);
 	
+	// Setters
 	void SetIndex(int index) { _index = index; }
 	void SetFrame(int frame);
 
+	// Structors
 	Bullet(BulletPool* pool = nullptr);
-
-	
 
 private:
 

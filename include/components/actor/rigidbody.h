@@ -10,12 +10,15 @@ class Rigidbody : public Component
 {
 public:
 
+	// Lifecycle
 	void Start() override;
 	void Tick() override;
 
+	// Logic
 	void AddForce(float2 accelVector); // Alters the object's velocity vector
 	void Friction(float friction);
 
+	// Getters
 	bool Grounded() const { return _grounded; }
 
 	float2 velocity{ 0.0f, 0.0f };

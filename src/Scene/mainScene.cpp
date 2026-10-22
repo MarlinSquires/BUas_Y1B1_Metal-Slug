@@ -52,17 +52,17 @@ void MainScene::LoadScene()
 	// Background
 	GameObject* bg2 = new GameObject(float2(0.0f, 0.0f));
 	SpriteRenderer* bg2Spr = &bg2->AddComponent<SpriteRenderer>(RenderLayerName::Background, new Sprite(new Surface("assets/background/sky_palms.png"), 1));
-	bg2Spr->SetOffset(float2(bg2Spr->GetSprite()->GetWidth() / 2, bg2Spr->GetSprite()->GetHeight() / 2));
+	bg2Spr->SetOffset(float2((float)bg2Spr->GetSprite()->GetWidth() / 2, (float)bg2Spr->GetSprite()->GetHeight() / 2));
 
 	GameObject* bg = new GameObject(float2(0.0f, 0.0f));
 	SpriteRenderer* bgSpr = &bg->AddComponent<SpriteRenderer>(RenderLayerName::Background, new Sprite(new Surface("assets/background/main_background.png"), 1));
-	bgSpr->SetOffset(float2(bgSpr->GetSprite()->GetWidth() / 2, bgSpr->GetSprite()->GetHeight() / 2));
+	bgSpr->SetOffset(float2((float)bgSpr->GetSprite()->GetWidth() / 2, (float)bgSpr->GetSprite()->GetHeight() / 2));
 
 	
 	// Rock object
 	GameObject* rock = new GameObject(float2(580.0f, 232.0f));
-	SpriteRenderer* rockSpr = &rock->AddComponent<SpriteRenderer>(RenderLayerName::Background, new Sprite(new Surface("assets/props/rock.png"), 1));
-	RectCollider& rockCol = rock->AddComponent<RectCollider>(CollisionLayerName::Solids, rockSpr->GetSprite());
+	rock->AddComponent<SpriteRenderer>(RenderLayerName::Background, new Sprite(new Surface("assets/props/rock.png"), 1));
+	RectCollider& rockCol = rock->AddComponent<RectCollider>(CollisionLayerName::Solids, float2(48.0f, 36.0f));
 	rock->AddComponent<RectRenderer>(&rockCol);
 
 
@@ -91,7 +91,14 @@ void MainScene::LoadScene()
 
 
 	// Enemy objects
-	enemyPrefab.Load(float2(800.0f, 0.0f), player, EnemyType::Scared);
+	for (int i = 0; i < 10; i++)
+	{
+		enemyPrefab.Load(float2(200.0f, 0.0f), player, EnemyType::Basic);
+	}
+	
+	enemyPrefab.Load(float2(1200.0f, 0.0f), player, EnemyType::Sneaky);
+	//enemyPrefab.Load(float2(300.0f, 0.0f), player, EnemyType::Sneaky);
+	//enemyPrefab.Load(float2(400.0f, 0.0f), player, EnemyType::Basic);
 
 
 	// Camera object

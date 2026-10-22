@@ -5,7 +5,7 @@
 
 void FpsCounter::Start()
 {
-    rend = GetGameObject()->GetComponent<TextRenderer>();
+    rend = _gameObject->GetComponent<TextRenderer>();
     //rend->text = to_string(smoothedFPS).c_str();
 }
 

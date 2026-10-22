@@ -9,13 +9,13 @@ class Renderer : public Component
 {
 public:
 
+	// Lifecycle
 	void Tick() override;
 	virtual void Render() = 0;
 
 	// Getters
 	Surface* GetSurface() { return surface; }
 	
-
 	// Structors
 	Renderer(RenderLayerName layer);
 	~Renderer();

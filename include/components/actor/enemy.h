@@ -10,6 +10,7 @@ class SpriteRenderer;
 class Rigidbody;
 class Health;
 class RectCollider;
+class RectRenderer;
 class Animator;
 
 
@@ -22,7 +23,7 @@ enum class EnemyState : uint8_t
 	RunAway,	
 	KnifeAttack,
 	BombAttack,
-	Dying
+	Dead
 };
 
 enum class EnemyType : uint8_t
@@ -38,15 +39,14 @@ using face_player = utils::bool_value<struct face_player_tag>;
 class Enemy : public Component
 {
 public:
+
+	// Lifecycle
 	void Start() override;
 	void PostStart() override;
 	void Tick() override;
 
-
+	// Structors
 	Enemy(EnemyType type, GameObject* player);
-
-
-
 
 private:
 
@@ -95,8 +95,8 @@ private:
 	void BombAttackBehaviour();
 
 
-	void EnterDying();
-	void DyingBehaviour();
+	void EnterDead();
+	void DeadBehaviour();
 
 
 	void RandSneak(); // Randomly picks between Normal and Sneak states to enter
@@ -172,6 +172,7 @@ private:
 	Animator* _anim = nullptr;
 	Health* _hp = nullptr;
 	RectCollider* _col = nullptr;
+	RectRenderer* _rectRend = nullptr;
 	RectCollider* _knifeCol = nullptr;
 	AccelMove _mover;
 

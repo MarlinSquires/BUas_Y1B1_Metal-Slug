@@ -5,13 +5,21 @@ class GameObject;
 
 // Handles scene lifetime, logic, and switching
 
+
+enum class SceneName
+{
+	Intro,
+	Main
+};
+
+
 class SceneManager
 {
 
 public:
 	
 	// Scene functionality
-	void LoadScene(int sceneID, bool debug);
+	void LoadScene(SceneName sceneName, bool debug);
 
 	static void LoadObject(GameObject& go);
 	static void UnloadObject(int index);
@@ -28,6 +36,7 @@ public:
 private:
 
 	static inline MyScene* _currentScene = nullptr;
+	SceneName _currentSceneName;
 
 
 };

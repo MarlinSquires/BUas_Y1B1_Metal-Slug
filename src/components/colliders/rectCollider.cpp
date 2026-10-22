@@ -27,8 +27,8 @@ void RectCollider::Start()
 
 	if (_size.magnitude() == 0.0f)
 	{
-		_size.x = (float)GetGameObject()->GetComponent<SpriteRenderer>()->GetSprite()->GetWidth();
-		_size.y = (float)GetGameObject()->GetComponent<SpriteRenderer>()->GetSprite()->GetHeight();
+		_size.x = (float)_gameObject->GetComponent<SpriteRenderer>()->GetSprite()->GetWidth();
+		_size.y = (float)_gameObject->GetComponent<SpriteRenderer>()->GetSprite()->GetHeight();
 	}
 
 }
@@ -93,7 +93,7 @@ void RectCollider::SetOffset(float xOffset, float yOffset)
 
 void RectCollider::UpdateRect()
 {
-	float2 pos = GetGameObject()->GetWorldPos();
+	float2 pos = _gameObject->GetWorldPos();
 	_p1.x = pos.x + _offset.x - (_size.x * _scale.x / 2);
 	_p1.y = pos.y + _offset.y - (_size.y * _scale.y / 2);
 

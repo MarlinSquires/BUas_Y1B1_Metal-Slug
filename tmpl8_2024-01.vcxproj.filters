@@ -34,7 +34,6 @@
     <ClInclude Include="include\components\spriteFactory.h" />
     <ClInclude Include="include\components\renderers\spriteRenderer.h" />
     <ClInclude Include="include\components\renderers\textRenderer.h" />
-    <ClInclude Include="include\components\colliders\tileCollider.h" />
     <ClInclude Include="include\gameObjects\gameObject.h" />
     <ClInclude Include="include\objects\bulletPool.h" />
     <ClInclude Include="include\objects\collisionSystem.h" />
@@ -58,7 +57,7 @@
     <ClInclude Include="include\components\renderers\lineRenderer.h" />
     <ClInclude Include="include\gameObjects\enemyPrefab.h" />
     <ClInclude Include="include\components\actor\health.h" />
-    <ClInclude Include="include\accelMove.h" />
+    <ClInclude Include="include\components\actor\accelMove.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\animation\animationClip.cpp" />

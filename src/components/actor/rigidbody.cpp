@@ -9,7 +9,7 @@
 
 void Rigidbody::Start()
 {
-	_col = GetGameObject()->GetComponent<Collider>();
+	_col = _gameObject->GetComponent<Collider>();
 }
 
 void Rigidbody::Tick()
@@ -22,7 +22,7 @@ void Rigidbody::Tick()
 
 CollisionResult Rigidbody::CheckCollision(float2 velocityVector)
 {
-	return (_col->CollideWith(CollisionLayerName::Solids, GetGameObject()->GetWorldPos() + velocityVector));
+	return (_col->CollideWith(CollisionLayerName::Solids, _gameObject->GetWorldPos() + velocityVector));
 }
 
 // Split check into x and y components, and also includes accel integration (adding half value)
@@ -35,11 +35,11 @@ void Rigidbody::Move()
 	CollisionResult crX = CheckCollision(float2(velocity.x * Central::dts, 0.0f));
 	if (crX.collided)
 	{
-		GetGameObject()->SetWorldPos(float2(crX.resolvedPos.x, GetGameObject()->GetWorldPos().y));
+		_gameObject->SetWorldPos(float2(crX.resolvedPos.x, _gameObject->GetWorldPos().y));
 		velocity.x = 0.0f;
 	}
 
-	GetGameObject()->UpdateWorldPos(float2(velocity.x * Central::dts, 0.0f));
+	_gameObject->UpdateWorldPos(float2(velocity.x * Central::dts, 0.0f));
 	
 
 	
@@ -47,11 +47,11 @@ void Rigidbody::Move()
 	CollisionResult crY = CheckCollision(float2(0.0f, velocity.y * Central::dts));
 	if (crY.collided)
 	{
-		GetGameObject()->SetWorldPos(float2(GetGameObject()->GetWorldPos().x, crY.resolvedPos.y));
+		_gameObject->SetWorldPos(float2(_gameObject->GetWorldPos().x, crY.resolvedPos.y));
 		velocity.y = 0.0f;
 	}
 
-	GetGameObject()->UpdateWorldPos(float2(0.0f, velocity.y * Central::dts));
+	_gameObject->UpdateWorldPos(float2(0.0f, velocity.y * Central::dts));
 	
 	velocity += _accel / 2;
 	_accel = float2(0.0f, 0.0f);
@@ -74,15 +74,33 @@ void Rigidbody::Gravity()
 
 void Rigidbody::Friction(float friction)
 {
-	if (velocity.x > 0)
+	if (velocity.x > 0.0f)
 	{
-		AddForce(float2(-friction, 0.0f));
-		if (velocity.x < 0) velocity.x = 0; // Stops overshoot
+		if (velocity.x > -friction)
+		{
+			AddForce(float2(-friction, 0.0f));
+		}
+		else AddForce(float2(-velocity.x, 0.0f));
+
+
+		//if (velocity.x < 0.0f)
+		//{
+		//	velocity.x = 0.0f; // Stops overshoot
+		//}
 	}
-	if (velocity.x < 0)
+	else if (velocity.x < 0.0f)
 	{
-		AddForce(float2(friction, 0.0f));
-		if (velocity.x > 0) velocity.x = 0;
+		if (velocity.x < friction)
+		{
+			AddForce(float2(friction, 0.0f));
+		}
+		else AddForce(float2(velocity.x, 0.0f));
+
+		
+		//if (velocity.x > 0.0f)
+		//{
+		//	velocity.x = 0.0f; // Stops overshoot
+		//}
 	}
 }
 

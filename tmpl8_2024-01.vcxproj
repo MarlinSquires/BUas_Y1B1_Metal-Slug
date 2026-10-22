@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\accelMove.h" />
+    <ClInclude Include="include\components\actor\accelMove.h" />
     <ClInclude Include="include\animation\animationClip.h" />
     <ClInclude Include="include\animation\animationData.h" />
     <ClInclude Include="include\animation\animationLibrary.h" />
@@ -46,7 +46,6 @@
     <ClInclude Include="include\components\spriteFactory.h" />
     <ClInclude Include="include\components\renderers\spriteRenderer.h" />
     <ClInclude Include="include\components\renderers\textRenderer.h" />
-    <ClInclude Include="include\components\colliders\tileCollider.h" />
     <ClInclude Include="include\gameObjects\enemyPrefab.h" />
     <ClInclude Include="include\gameObjects\gameObject.h" />
     <ClInclude Include="include\objects\bulletPool.h" />

@@ -14,10 +14,10 @@ public:
 	// Lifecycle
 	void Start() override;
 	void Tick() override;
-
 	void Render() override;
 
 
+	// Logic
 	void IncrementFrame()
 	{
 		_currentFrame++;
@@ -25,11 +25,12 @@ public:
 		sprite->SetFrame(_currentFrame);
 	}
 
+
 	// Getters
-	int GetFrame() { return _currentFrame; }
-	int GetFrameCount() { return _frameCount; }
-	Sprite* GetSprite() { return sprite; }
-	bool OffScreen() { return _offScreen; }
+	int GetFrame() const{ return _currentFrame; }
+	int GetFrameCount() const { return _frameCount; }
+	Sprite* GetSprite() const { return sprite; }
+	bool OffScreen() const { return _offScreen; }
 
 	// Setters
 	void SetSprite(AnimationClipName spr);

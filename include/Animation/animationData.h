@@ -45,7 +45,6 @@ inline constexpr ClipData clipTable[] =
 	{ AnimationClipName::PlayerJumpLower,	"assets/player/jump_lower.png", 6, 12, should_loop::yes, playerLowerOffset  },
 
 
-
 	// Enemy1
 	{ AnimationClipName::Enemy1Idle,		"assets/enemy/enemy_1_idle.png", 4, 12, should_loop::yes, nullOffset  },
 	{ AnimationClipName::Enemy1Run,			"assets/enemy/enemy_1_run.png", 12, 12, should_loop::yes, nullOffset  },
@@ -94,11 +93,26 @@ static_assert(ClipTableMatchesEnum(), "clipTable is out of order!");
 
 //------ Animation Sets ---------------------------------------------------------------------------------------------------------------------------------------------------
 
+enum class PlayerUpperClips
+{
+	Idle,
+	Run,
+	Jump
+};
+
 inline constexpr AnimationClipName playerUpperClips[] =
 {
-	AnimationClipName::PlayerIdleUpper, 
-	AnimationClipName::PlayerRunUpper,  
-	AnimationClipName::PlayerJumpUpper, 
+	AnimationClipName::PlayerIdleUpper,
+	AnimationClipName::PlayerRunUpper,
+	AnimationClipName::PlayerJumpUpper,
+};
+
+
+enum class PlayerLowerClips
+{
+	Idle, 
+	Run,
+	Jump
 };
 
 inline constexpr AnimationClipName playerLowerClips[] =
@@ -107,6 +121,21 @@ inline constexpr AnimationClipName playerLowerClips[] =
 	AnimationClipName::PlayerRunLower,
 	AnimationClipName::PlayerJumpLower,
 };
+
+
+
+enum class EnemyClips
+{
+	Idle, 
+	Run, 
+	Sneak,
+	Scared,
+	RunAway,
+	Knife,
+	Throwing,
+	Death
+};
+
 
 inline constexpr AnimationClipName enemyClips[] =
 {
@@ -124,10 +153,21 @@ inline constexpr AnimationClipName enemyClips[] =
 };
 
 
+
+
+enum class ProjectileClips
+{
+	Bullet
+};
+
 inline constexpr AnimationClipName projectileClips[] =
 {
 	AnimationClipName::Bullet,
 };
+
+
+
+
 
 struct SetData
 {

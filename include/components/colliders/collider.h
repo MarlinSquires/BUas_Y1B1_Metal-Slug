@@ -16,7 +16,8 @@ class Collider : public Component
 {
 public:
 
-	virtual  CollisionResult CollideWith(CollisionLayerName layer, float2 pos);
+	// Logic
+	virtual CollisionResult CollideWith(CollisionLayerName layer, float2 pos);
 
 	// Getters
 	ColliderType GetType() const { return _type; } 

@@ -7,10 +7,12 @@ public:
 
 	// Logic
 	void TakeDamage(int dmg);
-	bool ShouldDie() { return _shouldDie; }
+	
 
-	int GetMaxHP() { return _maxHP; }
-	int GetHP() { return _hp; }
+	// Getters
+	int GetMaxHP() const{ return _maxHP; }
+	int GetHP() const { return _hp; }
+	bool ShouldDie() const { return _shouldDie; }
 
 
 	// Structors

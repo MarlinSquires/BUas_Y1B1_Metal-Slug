@@ -9,7 +9,7 @@ class RectCollider;
 class Animator;
 
 
-enum class PlayerState
+enum class PlayerMoveState
 {
 	Idle,
 	Running,
@@ -31,10 +31,11 @@ public:
 	void Tick() override;
 
 	// Getters / setters
-	const PlayerState GetState() { return _playerState; }
+	PlayerMoveState const GetState() { return _playerState; }
 
 	// Structors
 	PlayerMove(Animator* upper, Animator* lower) : _animUpper(upper), _animLower(lower) {};
+
 
 private:
 
@@ -51,7 +52,7 @@ private:
 	void CrouchTransition(); // Initial transition into crouch state
 
 
-	void ChangeState(PlayerState targetState);
+	void ChangeState(PlayerMoveState targetState);
 
 	void SetStateStats(float minSpeed, float maxSpeed, float groundAccel, float airAccel, float groundDecel, float airDecel);
 	void SetGroundedStats();
@@ -59,7 +60,7 @@ private:
 
 
 	// General
-	PlayerState _playerState = PlayerState::Idle;
+	PlayerMoveState _playerState = PlayerMoveState::Idle;
 	char _xInput = 0;
 	float verticalVel = 0.0f;
 
@@ -91,6 +92,7 @@ private:
 
 	// Crouching
 	bool _wantsToCrouch = false;
+	bool _wantsToUncrouch = false;
 	float _crouchMinSpeed = 10.0f;
 	float _crouchMaxSpeed = 230.0f;
 	float _crouchGroundAccel = 200.0f;

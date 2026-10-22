@@ -6,11 +6,14 @@ class TextRenderer;
 class FpsCounter : public Component
 {
 public:
+
+	// Lifecycle
 	void Start() override;
 	void Tick() override;
 
 
 private:
+
 	TextRenderer* rend = nullptr;
 
 	char textBuffer[20];

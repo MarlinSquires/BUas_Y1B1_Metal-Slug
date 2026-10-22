@@ -24,8 +24,8 @@ Enemy::Enemy(EnemyType type, GameObject* player) : _type(type), _player(player)
 	switch (_type)
 	{
 	case EnemyType::Basic :
-		_sneakChance = 0.1f;
-		_scareChance = 0.1f;
+		_sneakChance = 0.05f;
+		_scareChance = 0.05f;
 		break;
 
 	case EnemyType::Sneaky:
@@ -46,23 +46,24 @@ Enemy::Enemy(EnemyType type, GameObject* player) : _type(type), _player(player)
 // Lifecycle
 void Enemy::Start()
 {
-	_hp = &GetGameObject()->AddComponent<Health>(_startHP);
+	_hp = &_gameObject->AddComponent<Health>(_startHP);
 
-	_rb = GetGameObject()->GetComponent<Rigidbody>();
-	_col = GetGameObject()->GetComponent<RectCollider>(); // Get rectCol of body
+	_rb = _gameObject->GetComponent<Rigidbody>();
+	_col = _gameObject->GetComponent<RectCollider>(); // Get rectCol of body
+	_rectRend = _gameObject->GetComponent<RectRenderer>();
 
-	_knifeCol = &GetGameObject()->AddComponent<RectCollider>(CollisionLayerName::Triggers, float2(20.0f, 20.0f)); // Add rectCol for knife attack
+	_knifeCol = &_gameObject->AddComponent<RectCollider>(CollisionLayerName::Triggers, float2(20.0f, 20.0f)); // Add rectCol for knife attack
 	_knifeCol->SetOffset(_knifeColOffset, 0.0f);
-	&GetGameObject()->AddComponent<RectRenderer>(_knifeCol);
+	&_gameObject->AddComponent<RectRenderer>(_knifeCol);
 
-	_anim = GetGameObject()->GetComponent<Animator>();
+	_anim = _gameObject->GetComponent<Animator>();
 	
 	assert(_hp != nullptr && _rb != nullptr);
 }
 
 void Enemy::PostStart()
 {
-	_rend = GetGameObject()->GetComponent<SpriteRenderer>();
+	_rend = _gameObject->GetComponent<SpriteRenderer>();
 	EnterIdle();
 }
 
@@ -107,7 +108,8 @@ void Enemy::HandleState()
 			BombAttackBehaviour();
 			break;
 
-		case EnemyState::Dying: // Final state, cannot be transitioned from
+		case EnemyState::Dead: // Final state, cannot be transitioned from
+			DeadBehaviour();
 			break;
 	}
 }
@@ -179,7 +181,7 @@ void Enemy::SneakBehaviour()
 	// Logic
 	CheckHP();
 	SetKnifePos();
-	SetDir(face_player::no);
+	SetDir(face_player::yes);
 	_mover.Move(*_rb, _xDir, _accel, _accel, _speed, _speed);
 
 	RandScare();
@@ -228,6 +230,8 @@ void Enemy::EnterRunAway()
 
 void Enemy::RunAwayBehaviour()
 {
+	CheckHP();
+
 	_mover.Move(*_rb, _xDir, _accel, _accel, _speed, _speed);
 
 	_timer -= Central::dts;
@@ -270,6 +274,7 @@ void Enemy::KnifeAttackBehaviour()
 void Enemy::ExitKnifeAttack()
 {
 	_knifeCooldownTimer = _knifeAttackCooldown;
+	_knifeCol->CollideWith(CollisionLayerName::Player, _gameObject->GetWorldPos() + _knifeColOffset);
 }
 
 
@@ -297,22 +302,22 @@ void Enemy::BombAttackBehaviour()
 
 
 
-void Enemy::EnterDying() // Enemy plays dying animation, holds final frame, and then despawns when offscreen
+void Enemy::EnterDead() // Enemy plays dying animation, holds final frame, and then despawns when offscreen
 {
 	if (debug) printf("Entering dying state\n");
-	_rb->active = false;
+	//_rb->active = false;
 	_col->active = false;
+	_rectRend->active = false;
+	_anim->SetClip(7);
 
-	_state = EnemyState::Dying;
+	_state = EnemyState::Dead;
 }
 
-void Enemy::DyingBehaviour()
+void Enemy::DeadBehaviour()
 {
-
+	_rb->Friction(_decel);
+	if (_anim->Finished()) _gameObject->MarkForDestruction();
 }
-
-
-
 
 
 
@@ -369,7 +374,6 @@ void Enemy::RandScare()
 
 #pragma region GENERAL LOGIC STARTS HERE
 
-
 void Enemy::Timers()
 {
 	_knifeCooldownTimer -= Central::dts;
@@ -387,12 +391,12 @@ void Enemy::SetMoveStats(float accel, float decel, float speed)
 
 char Enemy::PlayerDir()
 {
-	return utils::sign((_player->GetWorldPos() - GetGameObject()->GetWorldPos()).x);
+	return utils::sign((_player->GetWorldPos() - _gameObject->GetWorldPos()).x);
 }
 
 float Enemy::PlayerDistance()
 {
-	return utils::distance(_player->GetWorldPos(), GetGameObject()->GetWorldPos());
+	return utils::distance(_player->GetWorldPos(), _gameObject->GetWorldPos());
 }
 
 void Enemy::SetDir(face_player facePlayer)
@@ -413,8 +417,7 @@ void Enemy::CheckHP()
 {
 	if (_hp->ShouldDie())
 	{
-		EnterDying();
-		GetGameObject()->MarkForDestruction();
+		EnterDead();
 	}
 }
 #pragma endregion GENERAL LOGIC ENDS HERE

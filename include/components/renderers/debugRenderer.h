@@ -12,8 +12,10 @@ class DebugRenderer : public Renderer
 
 public:
 
+	// Lifecycle
 	void Render() override;
 
+	// Structors
 	DebugRenderer(RenderLayerName layer);
 
 protected:

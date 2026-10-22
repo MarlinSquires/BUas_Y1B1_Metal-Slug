@@ -1,5 +1,5 @@
 #include "precomp.h"
-#include "renderers/lineRenderer.h"
+#include "lineRenderer.h"
 #include "central.h"
 #include "renderSystem.h"
 

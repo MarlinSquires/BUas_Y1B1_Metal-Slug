@@ -11,9 +11,9 @@
 void PlayerShoot::Start()
 {
 	_game = Central::game;
-	_rend = &GetGameObject()->AddComponent<LineRenderer>();
+	_rend = &_gameObject->AddComponent<LineRenderer>();
 	_rend->debug = true;
-	_gun.SetGameObject(GetGameObject());
+	_gun.SetGameObject(_gameObject);
 }
 
 
@@ -27,11 +27,19 @@ void PlayerShoot::Tick()
 
 void PlayerShoot::HandleInputs()
 {
-	_aimVector.x = (float)(_game->KeyHeld(GLFW_KEY_D) - _game->KeyHeld(GLFW_KEY_A));
-	_aimVector.y = (float)(_game->KeyHeld(GLFW_KEY_S) - _game->KeyHeld(GLFW_KEY_W));
+	bool d = _game->KeyHeld(GLFW_KEY_D);
+	bool a = _game->KeyHeld(GLFW_KEY_A);
+	bool s = _game->KeyHeld(GLFW_KEY_S);
+	bool w = _game->KeyHeld(GLFW_KEY_W);
+
+	if (d || a) _aimVector.x = (float)(d - a);
+	if (s || w ) _aimVector.y = (float)(s - w);
+
+	
+	
 	_aimVector = normalize(_aimVector);
 
-	if (_aimVector.magnitude() == 0.0f) _aimVector.x = 1.0f;
+	//if (_aimVector.magnitude() == 0.0f) _aimVector.x = 1.0f;
 
 	_wantsToShoot = _game->KeyPressed(GLFW_KEY_F);
 }
@@ -39,7 +47,7 @@ void PlayerShoot::HandleInputs()
 
 void PlayerShoot::ShowAim()
 {
-	float2 pos = GetGameObject()->GetWorldPos();
+	float2 pos = _gameObject->GetWorldPos();
 
 	_rend->SetLine(pos, pos + float2(_aimVector.x * 10, _aimVector.y * 10));
 }

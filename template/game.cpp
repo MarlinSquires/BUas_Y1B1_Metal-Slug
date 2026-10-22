@@ -17,7 +17,7 @@ void Game::Init()
 {
 	Central::animLib = &animLib;
 	animLib.Init();
-	sceneManager.LoadScene(0, true); // Hardcoded to init mainScene, no real system yet
+	sceneManager.LoadScene(SceneName::Main, true); // Hardcoded to init mainScene, no real system yet
 }
 
 

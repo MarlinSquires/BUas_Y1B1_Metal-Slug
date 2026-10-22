@@ -12,13 +12,14 @@
 void PlayerMove::Start()
 {
 	_game = Central::game;
-	_rb = GetGameObject()->GetComponent<Rigidbody>();
-	_col = GetGameObject()->GetComponent<RectCollider>();
+	_rb = _gameObject->GetComponent<Rigidbody>();
+	_col = _gameObject->GetComponent<RectCollider>();
+	
 }
 
 void PlayerMove::PostStart()
 {
-	RunTransition();
+	IdleTransition();
 }
 
 void PlayerMove::Tick()
@@ -29,21 +30,20 @@ void PlayerMove::Tick()
 
 
 
-
 void PlayerMove::MoveInput()
 {
 	_xInput = _game->KeyHeld(GLFW_KEY_D) - _game->KeyHeld(GLFW_KEY_A);
 	_wantsToJump = _game->KeyPressed(GLFW_KEY_SPACE);
-	_wantsToCrouch = _game->KeyPressed(GLFW_KEY_LEFT_SHIFT);
+	_wantsToCrouch = _game->KeyPressed(GLFW_KEY_S);
+	_wantsToUncrouch = _game->KeyReleased(GLFW_KEY_S);
 }
-
 
 
 void PlayerMove::HandleState()
 {
 	switch (_playerState)
 	{
-		case PlayerState::Idle:
+		case PlayerMoveState::Idle:
 			MoveInput();
 			SetGroundedStats();
 			FlipSprite();
@@ -55,7 +55,7 @@ void PlayerMove::HandleState()
 
 			break;
 
-		case PlayerState::Running: // Transitions into jump, crouch, dead
+		case PlayerMoveState::Running: // Transitions into jump, crouch, dead
 			
 			// Logic
 			MoveInput();
@@ -71,7 +71,7 @@ void PlayerMove::HandleState()
 
 			break;
 
-		case PlayerState::Jumping: // Transitions into free, dead
+		case PlayerMoveState::Jumping: // Transitions into free, dead
 			
 			// Logic
 			MoveInput();
@@ -83,7 +83,7 @@ void PlayerMove::HandleState()
 			if (_rb->Grounded()) RunTransition();
 			break;
 
-		case PlayerState::Crouching: // Transitions into free, jump, dead
+		case PlayerMoveState::Crouching: // Transitions into free, jump, dead
 			
 			// Logic
 			MoveInput();
@@ -92,11 +92,11 @@ void PlayerMove::HandleState()
 			FlipSprite();
 
 			// Transitions
-			if (_wantsToCrouch) RunTransition();
+			if (_wantsToUncrouch) RunTransition();
 
 			break;
 
-		case PlayerState::Dead: // Transitions back into free state
+		case PlayerMoveState::Dead: // Transitions back into free state
 
 
 			break;
@@ -112,7 +112,7 @@ void PlayerMove::IdleTransition()
 	_col->SetOffset(0.0f, 0.0f);
 	_col->SetScale(1.0f, 1.0f);
 
-	ChangeState(PlayerState::Idle);
+	ChangeState(PlayerMoveState::Idle);
 }
 
 
@@ -128,7 +128,7 @@ void PlayerMove::RunTransition()
 	_col->SetScale(1.0f, 1.0f);
 
 	SetStateStats(_freeMinSpeed, _freeMaxSpeed, _freeGroundAccel, _freeAirAccel, _freeGroundDecel, _freeAirDecel);
-	ChangeState(PlayerState::Running);
+	ChangeState(PlayerMoveState::Running);
 }
 
 
@@ -147,7 +147,7 @@ void PlayerMove::JumpTransition()
 
 	_rb->velocity.y = _jumpForce;
 	//_rb->AddForce(float2(0.0f, _jumpForce));
-	ChangeState(PlayerState::Jumping);
+	ChangeState(PlayerMoveState::Jumping);
 }
 
 void PlayerMove::CrouchTransition()
@@ -161,13 +161,13 @@ void PlayerMove::CrouchTransition()
 	_col->SetScale(1.0f, 0.5f);
 
 	SetStateStats(_crouchMinSpeed, _crouchMaxSpeed, _crouchGroundAccel, _crouchAirAccel, _crouchGroundDecel, _crouchAirDecel);
-	ChangeState(PlayerState::Crouching);
+	ChangeState(PlayerMoveState::Crouching);
 }
 
 
 
 
-void PlayerMove::ChangeState(PlayerState targetState)
+void PlayerMove::ChangeState(PlayerMoveState targetState)
 {
 	_playerState = targetState;
 }
