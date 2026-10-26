@@ -31,7 +31,7 @@ inline constexpr float2 enemy1KnifeOffset = { -6.0f, 0.0f };
 inline constexpr ClipData clipTable[] =
 {
 	// Tiles
-	{ AnimationClipName::Tileset,			"assets/tiles/tileset.png", 4, 0, should_loop::no, nullOffset },
+	{ AnimationClipName::Tileset,			"assets/tiles/tileset_2.png", 6, 0, should_loop::no, nullOffset },
 
 
 	// Player

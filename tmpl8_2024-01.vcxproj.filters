@@ -16,7 +16,7 @@
     <ClInclude Include="include\components\renderers\debugRenderer.h" />
     <ClInclude Include="include\components\actor\enemy.h" />
     <ClInclude Include="include\components\guns\flamethrower.h" />
-    <ClInclude Include="include\components\fpsCounter.h" />
+    <ClInclude Include="include\components\ui\fpsCounter.h" />
     <ClInclude Include="include\components\colliders\gridCollider.h" />
     <ClInclude Include="include\components\renderers\gridRenderer.h" />
     <ClInclude Include="include\components\guns\gun.h" />
@@ -58,6 +58,11 @@
     <ClInclude Include="include\gameObjects\enemyPrefab.h" />
     <ClInclude Include="include\components\actor\health.h" />
     <ClInclude Include="include\components\actor\accelMove.h" />
+    <ClInclude Include="include\objects\scoreManager.h" />
+    <ClInclude Include="include\components\actor\prisoner.h" />
+    <ClInclude Include="include\gameObjects\prisonerPrefab.h" />
+    <ClInclude Include="include\objects\textConverter.h" />
+    <ClInclude Include="include\objects\actorSpawner.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\animation\animationClip.cpp" />
@@ -70,7 +75,7 @@
     <ClCompile Include="src\components\renderers\debugRenderer.cpp" />
     <ClCompile Include="src\components\actor\enemy.cpp" />
     <ClCompile Include="src\components\guns\flamethrower.cpp" />
-    <ClCompile Include="src\components\fpsCounter.cpp" />
+    <ClCompile Include="src\components\ui\fpsCounter.cpp" />
     <ClCompile Include="src\components\colliders\gridCollider.cpp" />
     <ClCompile Include="src\components\renderers\gridRenderer.cpp" />
     <ClCompile Include="src\components\guns\gun.cpp" />
@@ -87,7 +92,6 @@
     <ClCompile Include="src\components\guns\shotgun.cpp" />
     <ClCompile Include="src\components\renderers\spriteRenderer.cpp" />
     <ClCompile Include="src\components\renderers\textRenderer.cpp" />
-    <ClCompile Include="src\components\colliders\tileCollider.cpp" />
     <ClCompile Include="src\gameObjects\gameObject.cpp" />
     <ClCompile Include="src\objects\bulletPool.cpp" />
     <ClCompile Include="src\objects\collisionSystem.cpp" />
@@ -112,6 +116,11 @@
     <ClCompile Include="src\components\actor\health.cpp" />
     <ClCompile Include="src\utils.cpp" />
     <ClCompile Include="src\components\actor\accelMove.cpp" />
+    <ClCompile Include="src\objects\scoreManager.cpp" />
+    <ClCompile Include="src\components\actor\prisoner.cpp" />
+    <ClCompile Include="src\objects\prisonerPrefab.cpp" />
+    <ClCompile Include="src\objects\textConverter.cpp" />
+    <ClCompile Include="src\objects\actorSpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="template\LICENSE" />

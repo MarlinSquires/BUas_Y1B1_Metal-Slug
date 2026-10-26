@@ -18,7 +18,7 @@ static uint seed = 0x12345678;
 // integer. Use this to create your own seed based on e.g. thread index.
 uint WangHash( uint s )
 {
-	srand(time(0));
+	srand((unsigned int)time(0));
 	s += rand();
 	s = (s ^ 61) ^ (s >> 16);
 	s *= 9, s = s ^ (s >> 4);

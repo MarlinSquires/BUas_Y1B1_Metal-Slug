@@ -8,6 +8,7 @@
 // Objects
 #include "animationTypes.h"
 #include "gridFactory.h"
+#include "actorSpawner.h"
 
 // GOs & components
 #include "gameObject.h"
@@ -16,6 +17,7 @@
 #include "fpsCounter.h"
 #include "enemy.h"
 #include "animator.h"
+#include "prisoner.h"
 
 // Renderers
 #include "spriteRenderer.h"
@@ -38,14 +40,22 @@
 
 // Prefabs
 #include "enemyPrefab.h"
+#include "prisonerPrefab.h"
 
 
-EnemyPrefab enemyPrefab;
+
+
+
 
 
 // GameObjects add themselves to the scene objects[] array in their constructor
 void MainScene::LoadScene()
 {
+
+	EnemyPrefab enemyPrefab;
+	PrisonerPrefab prisonerPrefab;
+	GridFactory gridFactory;
+	ActorSpawner actorSpawner;
 
 	MyScene::LoadScene();
 
@@ -71,6 +81,7 @@ void MainScene::LoadScene()
 
 	// Player object
 	GameObject* player = new GameObject(float2(200.0f, 50.0f)); 
+	SetPlayer(player);
 	RectCollider& playerCol = player->AddComponent<RectCollider>(CollisionLayerName::Player, float2(20.0f, 34.0f));
 	player->AddComponent<RectRenderer>(&playerCol);
 	player->AddComponent<Rigidbody>();
@@ -84,21 +95,23 @@ void MainScene::LoadScene()
 
 	// PlayerLower child object
 	GameObject* playerLower = new GameObject(float2(0.0f, 0.0f), player);
-	Animator& animLower = playerLower->AddComponent<Animator>(RenderLayerName::BGActors, AnimationSetName::PlayerLower, 1);
+	Animator& animLower = playerLower->AddComponent<Animator>(RenderLayerName::MGActors, AnimationSetName::PlayerLower, 1);
 	
 	player->AddComponent<PlayerMove>(&animUpper, &animLower);
 	player->AddComponent<PlayerShoot>();
 
 
 	// Enemy objects
-	for (int i = 0; i < 10; i++)
-	{
-		enemyPrefab.Load(float2(200.0f, 0.0f), player, EnemyType::Basic);
-	}
-	
-	enemyPrefab.Load(float2(1200.0f, 0.0f), player, EnemyType::Sneaky);
-	//enemyPrefab.Load(float2(300.0f, 0.0f), player, EnemyType::Sneaky);
-	//enemyPrefab.Load(float2(400.0f, 0.0f), player, EnemyType::Basic);
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	enemyPrefab.Load(float2(200.0f, 0.0f),  EnemyType::Basic);
+	//}
+	//
+	//enemyPrefab.Load(float2(1200.0f, 0.0f), EnemyType::Sneaky);
+
+
+	//prisonerPrefab.Load(float2(1200.0f, 200.0f));
+
 
 
 	// Camera object
@@ -107,14 +120,26 @@ void MainScene::LoadScene()
 	cam.SetTarget(player);
 
 	// Grid object
+	SetGrid(gridFactory.BuildGrid("data/level1_6.tmj"));
 	GameObject* gridGo = new GameObject(float2(0.0f, 0.0f));
-	GridCollider& gridCol = gridGo->AddComponent<GridCollider>("data/level1_4.tmj");
-	gridGo->AddComponent<GridRenderer>(&gridCol);
+	gridGo->AddComponent<GridCollider>(GetGrid());
+	gridGo->AddComponent<GridRenderer>(GetGrid());
+
+
+	// Spawn actors
+	actorSpawner.Spawn(GetGrid());
+
 
 	// FPS Counter
-	GameObject* textGo = new GameObject(float2(10.0f, 10.0f));
-	textGo->AddComponent<TextRenderer>();
-	textGo->AddComponent<FpsCounter>();
+	GameObject* fpsGo = new GameObject(float2(10.0f, 10.0f));
+	fpsGo->AddComponent<TextRenderer>();
+	fpsGo->AddComponent<FpsCounter>();
+
+	// Score Counter
+	GameObject* scoreGo = new GameObject(float2(10.0f, 30.0f));
+	TextRenderer& scoreRend = scoreGo->AddComponent<TextRenderer>();
+	_scoreManager.SetRenderer(scoreRend);
+	_scoreManager.SetScore(0);
 }
 
 

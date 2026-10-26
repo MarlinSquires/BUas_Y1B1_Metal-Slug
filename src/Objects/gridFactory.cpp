@@ -10,7 +10,6 @@
 
 Grid GridFactory::BuildGrid(const char* address)
 {
-
 	// Load json file
 	json data = JsonParser::Load(address);
 

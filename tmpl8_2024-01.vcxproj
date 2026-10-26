@@ -20,6 +20,7 @@
     <ClInclude Include="include\central.h" />
     <ClInclude Include="include\components\actor\animator.h" />
     <ClInclude Include="include\components\actor\health.h" />
+    <ClInclude Include="include\components\actor\prisoner.h" />
     <ClInclude Include="include\components\guns\bullet.h" />
     <ClInclude Include="include\components\camera.h" />
     <ClInclude Include="include\components\colliders\collider.h" />
@@ -27,7 +28,7 @@
     <ClInclude Include="include\components\renderers\debugRenderer.h" />
     <ClInclude Include="include\components\actor\enemy.h" />
     <ClInclude Include="include\components\guns\flamethrower.h" />
-    <ClInclude Include="include\components\fpsCounter.h" />
+    <ClInclude Include="include\components\ui\fpsCounter.h" />
     <ClInclude Include="include\components\colliders\gridCollider.h" />
     <ClInclude Include="include\components\renderers\gridRenderer.h" />
     <ClInclude Include="include\components\guns\gun.h" />
@@ -48,12 +49,16 @@
     <ClInclude Include="include\components\renderers\textRenderer.h" />
     <ClInclude Include="include\gameObjects\enemyPrefab.h" />
     <ClInclude Include="include\gameObjects\gameObject.h" />
+    <ClInclude Include="include\gameObjects\prisonerPrefab.h" />
+    <ClInclude Include="include\objects\actorSpawner.h" />
     <ClInclude Include="include\objects\bulletPool.h" />
     <ClInclude Include="include\objects\collisionSystem.h" />
     <ClInclude Include="include\objects\grid.h" />
     <ClInclude Include="include\objects\gridFactory.h" />
     <ClInclude Include="include\objects\jsonParser.h" />
     <ClInclude Include="include\objects\renderSystem.h" />
+    <ClInclude Include="include\objects\scoreManager.h" />
+    <ClInclude Include="include\objects\textConverter.h" />
     <ClInclude Include="include\scene\mainScene.h" />
     <ClInclude Include="include\scene\myScene.h" />
     <ClInclude Include="include\scene\sceneFactory.h" />
@@ -76,13 +81,14 @@
     <ClCompile Include="src\components\actor\accelMove.cpp" />
     <ClCompile Include="src\components\actor\animator.cpp" />
     <ClCompile Include="src\components\actor\health.cpp" />
+    <ClCompile Include="src\components\actor\prisoner.cpp" />
     <ClCompile Include="src\components\guns\bullet.cpp" />
     <ClCompile Include="src\components\camera.cpp" />
     <ClCompile Include="src\components\colliders\collider.cpp" />
     <ClCompile Include="src\components\renderers\debugRenderer.cpp" />
     <ClCompile Include="src\components\actor\enemy.cpp" />
     <ClCompile Include="src\components\guns\flamethrower.cpp" />
-    <ClCompile Include="src\components\fpsCounter.cpp" />
+    <ClCompile Include="src\components\ui\fpsCounter.cpp" />
     <ClCompile Include="src\components\colliders\gridCollider.cpp" />
     <ClCompile Include="src\components\renderers\gridRenderer.cpp" />
     <ClCompile Include="src\components\guns\gun.cpp" />
@@ -100,15 +106,18 @@
     <ClCompile Include="src\components\guns\shotgun.cpp" />
     <ClCompile Include="src\components\renderers\spriteRenderer.cpp" />
     <ClCompile Include="src\components\renderers\textRenderer.cpp" />
-    <ClCompile Include="src\components\colliders\tileCollider.cpp" />
     <ClCompile Include="src\gameObjects\enemyPrefab.cpp" />
     <ClCompile Include="src\gameObjects\gameObject.cpp" />
+    <ClCompile Include="src\objects\actorSpawner.cpp" />
     <ClCompile Include="src\objects\bulletPool.cpp" />
     <ClCompile Include="src\objects\collisionSystem.cpp" />
     <ClCompile Include="src\objects\grid.cpp" />
     <ClCompile Include="src\objects\gridFactory.cpp" />
     <ClCompile Include="src\objects\jsonParser.cpp" />
+    <ClCompile Include="src\objects\prisonerPrefab.cpp" />
     <ClCompile Include="src\objects\renderSystem.cpp" />
+    <ClCompile Include="src\objects\scoreManager.cpp" />
+    <ClCompile Include="src\objects\textConverter.cpp" />
     <ClCompile Include="src\scene\mainScene.cpp" />
     <ClCompile Include="src\scene\myScene.cpp" />
     <ClCompile Include="src\scene\sceneFactory.cpp" />
@@ -178,7 +187,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\Visual Leak Detector\include;.;template;lib;lib\glad;lib\glfw\include;lib\OpenCL\inc;lib\zlib;include;include\Scene;include\Objects;include\GameObjects;include\Animation;include\Components;include\Components\renderers;include\Components\guns;include\Components\colliders;include\Components\actor</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Visual Leak Detector\include;.;template;lib;lib\glad;lib\glfw\include;lib\OpenCL\inc;lib\zlib;include;include\Scene;include\Objects;include\GameObjects;include\Animation;include\Components;include\Components\renderers;include\Components\guns;include\Components\colliders;include\components\ui;include\Components\actor</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>precomp.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>

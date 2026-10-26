@@ -31,7 +31,7 @@ public:
 	static bool RanStart();
 	static bool RanPostStart();
 
-	MyScene* GetScene() { return _currentScene; }; // Return current scene
+	static MyScene& GetScene() { return *_currentScene; }; // Return current scene
 
 private:
 

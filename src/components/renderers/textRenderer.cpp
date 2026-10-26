@@ -7,7 +7,7 @@
 
 void TextRenderer::Render()
 {
-	if (text == nullptr) return;
-	Central::surface->Print(text, (int)_gameObject->GetWorldPos().x, (int)_gameObject->GetWorldPos().y, colour);
+	if (_text == nullptr) return;
+	Central::surface->Print(_text, (int)_gameObject->GetWorldPos().x, (int)_gameObject->GetWorldPos().y, _colour);
 }
 

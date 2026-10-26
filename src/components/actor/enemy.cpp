@@ -15,6 +15,7 @@
 #include "renderSystem.h"
 #include "collisionSystem.h"
 #include "sceneManager.h"
+#include "myScene.h"
 
 
 // Structors
@@ -46,6 +47,7 @@ Enemy::Enemy(EnemyType type, GameObject* player) : _type(type), _player(player)
 // Lifecycle
 void Enemy::Start()
 {
+	_player = SceneManager::GetScene().GetPlayer();
 	_hp = &_gameObject->AddComponent<Health>(_startHP);
 
 	_rb = _gameObject->GetComponent<Rigidbody>();
@@ -305,11 +307,12 @@ void Enemy::BombAttackBehaviour()
 void Enemy::EnterDead() // Enemy plays dying animation, holds final frame, and then despawns when offscreen
 {
 	if (debug) printf("Entering dying state\n");
-	//_rb->active = false;
+
 	_col->active = false;
 	_rectRend->active = false;
-	_anim->SetClip(7);
 
+	_anim->SetClip(7);
+	SceneManager::GetScene().GetScoreManager().IncrementScore(_scoreValue);
 	_state = EnemyState::Dead;
 }
 

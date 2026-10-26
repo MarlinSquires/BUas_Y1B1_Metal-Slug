@@ -139,7 +139,7 @@ CollisionResult CollisionSystem::RectVsRect(CollisionLayerName collisionLayer, c
 CollisionResult CollisionSystem::RectVsTile(const RectCollider& rectCol, GridCollider& tileCol, const float2 pos)
 {
 	// Init grid values
-	Grid& grid = tileCol.GetGrid();
+	Grid& grid = *tileCol.GetGrid();
 	int tileSize = grid.tileSize;
 	int arrayMax = grid.width * grid.height - 1;
 

@@ -10,6 +10,7 @@ enum class RenderLayerName : uint8_t
 	Background,
 	BGSprites,
 	BGActors,
+	MGActors,
 	FGActors,
 	FGSprites,
 	Text,

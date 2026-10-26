@@ -8,12 +8,12 @@
 class GridCollider : public Collider
 {
 public:
-	Grid& GetGrid() { return _grid; }
+	Grid* GetGrid() { return _grid; }
 
-	GridCollider(const char* address);
+	GridCollider(Grid& g);
 
 private:
-	Grid _grid = Grid(0, 0, 0);
+	Grid* _grid = nullptr;
 
 };
 

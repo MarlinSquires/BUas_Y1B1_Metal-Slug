@@ -529,7 +529,7 @@ inline float length( const int4& v ) { return sqrtf( (float)dot( v, v ) ); }
 inline float2 normalize(const float2& v)
 {
 	float lenSq = dot(v, v);
-	if (lenSq < 1e-12f) return float2(0, 0); // or some default direction
+	if (lenSq < 1e-12f) return float2(1, 0); // or some default direction
 	return v * rsqrtf(lenSq);
 }
 inline float3 normalize( const float3& v ) { float invLen = rsqrtf( dot( v, v ) ); return v * invLen; }

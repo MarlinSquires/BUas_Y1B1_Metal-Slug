@@ -4,6 +4,8 @@
 #include "renderSystem.h"
 #include "collisionSystem.h"
 #include "bulletPool.h"
+#include "scoreManager.h"
+#include "grid.h"
 
 class GameObject;
 
@@ -28,10 +30,22 @@ public:
 	bool RanPostStart() { return _ranPostStart; }
 	void SetDebug(bool debugState);
 	void ToggleDebug() { SetDebug(!_debug); }
+	ScoreManager& GetScoreManager() { return _scoreManager; }
+
+	void SetGrid(Grid g) { _grid = g; }
+	Grid& GetGrid() { return _grid; }
+
+	void SetPlayer(GameObject* ptr) { _player = ptr; }
+	GameObject* GetPlayer() { return _player; }
 	
 
 	// Structors
+	MyScene() {};
 	virtual ~MyScene();
+
+protected:
+	ScoreManager _scoreManager;
+
 
 private:
 
@@ -47,9 +61,14 @@ private:
 	GameObject* _objects[MAX_OBJECTS] = {};
 	int _objectCount = 0;
 
-	RenderSystem _renderSystem = RenderSystem();
-	CollisionSystem _collisionSystem = CollisionSystem();
-	BulletPool _bulletPool = BulletPool();
+	// Objects
+	RenderSystem _renderSystem;
+	CollisionSystem _collisionSystem;
+	BulletPool _bulletPool;
+	Grid _grid = { 0,0,0 };
+
+	GameObject* _player = nullptr;
+
 
 };
 

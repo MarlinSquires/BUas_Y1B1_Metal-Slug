@@ -46,7 +46,7 @@ public:
 	void Tick() override;
 
 	// Structors
-	Enemy(EnemyType type, GameObject* player);
+	Enemy(EnemyType type, GameObject* player = nullptr);
 
 private:
 
@@ -158,6 +158,7 @@ private:
 	float _cumWeight = 0.0f;
 
 
+	int _scoreValue = 100;
 
 	// State
 	EnemyState _state;

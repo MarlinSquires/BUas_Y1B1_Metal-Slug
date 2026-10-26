@@ -4,9 +4,9 @@
 #include "gameObject.h"
 #include "enemy.h"
 #include "animator.h"
-#include "colliders/rectCollider.h"
-#include "renderers/spriteRenderer.h"
-#include "renderers/rectRenderer.h"
+#include "rectCollider.h"
+#include "spriteRenderer.h"
+#include "rectRenderer.h"
 #include "rigidbody.h"
 #include "health.h"
 
@@ -17,11 +17,11 @@
 
 
 
-GameObject* EnemyPrefab::Load(float2 spawnPos, GameObject* player, EnemyType type)
+GameObject* EnemyPrefab::Load(float2 spawnPos, EnemyType type)
 {
 	GameObject* go = new GameObject(spawnPos);
 
-	go->AddComponent<Enemy>(type, player);
+	go->AddComponent<Enemy>(type);
 
 	go->AddComponent<Animator>(RenderLayerName::BGActors, AnimationSetName::Enemy);
 	RectCollider& col = go->AddComponent<RectCollider>(CollisionLayerName::Enemies, float2(24.0f, 36.0f));

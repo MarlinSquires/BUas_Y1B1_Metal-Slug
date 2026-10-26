@@ -16,10 +16,10 @@ public:
 	void Render() override;
 
 	// Structors
-	GridRenderer(GridCollider* gridCollider);
+	GridRenderer(Grid& g);
 
 private:
 
-	Grid& grid;
+	Grid* _grid = nullptr;
 };
 

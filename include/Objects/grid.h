@@ -9,6 +9,8 @@ enum class TileType : uint8_t
 	Passthrough,
 	SlopeLeft,
 	SlopeRight, 
+	SpawnEnemy,
+	SpawnPrisoner,
 	COUNT
 };
 

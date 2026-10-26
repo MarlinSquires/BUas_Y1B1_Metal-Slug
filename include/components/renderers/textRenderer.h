@@ -9,11 +9,15 @@ public:
 	// Lifecycle
 	void Render() override;
 
+	// Setters
+	void SetText(const char* text) { _text = text; };
+
 	// Structors
-	TextRenderer(const char* text = nullptr, int colour = 0xFFFFFF) : Renderer(RenderLayerName::Text), text(text), colour(colour) {};
+	TextRenderer(const char* text = nullptr, int colour = 0xFFFFFF) : Renderer(RenderLayerName::Text), _text(text), _colour(colour) {};
 
+private:
 
-	const char* text = nullptr;
-	int colour = 0xFFFFFF;
+	const char* _text = nullptr;
+	int _colour = 0xFFFFFF;
 
 };
